@@ -1,0 +1,18 @@
+<form #healthForm="ngForm" (ngSubmit)="submitForm(healthForm.value)">
+    <input type="number" name="weight" ngModel required placeholder="น้ำหนัก (kg)">
+    <input type="number" name="exerciseDuration" ngModel required placeholder="ระยะเวลาการออกกำลังกาย (นาที)">
+
+    <label>ประเภทอาหาร:</label>
+    <select name="mealType" ngModel>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+    </select>
+
+    <input type="radio" name="gender" ngModel value="male"> ชาย
+    <input type="radio" name="gender" ngModel value="female"> หญิง
+
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+
+    <button type="submit">บันทึกข้อมูล</button>
+</form>
