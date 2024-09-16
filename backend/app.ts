@@ -1,16 +1,34 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+import usersRouter from "./Routes/users.routes";
 
-var usersRouter = require("./Routes/users.routes");
-
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
+const URL = "mongodb://localhost:27017/mydb";
+const CONFIG = {
+  autoIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/", usersRouter);
+const connectToDatabase = async () => {
+  try {
+    await mongoose.connect(URL, CONFIG);
+    console.log("Connected to MongoDB...");
+  } catch (err) {
+    console.error("Cannot connect to MongoDB", err);
+    process.exit(1);
+  }
+};
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+connectToDatabase().then(() => {
+  app.use("/", usersRouter);
+
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
 });
