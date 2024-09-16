@@ -1,18 +1,41 @@
-<form #healthForm="ngForm" (ngSubmit)="submitForm(healthForm.value)">
-    <input type="number" name="weight" ngModel required placeholder="น้ำหนัก (kg)">
-    <input type="number" name="exerciseDuration" ngModel required placeholder="ระยะเวลาการออกกำลังกาย (นาที)">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container mt-4">
+    <div class="card p-4 shadow-sm">
+        <h3 class="text-center mb-4">บันทึกข้อมูลสุขภาพ</h3>
 
-    <label>ประเภทอาหาร:</label>
-    <select name="mealType" ngModel>
-        <option value="breakfast">Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="dinner">Dinner</option>
-    </select>
+        <div class="form-group mb-3">
+            <label for="name">ชื่อ</label>
+            <input class="form-control" id="name" formControlName="name" name="name" placeholder="ชื่อ" />
+        </div>
 
-    <input type="radio" name="gender" ngModel value="male"> ชาย
-    <input type="radio" name="gender" ngModel value="female"> หญิง
+        <div class="form-group mb-3">
+            <label for="weight">น้ำหนัก (kg)</label>
+            <input class="form-control" type="number" id="weight" formControlName="weight" name="weight"
+                placeholder="น้ำหนัก (kg)" />
+        </div>
 
-    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        <div class="form-group mb-3">
+            <label for="exerciseDuration">ระยะเวลาการออกกำลังกาย (นาที)</label>
+            <input class="form-control" type="number" id="exerciseDuration" formControlName="exerciseDuration"
+                name="exerciseDuration" placeholder="ระยะเวลาการออกกำลังกาย (นาที)" />
+        </div>
 
-    <button type="submit">บันทึกข้อมูล</button>
+        <div class="form-group mb-3">
+            <label for="mealType">ประเภทอาหาร</label>
+            <select class="form-control" id="mealType" formControlName="mealType" name="mealType">
+                <option value="breakfast">อาหารเช้า</option>
+                <option value="lunch">อาหารกลางวัน</option>
+                <option value="dinner">อาหารเย็น</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="gender">เพศ</label>
+            <select class="form-control" id="gender" formControlName="gender" name="gender">
+                <option value="male">ชาย</option>
+                <option value="female">หญิง</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">บันทึกข้อมูล</button>
+    </div>
 </form>
