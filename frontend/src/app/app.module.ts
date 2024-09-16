@@ -13,7 +13,7 @@ import { SleepTrackerComponent } from './components/sleep-tracker/sleep-tracker.
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { SummaryChartComponent } from './components/summary-chart/summary-chart.component';
 import { SettingsComponent } from './components/settings/settings.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,8 @@ import { SettingsComponent } from './components/settings/settings.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
