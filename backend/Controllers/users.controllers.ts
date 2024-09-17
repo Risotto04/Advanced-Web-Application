@@ -3,16 +3,16 @@ import jwt from "jsonwebtoken";
 import User from "../Models/user";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
-const JWT_SECRET = "your_jwt_secret_key"; // Use environment variables for sensitive data
 
 export const signIn = async (req: Request, res: Response, next: NextFunction) => {
+  const JWT_SECRET = process.env.JWT_KEY as string;
   try {
-    const { username, password } = req.query;
+    const { email, password } = req.query;
 
     const existingToken = req.cookies.Authorization;
 
     if (!existingToken) {
-      const payload = { username, password };
+      const payload = { email, password };
       const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "3h" });
 
       res.cookie("Authorization", token, {
