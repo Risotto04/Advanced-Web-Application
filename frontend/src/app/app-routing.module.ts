@@ -9,6 +9,7 @@ import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { SubscriptionComponent } from './modules/subscription/subscription.component';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 import { authGuard } from '@app/guards/auth.guard';
+import { CategoryComponent } from './modules/category/category.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       {
         path: 'category',
-        component: CheckoutComponent,
+        component: CategoryComponent,
       },
       {
         path: 'checkout',

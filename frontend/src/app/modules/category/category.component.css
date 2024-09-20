@@ -1,0 +1,54 @@
+.category-container {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /* กำหนดให้แบ่งส่วน hero และ products */
+    gap: 20px;
+  }
+  
+  .hero-section {
+    position: relative;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .products-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* กำหนดคอลัมน์สำหรับสินค้า */
+    gap: 20px;
+  }
+  
+  .product-item {
+    text-align: center;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-details {
+    margin-top: 10px;
+  }
+  
+  .product-details h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .product-details p {
+    font-size: 1.2rem;
+    color: gray;
+  }
+  
