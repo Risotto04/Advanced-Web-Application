@@ -3,8 +3,6 @@ import { IUser } from "./user";
 
 export interface UserAddress extends Document {
   user_id: IUser["_id"];
-  name: string;
-  desc: string;
   address: {
     address_line1: string;
     city: string;
@@ -43,14 +41,6 @@ export const UserAddressSchema: Schema = new Schema({
   user_id: {
     type: mongoose.Types.ObjectId,
     ref: "User",
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  desc: {
-    type: String,
     required: true,
   },
   address: {
