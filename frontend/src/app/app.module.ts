@@ -3,37 +3,37 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormComponentComponent } from './components/form-component/form-component.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ExerciseTrackerComponent } from './components/exercise-tracker/exercise-tracker.component';
-import { MealTrackerComponent } from './components/meal-tracker/meal-tracker.component';
-import { SleepTrackerComponent } from './components/sleep-tracker/sleep-tracker.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { SummaryChartComponent } from './components/summary-chart/summary-chart.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { SharedModule } from '@shared/shared.module';
+import { HomeComponent } from './modules/home/home.component';
+import { LoginComponent } from './modules/login/login.component';
+import { RegisterComponent } from './modules/register/register.component';
+import { CategoryComponent } from './modules/category/category.component';
+import { SubscriptionComponent } from './modules/subscription/subscription.component';
+import { AboutUsComponent } from './modules/about-us/about-us.component';
+import { CheckoutComponent } from './modules/checkout/checkout.component';
+import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { NavComponent } from './layout/nav/nav.component';
+import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponentComponent,
-    HeaderComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    CategoryComponent,
+    SubscriptionComponent,
+    AboutUsComponent,
+    CheckoutComponent,
+    ContentLayoutComponent,
     FooterComponent,
-    DashboardComponent,
-    ExerciseTrackerComponent,
-    MealTrackerComponent,
-    SleepTrackerComponent,
-    UserProfileComponent,
-    SummaryChartComponent,
-    SettingsComponent
+    NavComponent,
+    PageNotFoundComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
