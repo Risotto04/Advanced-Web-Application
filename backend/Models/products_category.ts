@@ -1,19 +1,18 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface ProductCategory extends Document {
-  _id: mongoose.Types.ObjectId;
   name: string;
   desc: string;
 }
 
-const ProductCategorySchema: Schema = new Schema({
+export const ProductCategorySchema: Schema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   desc: {
     type: String,
-    required: true
+    required: true,
   }
 });
 

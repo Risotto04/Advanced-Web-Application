@@ -2,11 +2,11 @@ import mongoose, { Document, Schema } from "mongoose";
 import { IUser } from "./user";
 
 export interface UserAddress extends Document {
-  _id: mongoose.Types.ObjectId;
   user_id: IUser["_id"];
   name: string;
   desc: string;
   address: {
+    address_line1: string;
     city: string;
     postal_code: string;
     country: string;
@@ -14,38 +14,49 @@ export interface UserAddress extends Document {
   };
 }
 
-const UserAddressSchema: Schema = new Schema({
+// Subdocument schema for the address
+const AddressSchema: Schema = new Schema({
+  address_line1: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  postal_code: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  phone_number: {
+    type: String,
+    required: true,
+  },
+});
+
+// Main UserAddress schema
+export const UserAddressSchema: Schema = new Schema({
   user_id: {
     type: mongoose.Types.ObjectId,
-    ref: 'User',  // Ensure this matches the model name for User
-    required: true
+    ref: "User",
+    required: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   desc: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
-    city: {
-      type: String,
-      required: true
-    },
-    postal_code: {
-      type: String,
-      required: true
-    },
-    country: {
-      type: String,
-      required: true
-    },
-    phone_number: {
-      type: String,
-      required: true
-    }
-  }
+    type: AddressSchema, // Embedding the AddressSchema as a subdocument
+    required: true,
+  },
 });
 
 export default mongoose.model<UserAddress>("UserAddress", UserAddressSchema);

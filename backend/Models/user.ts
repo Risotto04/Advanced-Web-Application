@@ -2,8 +2,8 @@ import mongoose, { Document, Schema } from "mongoose";
 
 export interface IUser extends Document {
   _id: mongoose.Types.ObjectId;
-  name: string;
-  username: string;
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
   phone_number: number;
@@ -11,8 +11,8 @@ export interface IUser extends Document {
 
 export const userSchema: Schema<IUser> = new mongoose.Schema({
   _id: { type: mongoose.Schema.Types.ObjectId, required: true },
-  name: { type: String, required: true },
-  username: { type: String, required: true },
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
   email: {
     type: String,
     required: true,
