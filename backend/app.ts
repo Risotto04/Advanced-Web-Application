@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import usersRouter from "./Routes/users.routes";
+import productRouter from "./Routes/product.routes";
 import middleware from "./Middleware/middleware";
 
 dotenv.config();
@@ -39,6 +40,8 @@ const startServer = async () => {
   await connectToDatabase();
 
   app.use("/", usersRouter);
+  app.use("/", productRouter);
+  
 
   app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
