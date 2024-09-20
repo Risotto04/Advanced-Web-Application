@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import Cart from '../Models/cart'
-import { getCartItemsByUserId } from "./cartItem.controller";
+// import { getCartItemsByUserId } from "./cartItem.controller";
 
 
 
