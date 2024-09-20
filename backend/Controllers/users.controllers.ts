@@ -33,7 +33,7 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, password, name, phone_number } = req.body;
+    const { email, password, firstname, lastname, phone_number } = req.body;
 
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
@@ -48,7 +48,8 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       _id: new mongoose.Types.ObjectId(),
       email,
       password: hashedPassword,
-      name,
+      firstname,
+      lastname,
       phone_number,
     });
 
