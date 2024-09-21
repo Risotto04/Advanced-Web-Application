@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class CategoryComponent {
   products = [
-    { name: 'Snowfall', price: 70, imageUrl: 'assets/images/Flowers/Snowfall.webp' },
+    { name: 'Snowfall', price: 70, imageUrl: 'assets/images/Flowers/Snowfall.jpg' },
     { name: 'Dawn\'s Delight', price: 70, imageUrl: 'assets/images/Flowers/Dawns_Delight.webp' },
     { name: 'Pink Elegance', price: 70, imageUrl: 'assets/images/Flowers/Pink_Elegance.webp' },
     { name: 'Rustic Charm', price: 70, imageUrl: 'assets/images/Flowers/Rustic_Charm.webp' },
