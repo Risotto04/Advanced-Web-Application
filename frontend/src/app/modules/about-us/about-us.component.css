@@ -1,3 +1,9 @@
 .font-ab {
     font-family: 'Zapfino Extra LT Pro', sans-serif;
 }
+
+.wrapper {
+    position: -webkit-sticky; /* สำหรับ Safari */
+    position: sticky;
+    top: 50px; /* เพิ่มระยะห่างจากด้านบน */
+  }
