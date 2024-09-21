@@ -56,12 +56,12 @@
       </div>
       <img
         *ngIf="i % 2 == 0"
-        src="{{ item.img }}"
+        src="data:image/*;base64,{{ item.img }}"
         class="w-1/2 aspect-square border-l border-b border-r border-[black]"
       />
       <img
         *ngIf="i % 2 == 1"
-        src="{{ item.img }}"
+        src="data:image/*;base64,{{ item.img }}"
         class="w-1/2 aspect-square border-l border-b border-[black]"
       />
       <div

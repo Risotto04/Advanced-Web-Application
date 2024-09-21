@@ -4,28 +4,28 @@ import { ProductCategory } from "./products_category";
 export interface Product extends Document {
   name: string;
   price: number;
-  picture: string[];  // Array of image URLs
-  productCategory_id: ProductCategory['_id'];
+  picture: Buffer;
+  productCategory_id: ProductCategory["_id"];
 }
 
 export const ProductSchema: Schema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   picture: {
-    type: [String],  // Array of strings
-    required: true
+    type: Buffer, // Array of strings
+    required: true,
   },
   productCategory_id: {
     type: mongoose.Types.ObjectId,
-    ref: 'ProductCategory',
-    required: true
-  }
+    ref: "ProductCategory",
+    required: true,
+  },
 });
 
 export default mongoose.model<Product>("Product", ProductSchema);
