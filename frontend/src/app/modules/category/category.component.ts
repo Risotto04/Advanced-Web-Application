@@ -7,16 +7,17 @@ import { Component } from '@angular/core';
 })
 export class CategoryComponent {
   products = [
-    { name: 'Snowfall', price: 70, imageUrl: 'C:\Users\cheet\Advanced-Web-Application\frontend\src\app\assets\images\Flowers\Snowfall.webp' },
-    { name: 'Dawns Delight', price: 70, imageUrl: 'C:\Users\cheet\Advanced-Web-Application\frontend\src\app\assets\images\Flowers\Dawns Delight.webp' },
-    { name: 'Pink Elegance', price: 70, imageUrl: 'path-to-image3.jpg' },
-    { name: 'Rustic Charm', price: 70, imageUrl: 'path-to-image4.jpg' },
-    { name: 'Autumn Symphony', price: 70, imageUrl: 'path-to-image5.jpg' },
-    { name: 'Rosy Delight', price: 70, imageUrl: 'path-to-image6.jpg' },
-    { name: 'Serenity', price: 89, imageUrl: 'path-to-image7.jpg' },
-    { name: 'Blue Harmony', price: 55, imageUrl: 'path-to-image8.jpg' },
-    { name: 'Mystical Majesty', price: 80, imageUrl: 'path-to-image9.jpg' },
-    { name: 'Blazing Blossoms', price: 75, imageUrl: 'path-to-image10.jpg' },
+    { name: 'Snowfall', price: 70, imageUrl: 'assets/images/Flowers/Snowfall.jpg' },
+    { name: 'Dawn\'s Delight', price: 70, imageUrl: 'assets/images/Flowers/Dawns_Delight.webp' },
+    { name: 'Pink Elegance', price: 70, imageUrl: 'assets/images/Flowers/Pink_Elegance.webp' },
+    { name: 'Rustic Charm', price: 70, imageUrl: 'assets/images/Flowers/Rustic_Charm.webp' },
+    { name: 'Autumn Symphony', price: 70, imageUrl: 'assets/images/Flowers/Autumn_Symphony.webp' },
+    { name: 'Rosy Delight', price: 70, imageUrl: 'assets/images/Flowers/Rosy_Delight.webp' },
+    { name: 'Serenity', price: 89, imageUrl: 'assets/images/Flowers/Serenity.webp' },
+    { name: 'Blue Harmony', price: 55, imageUrl: 'assets/images/Flowers/Blue_Harmony.webp' },
+    { name: 'Mystical Majesty', price: 80, imageUrl: 'assets/images/Flowers/Mystical_Majesty.webp' },
+    { name: 'Blazing Blossoms', price: 75, imageUrl: 'assets/images/Flowers/Blazing_Blossoms.webp' },
   ];
+  
 }
 
