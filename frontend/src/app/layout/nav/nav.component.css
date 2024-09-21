@@ -1,0 +1,74 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Ensure it sits above other content */
+}
+
+.modal-content {
+  width: 50%; /* Adjust the width as needed */
+  max-width: 500px; /* Optional max width */
+  background: white;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  border: none;
+  font-size: 20px;
+}
+
+.checkout-button {
+  width: 100%; /* Full width of the modal */
+  background-color: #000000; /* Bootstrap primary color */
+  color: white;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: #000000; /* Darker on hover */
+}
+
+.cart-item {
+  display: flex; /* Flexbox for layout */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 1rem; /* Space between items */
+}
+
+.item-image {
+  width: 4rem; /* Set width (adjust as needed) */
+  height: 4rem; /* Set height (adjust as needed) */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+.modal-content::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar */
+  border-radius: 4px; /* Round edges */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color on hover */
+}
+
+/* For Firefox */
+.modal-content {
+  scrollbar-width: thin; /* Makes the scrollbar thin */
+  scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
+}
