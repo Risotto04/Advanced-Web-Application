@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +34,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
     NavComponent,
     PageNotFoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
