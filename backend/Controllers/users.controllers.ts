@@ -22,11 +22,9 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
 
       res.status(200).json({ message: "Login successful" });
     } else {
-      console.log("Cookie exists:", existingToken);
       return res.status(200).json({ message: "You are already logged in" });
     }
   } catch (error) {
-    console.error("Sign-in error:", error);
     return res.status(500).json({ message: "An error occurred during sign-in" });
   }
 };

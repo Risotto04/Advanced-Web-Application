@@ -2,15 +2,15 @@
     <div class="login-box">
         <h1>Greetings!</h1>
         <h1>Welcome to luxury gift shop.</h1>
-        <form>
+        <form  (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input  type="email" name="email" required placeholder="Enter your email" />
+                <input [(ngModel)]="email" type="email" name="email" required placeholder="Enter your email" />
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input  type="password" name="password" required placeholder="Enter your password" />
+                <input [(ngModel)]="password"  type="password" name="password" required placeholder="Enter your password" />
             </div>
 
             <button type="submit" class="btn-login">CONTINUE</button>
@@ -20,5 +20,6 @@
                 <a routerLink="/register">Sign Up</a>
             </div>
         </form>
+        <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
     </div>
 </div>

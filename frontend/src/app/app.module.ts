@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
-
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -21,6 +22,7 @@ import { DriedFlowersComponent } from './modules/category1/dried-flowers/dried-f
 import { LivePlantsComponent } from './modules/category1/live-plants/live-plants.component';
 import { AromaCandlesComponent } from './modules/category1/aroma-candles/aroma-candles.component';
 import { FreshenersComponent } from './modules/category1/fresheners/fresheners.component';
+import { UserService } from '@shared/services/user.service';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,8 @@ import { FreshenersComponent } from './modules/category1/fresheners/fresheners.c
     AromaCandlesComponent,
     FreshenersComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule,HttpClientModule],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

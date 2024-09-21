@@ -21,7 +21,13 @@ const MONGO_CONFIG = {
 };
 
 const app = express();
-
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, PATCH, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Option, Authorization')
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); 
+  return next()
+});
 app.use(express.json());
 app.use(cookieParser());
 
