@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Request, Response, NextFunction } from "express";
 import Product from '../Models/product';
 
+//might not be useful
 export const getProducts = async(req: Request, res: Response, ) => {
     try {
         const productList = await Product.find({});
@@ -11,7 +12,7 @@ export const getProducts = async(req: Request, res: Response, ) => {
         return res.status(500).json({"error":error});
     }
 }
-
+//can be replaced the 1st one
 export const getProductsByCategory = async(req: Request, res: Response) => {
     const category = req.query.category || req.params.category;
     const filter = category ? { category: category.toString() } : {};
