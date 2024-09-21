@@ -1,24 +1,23 @@
 <div class="login-container">
     <div class="login-box">
-      <h1>Welcome to my world by Robin</h1>
-      <form>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" required placeholder="Enter your email" />
-        </div>
-  
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" required placeholder="Enter your password" />
-        </div>
-  
-        <button type="submit" class="btn-login">Login</button>
-  
-        <div class="signup-link">
-          <span>Don't have an account?</span> 
-          <a routerLink="/register">Sign Up</a>
-        </div>
-      </form>
+        <h1>Welcome to my world by Robin</h1>
+        <form (submit)="onLogin()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input formControlName="email" type="email" name="email" required placeholder="Enter your email" />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input formControlName="password" type="password" name="password" required placeholder="Enter your password" />
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+
+            <div class="signup-link">
+                <span>Don't have an account?</span>
+                <a routerLink="/register">Sign Up</a>
+            </div>
+        </form>
     </div>
-  </div>
-  
+</div>
