@@ -5,7 +5,8 @@ import ProductCategory from '../Models/products_category';
 export const listProductCateggories = async(req:Request, res: Response) => {
     try{
         const categories = await ProductCategory.find();
-
+        if(!categories)
+            return res.status(404).json({message: "Categories not found"});
         return res.status(200).json({data: categories});
     }catch(e){
         console.log("An error ocured: ", e);
