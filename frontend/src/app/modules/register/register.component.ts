@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,12 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  firstname: string = '';
-  lastname: string = '';
-  email: string = '';
-  password: string = '';
-  phone_number: string = '';
-
   constructor(private http: HttpClient) {}
 
   onRegister() {

@@ -1,3 +1,14 @@
 .font-ab {
     font-family: 'Zapfino Extra LT Pro', sans-serif;
 }
+
+.font-a {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 500;
+}
+
+.wrapper {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+  }
