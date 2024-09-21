@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +41,7 @@ import { FreshenersComponent } from './modules/category1/fresheners/fresheners.c
     AromaCandlesComponent,
     FreshenersComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
