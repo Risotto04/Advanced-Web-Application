@@ -1,0 +1,16 @@
+<div class="flex flex-col gap-4">
+  <p class="font-medium text-xl">3 Payment</p>
+  <div class="">
+    <p class="mb-3 font-medium">Pay by card. Your payment is secure.</p>
+    <input type="text" placeholder="Card Number" hlmInput class="w-full mb-3" />
+    <div class="w-full flex gap-3">
+      <input
+        type="text"
+        placeholder="MM / YY"
+        hlmInput
+        class="w-1/2 mb-3"
+      /><input type="text" placeholder="CVV Code" hlmInput class="w-1/2 mb-3" />
+    </div>
+  </div>
+  <button hlmBtn (click)="onClick()">MAKE A PURCHASE</button>
+</div>

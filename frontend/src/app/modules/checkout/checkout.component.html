@@ -1,1 +1,63 @@
-<p>checkout works!</p>
+<div class="flex w-full">
+  <div class="w-1/2 px-20 py-10">
+    <div class="sticky top-10">
+      <div class="flex gap-3 font-medium mb-10">
+        <div (click)="state = 0" class="hover: cursor-pointer">
+          <p [ngClass]="getStateStyle(0)">INFOMATION ></p>
+        </div>
+        <div (click)="state = 1" class="hover: cursor-pointer">
+          <p [ngClass]="getStateStyle(1)">SHIPPING ></p>
+        </div>
+        <div (click)="state = 2" class="hover: cursor-pointer">
+          <p [ngClass]="getStateStyle(2)">PAYMENT ></p>
+        </div>
+      </div>
+      <div [ngSwitch]="state">
+        <div *ngSwitchCase="0">
+          <app-checkout-contatinfo
+            (state)="setState($event)"
+          ></app-checkout-contatinfo>
+        </div>
+        <div *ngSwitchCase="1">
+          <app-checkout-shipping-details
+            (state)="setState($event)"
+          ></app-checkout-shipping-details>
+        </div>
+        <div *ngSwitchCase="2">
+          <app-checkout-payment
+            (state)="setState($event)"
+          ></app-checkout-payment>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="w-1/2 flex flex-col gap-10 px-20 py-10 bg-extraLight border-[black] border-x"
+  >
+    <p class="font-medium">ORDER SUMMARY</p>
+    <div>
+      <div
+        *ngFor="let data of datas"
+        class="flex border-[lightGray] border-b pb-8"
+      >
+        <img
+          src="{{ data.img }}"
+          alt="{{ data.name }}"
+          width="160"
+          class="mr-6 border-[black] border aspect-square"
+        />
+        <div class="flex justify-between w-full self-center text-lg">
+          <div>
+            <p class="font-medium">{{ data.name }}</p>
+            <p>Quantity ({{ data.Quantity }})</p>
+          </div>
+          <p class="font-medium">${{ data.price * data.Quantity }}</p>
+        </div>
+      </div>
+      <div class="flex w-full justify-between font-medium text-lg mt-3">
+        <p>Total</p>
+        <p>${{ getSum() }}</p>
+      </div>
+    </div>
+  </div>
+</div>

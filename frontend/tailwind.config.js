@@ -6,9 +6,9 @@ module.exports = {
     "./src/app/shared/components/**/*.{html,ts}",
   ],
   theme: {
-    theme: {
-      white: "#ffffff",
+    extend: {
       colors: {
+        white: "#ffffff",
         extraLight: "#F5F5F7",
         lightGray: "#D2D2D7",
         gray: "#808080",

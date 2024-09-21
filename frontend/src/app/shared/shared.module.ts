@@ -7,6 +7,9 @@ import { HlmFormFieldComponent } from './components/ui-formfield-helm/src/lib/hl
 import { HlmHintDirective } from './components/ui-formfield-helm/src/lib/hlm-hint.directive';
 import { HlmInputDirective } from './components/ui-input-helm/src/lib/hlm-input.directive';
 import { HlmInputErrorDirective } from './components/ui-input-helm/src/lib/hlm-input-error.directive';
+import { CheckoutContatinfoComponent } from './components/checkout-contatinfo/checkout-contatinfo.component';
+import { CheckoutShippingDetailsComponent } from './components/checkout-shipping-details/checkout-shipping-details.component';
+import { CheckoutPaymentComponent } from './components/checkout-payment/checkout-payment.component';
 
 export * from './components/ui-button-helm/src/lib/hlm-button.directive';
 export * from './components/ui-formfield-helm/src/lib/hlm-form-field.component';
@@ -23,6 +26,9 @@ export * from './components/ui-input-helm/src/lib/hlm-input.directive';
     HlmHintDirective,
     HlmInputDirective,
     HlmInputErrorDirective,
+    CheckoutContatinfoComponent,
+    CheckoutShippingDetailsComponent,
+    CheckoutPaymentComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -32,6 +38,9 @@ export * from './components/ui-input-helm/src/lib/hlm-input.directive';
     HlmHintDirective,
     HlmInputDirective,
     HlmInputErrorDirective,
+    CheckoutContatinfoComponent,
+    CheckoutPaymentComponent,
+    CheckoutShippingDetailsComponent,
   ],
 })
 export class SharedModule {}
