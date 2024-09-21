@@ -2,8 +2,13 @@
     font-family: 'Zapfino Extra LT Pro', sans-serif;
 }
 
+.font-a {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 500;
+}
+
 .wrapper {
-    position: -webkit-sticky; /* สำหรับ Safari */
+    position: -webkit-sticky;
     position: sticky;
-    top: 50px; /* เพิ่มระยะห่างจากด้านบน */
+    top: 50px;
   }
