@@ -22,4 +22,16 @@ export const createOrder = async(req:Request, res: Response) => {
     }catch(e){
         return res.status(500).json({message: "An error ocured during saving order"});
     }
-} 
+}
+
+export const getOrdersByUserId = async(req:Request, res:Response) => {
+    const {userId} = req.body;
+    try{
+        const orders = await Order.find({user_id: userId});
+        if(!orders)
+            return res.status(404).json({message: "Order not found"});
+    }catch(e){
+        console.log(e);
+        return res.status(500).json({message: "An error occurred during getting orders"});
+    }
+}
