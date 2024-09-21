@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nodemon --exec ts-node --files app.ts",
     "build": "tsc",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "seed": "ts-node seed.ts"
   },
   "repository": {
     "type": "git",
