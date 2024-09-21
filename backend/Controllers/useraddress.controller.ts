@@ -58,3 +58,38 @@ export const createUserAddress = async (req: Request, res: Response) => {
       return res.status(500).json({ message: "Internal server error." });
     }
   };
+
+export const updateUserAddressByUserId = async (req: Request, res: Response) => {
+  try {
+    const { user_id } = req.params; // Get user ID from params
+    const { address } = req.body; // Fields to update
+
+    // Validate user_id is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(user_id)) {
+      return res.status(400).json({ message: "Invalid user ID format." });
+    }
+
+    // Find the address by user_id and update it
+    const updatedAddress = await user_address.findOneAndUpdate(
+      { user_id: user_id },
+      {
+        $set: {
+          address,
+        },
+      },
+      { new: true, runValidators: true } // Return the updated document
+    ).exec();
+
+    if (updatedAddress) {
+      return res.status(200).json({
+        message: "Address updated successfully",
+        address: updatedAddress,
+      });
+    } else {
+      return res.status(404).json({ message: "Address not found for this user." });
+    }
+  } catch (error) {
+    console.error("Error updating user address:", error);
+    return res.status(500).json({ message: "Internal server error." });
+  }
+};

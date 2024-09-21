@@ -1,0 +1,22 @@
+<div class="Fresh-Flowers-container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <img src="C:\Users\cheet\Advanced-Web-Application\frontend\src\app\assets\images\Flowers\Fresh_Flowers.jpg " alt="Fresh Flowers" class="hero-image">
+      <div class="hero-text">
+        <h1>Fresh Flowers</h1>
+      </div>
+    </div>
+  
+    <!-- Products Section -->
+    <div class="products-section">
+        <div class="product-item" *ngFor="let product of products">
+            <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
+            <div class="product-details">
+              <h3>{{ product.name }}</h3>
+              <p>Price {{ product.price | currency }}</p>
+            </div>
+          </div>
+          
+    </div>
+  </div>
+  
