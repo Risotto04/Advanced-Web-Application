@@ -1,54 +1,74 @@
 .category-container {
-    display: grid;
-    grid-template-columns: 2fr 3fr; /* กำหนดให้แบ่งส่วน hero และ products */
-    gap: 20px;
-  }
+  display: flex;
+}
+
+.container {
+  width: 100%;
+  display: flex; /* ทำให้สองส่วนอยู่ในแนวนอน */
+} 
+
+.hero-section {
+  flex: 1; /* ทำให้ hero-section ใช้พื้นที่ครึ่งหนึ่ง */
+  position: relative;
+}
+
+.hero-image {
+  width: 100%; 
+  height: auto; 
+}
+
+
+.hero-text {
+  position: absolute; 
+  top: 10%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); /* ย้ายให้ตรงกลาง */
+  color: white; /* สีข้อความ */
+  text-align: center; 
+  z-index: 1;
+
+}
+
+.hero-text h1 {
+  font-size: 3.5rem; /* ปรับขนาดตัวอักษรที่นี่ */
+  margin: 0; /* ไม่ให้มีระยะห่าง */
+}
+
+
+.products-section {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+}
+
+.product-item { 
+  text-align: center;
+  position: relative; 
+}
+
+.product-image {
+  border: 1px solid black;
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
+}
+
+.product-details {
+  margin-top: 10px; /* เว้นระยะด้านบน */
+  position: absolute; /* ใช้เพื่อจัดตำแหน่งให้ข้อความอยู่ในภาพ */
+  bottom: 15px; /* ปรับตำแหน่งให้ชิดด้านล่าง */
+  left: 50%; /* จัดตำแหน่งให้ตรงกลาง */
+  transform: translateX(-50%); /* ย้ายให้ตรงกลาง */ /* เพิ่มพื้นหลังให้ข้อความ */
   
-  .hero-section {
-    position: relative;
-  }
-  
-  .hero-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .hero-text {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: white;
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  .products-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* กำหนดคอลัมน์สำหรับสินค้า */
-    gap: 20px;
-  }
-  
-  .product-item {
-    text-align: center;
-  }
-  
-  .product-image {
-    width: 100%;
-    height: auto;
-  }
-  
-  .product-details {
-    margin-top: 10px;
-  }
-  
-  .product-details h3 {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-  
-  .product-details p {
-    font-size: 1.2rem;
-    color: gray;
-  }
-  
+
+}
+
+.product-details h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.product-details p {
+  font-size: 1.2rem;
+  color: gray;
+}
