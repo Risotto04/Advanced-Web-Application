@@ -6,18 +6,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./fresh-flowers.component.css']
 })
 export class FreshFlowersComponent {
-  products = [
-    { name: 'Snowfall', price: 70, imageUrl: 'assets/images/Flowers/Snowfall.jpg' },
-    { name: 'Dawn\'s Delight', price: 70, imageUrl: 'assets/images/Flowers/Dawns_Delight.webp' },
-    { name: 'Pink Elegance', price: 70, imageUrl: 'assets/images/Flowers/Pink_Elegance.webp' },
-    { name: 'Rustic Charm', price: 70, imageUrl: 'assets/images/Flowers/Rustic_Charm.webp' },
-    { name: 'Autumn Symphony', price: 70, imageUrl: 'assets/images/Flowers/Autumn_Symphony.webp' },
-    { name: 'Rosy Delight', price: 70, imageUrl: 'assets/images/Flowers/Rosy_Delight.webp' },
-    { name: 'Serenity', price: 89, imageUrl: 'assets/images/Flowers/Serenity.webp' },
-    { name: 'Blue Harmony', price: 55, imageUrl: 'assets/images/Flowers/Blue_Harmony.webp' },
-    { name: 'Mystical Majesty', price: 80, imageUrl: 'assets/images/Flowers/Mystical_Majesty.webp' },
-    { name: 'Blazing Blossoms', price: 75, imageUrl: 'assets/images/Flowers/Blazing_Blossoms.webp' },
+  items = [
+    { name: 'Snowfall', price: 70, img: 'images/Flowers/Fresh Flowers/Snowfall.webp' },
+    { name: 'Dawns Delight', price: 70, img: 'images/Flowers/Fresh Flowers/DawnsDelight.webp' },
+    { name: 'Pink Elegance', price: 70, img: 'images/Flowers/Fresh Flowers/PinkElegance.webp' },
+    { name: 'Rustic Charm', price: 70, img: 'images/Flowers/Fresh Flowers/RusticCharm.webp' },
+    { name: 'Autumn Symphony', price: 70, img: 'images/Flowers/Fresh Flowers/AutumnSymphony.webp' },
+    { name: 'Rosy Delight', price: 70, img: 'images/Flowers/Fresh Flowers/RosyDelight.webp' },
+    { name: 'Serenity', price: 89, img: 'images/Flowers/Fresh Flowers/Serenity.webp' },
+    { name: 'Blue Harmony', price: 55, img: 'images/Flowers/Fresh Flowers/BlueHarmony.webp' },
+    { name: 'Mystical Majesty', price: 80, img: 'images/Flowers/Fresh Flowers/MysticalMajesty.webp' },
+    { name: 'Blazing Blossoms', price: 75, img: 'images/Flowers/Fresh Flowers/BlazingBlossoms.webp' },
   ];
   
 }
 
+// export class HomeComponent {
+//   items = [
+//     { img: 'images/test/1.webp', category: 'Fresh Flowers' },
+//     { img: 'images/test/2.webp', category: 'Dried Flowers' },
+//     { img: 'images/test/3.webp', category: 'Live Plants ' },
+//     { img: 'images/test/4.webp', category: 'Aroma Candels' },
+//     { img: 'images/test/5.webp', category: 'Fresheners' },
+//   ];
+// }
