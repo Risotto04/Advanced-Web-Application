@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   firstname: string = '';
@@ -13,7 +13,7 @@ export class RegisterComponent {
   password: string = '';
   phone_number: string = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   onRegister() {
     const userData = {
@@ -25,8 +25,8 @@ export class RegisterComponent {
     };
 
     this.http.post('http://localhost:3000/register', userData).subscribe(
-      response => console.log('Registration successful', response),
-      error => console.error('Registration error', error)
+      (response) => console.log('Registration successful', response),
+      (error) => console.error('Registration error', error)
     );
   }
 }
