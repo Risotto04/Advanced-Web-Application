@@ -38,7 +38,6 @@ import { JwtInterceptor } from '@shared/interceptors/jwt-interceptor.interceptor
     FooterComponent,
     NavComponent,
     PageNotFoundComponent,
-
     ProductDetailComponent,
   ],
   imports: [

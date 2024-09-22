@@ -1,58 +1,62 @@
 <div class="w-full flex justify-between h-20 border border-[black]">
   <div class="flex">
-    <div class="w-44 py-6 px-8 border-r-[black] border-r-[1px] text-center">
-      <a routerLink="/home" class="hover:underline cursor-pointer">Shop</a>
+    <div
+      class="w-44 py-6 px-8 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
+      routerLink="/home"
+    >
+      Shop
     </div>
-    <div class="w-44 py-6 px-8 border-r-[black] border-r-[1px] text-center">
-      <a (click)="scrollToContact()" class="hover:underline cursor-pointer"
-        >Contact</a
-      >
+    <div
+      class="w-44 py-6 px-8 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
+      (click)="scrollToContact()"
+    >
+      Contact
     </div>
   </div>
 
   <div class="flex">
-    <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center">
-      <a
-        *ngIf="!isauthenticated"
-        routerLink="/"
-        class="hover:underline cursor-pointer"
-        >Sign in</a
-      >
-      <a
-        *ngIf="isauthenticated"
-        routerLink="/"
-        (click)="onSignOut()"
-        class="hover:underline cursor-pointer"
-        >Sign out</a
-      >
+    <div
+      class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+      (click)="isauthenticated ? onSignOut() : navigateToSignIn()"
+    >
+      <a *ngIf="!isauthenticated">Sign in</a>
+      <a *ngIf="isauthenticated">Sign out</a>
     </div>
-    <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center">
-      <a (click)="openModal()" class="hover:underline cursor-pointer">Cart</a>
+
+    <div
+      class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+      (click)="openModal()"
+    >
+      Cart
     </div>
   </div>
 </div>
 
 <!-- Modal -->
 <div
+  id="modal"
   *ngIf="isModalOpen"
   class="modal-overlay fixed inset-0 justify-center items-center"
+  (click)="onOverlayClick($event)"
 >
   <div
     class="modal-content w-full h-full bg-white flex flex-col border-[black] border-l"
+    (click)="$event.stopPropagation()"
   >
     <button class="close-button absolute top-2 right-2" (click)="closeModal()">
-      ✖
+      X
     </button>
     <div class="px-3 py-2 text-sm text-gray-500 border-[black] border-b">
       <h2 class="text-lg font-normal my-4">Shopping Cart</h2>
     </div>
 
-    <div class="mb-4 overflow-y-auto flex-1 p-5">
+    <div class="overflow-y-auto flex-1 p-5 custom-scrollbar">
       <div *ngFor="let item of cartItems" class="flex items-center mb-4">
         <img
           [src]="item.img"
           alt="{{ item.name }}"
-          class="w-36 h-36 object-cover mr-4 border-[black] border"
+          width="120"
+          class="mr-6 border-[black] border aspect-square"
         />
         <div class="flex justify-between items-center w-full">
           <div>
@@ -65,37 +69,34 @@
       </div>
     </div>
 
-    <div class="mb-4">
-      <div
-        class="px-3 py-6 text-xl text-gray-500 text-center border-[black] border-y font-normal"
-      >
-        <p class="flex justify-between">
-          <span>Subtotal</span>
-          <span>${{ subtotal }}</span>
-        </p>
-      </div>
-      <input
-        id="gift-message"
-        [(ngModel)]="giftMessage"
-        type="text"
-        placeholder="Gift message"
-        class="px-3 py-20 text-sm text-gray-500 w-full"
-      />
-
-      <div
-        class="px-3 py-6 text-sm text-gray-500 text-center border-[black] border-y"
-      >
-        <p>Shipping & taxes calculated at checkout</p>
-        <p class="text-sm text-gray-600">Free standard shipping within Kyiv</p>
-      </div>
-
-      <!-- No margin for the button -->
-      <button
-        (click)="navigateToCheckout()"
-        class="checkout-button w-full bg-blue-500 text-white p-3"
-      >
-        Go to Checkout
-      </button>
+    <div
+      class="px-3 py-6 text-xl text-gray-500 text-center border-[black] border-y font-normal"
+    >
+      <p class="flex justify-between">
+        <span>Subtotal</span>
+        <span>${{ subtotal }}</span>
+      </p>
     </div>
+    <input
+      id="gift-message"
+      [(ngModel)]="giftMessage"
+      type="text"
+      placeholder="Gift message"
+      class="px-3 py-10 text-sm text-gray-500 w-full"
+    />
+
+    <div
+      class="px-3 py-4 text-sm text-gray-500 text-center border-[black] border-y"
+    >
+      <p>Shipping & taxes calculated at checkout</p>
+      <p class="text-sm text-gray-600">Free standard shipping within Kyiv</p>
+    </div>
+
+    <button
+      (click)="navigateToCheckout()"
+      class="checkout-button w-full bg-blue-500 text-white p-3"
+    >
+      Go to Checkout
+    </button>
   </div>
 </div>
