@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +25,7 @@ import { AromaCandlesComponent } from './modules/category1/aroma-candles/aroma-c
 import { FreshenersComponent } from './modules/category1/fresheners/fresheners.component';
 import { UserService } from '@shared/services/user.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,9 @@ import { UserService } from '@shared/services/user.service';
     LivePlantsComponent,
     AromaCandlesComponent,
     FreshenersComponent,
+
+
+    
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule,HttpClientModule],
   providers: [UserService],
