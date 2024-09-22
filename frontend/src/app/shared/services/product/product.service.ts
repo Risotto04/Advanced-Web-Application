@@ -15,6 +15,9 @@ export class ProductService {
   getProductsByIdCategory(id: string): Observable<ProductResponse> {
     return this.http.get<ProductResponse>(`${this.baseURL}/products/${id}`);
   }
+  getProductsById(id: string): Observable<{ data: IProduct }> {
+    return this.http.get<{ data: IProduct }>(`${this.baseURL}/product/${id}`);
+  }
 }
 interface ProductResponse {
   data: IProduct[];

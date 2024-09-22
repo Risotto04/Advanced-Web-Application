@@ -1,59 +1,126 @@
-
-<div class="product-detail-container">
+<div *ngIf="isActive">
+  <div class="product-detail-container">
     <!-- Product Detail Section -->
-    <div class="product-detail  border-b border-[black] ">
-        <div class="product-image  border-l border-b border-r border-[black] ">
-            <img [src]="Products[0].imageUrl" alt="{{ Products[0].name }}">
-        </div>
-      
-        <div class="product-info">
-            <h2>{{ Products[0].name }} - {{ Products[0].price | currency }}</h2>
-        <p>
-            Duis duis id consectetur id. Incididunt amet sunt deserunt officia. 
-        </p>
-        <div class="quantity-selector  ">
-          <label for="quantity">Quantity</label>
-          <div class="quantity-input ">
-            <button (click)="decreaseQuantity()">-</button>
-            <input type="number" id="quantity" [(ngModel)]="quantity" min="0">
-            <button (click)="increaseQuantity()">+</button>
+    <div class="product-detail border-b border-[black]">
+      <div class="overflow-hidden border-l border-r border-[black]">
+        <img
+          src="data:image/*;base64,{{
+            arrayBufferToBase64(products.picture.data)
+          }}"
+          class="aspect-square object-cover"
+          alt="{{ products.name }}"
+        />
+      </div>
+
+      <div class="product-info p-10 flex flex-col justify-between">
+        <div>
+          <p class="font-medium text-sm mb-4">
+            {{ category | uppercase }} /
+            <span class="text-[gray]">{{ products.name | uppercase }}</span>
+          </p>
+
+          <div class="flex flex-col gap-4">
+            <h2 class="font-medium text-6xl">
+              {{ products.name }} - {{ products.price | currency }}
+            </h2>
+            <p>
+              {{ products.desc }}
+            </p>
           </div>
-        </div>
-  
-        <div class="combo-section">
-            <h4>Excellent Combination with:</h4>
-            <div class="combo-items ">
-              <div class="combo-item aspect-square border-t border-l border-b border-r border-[black] " *ngFor="let combo of combos">
-                <img [src]="combo.imageUrl" alt="{{ combo.name }}">
-                <p>{{ combo.name }}<br>{{ combo.price | currency }}</p>
+          <div class="quantity-selector flex items-center gap-4">
+            <label class="font-medium text-xl" for="quantity">Quantity</label>
+            <div class="flex border">
+              <button
+                class="border-r w-11 aspect-square"
+                (click)="decreaseQuantity()"
+              >
+                <svg
+                  class="w-[36px] h-[36px] text-gray-800"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="0.5"
+                    d="M5 12h14"
+                  />
+                </svg>
+              </button>
+              <p class="h-11 w-14 flex justify-center items-center text-center">
+                <span>{{ quantity }}</span>
+              </p>
+
+              <button
+                class="border-l w-11 aspect-square flex justify-center items-center"
+                (click)="increaseQuantity()"
+              >
+                <svg
+                  class="w-[36px] h-[36px] text-gray-800"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="0.5"
+                    d="M5 12h14m-7 7V5"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="combo-section">
+            <p class="font-medium text-lg">Excellent Combination with:</p>
+            <div class="combo-items justify-center">
+              <div class="combo-item" *ngFor="let combo of combos">
+                <img
+                  [src]="combo.imageUrl"
+                  alt="{{ combo.name }}"
+                  class="aspect-square w-36 border border-[black]"
+                />
+                <p class="text-start">
+                  {{ combo.name }}
+                </p>
+                <p class="text-[gray]">{{ combo.price | currency }}</p>
               </div>
             </div>
           </div>
-  
-        <div class="price-options">
-          <h4>Price options</h4>
-          <label>
-            <input type="radio" name="priceOption" [(ngModel)]="priceOption" value="one-time"> One time purchase. Price $70
-          </label>
-          <label>
-            <input type="radio" name="priceOption" [(ngModel)]="priceOption" value="subscribe"> Subscribe now, and save 25% on this order.
-          </label>
         </div>
-  
-        <button class="add-to-cart">ADD TO CART</button>
+        <button hlmBtn class="w-full">ADD TO CART</button>
       </div>
     </div>
-  
+
     <!-- Recommended Section -->
     <div class="recommended-section">
       <h3>You may also like...</h3>
-      <div class="recommended-products ">
-        <div class="recommended-product border-t border-r border-[black]" *ngFor="let product of recommendedProducts">
-          <img [src]="product.imageUrl" alt="{{ product.name }}">
-          <p>{{ product.name }}<br>{{ product.price | currency }}</p>
+      <div class="recommended-products">
+        <div
+          class="recommended-product relative border-t border-r border-[black]"
+          *ngFor="let product of recommendedProducts"
+        >
+          <img [src]="product.imageUrl" alt="{{ product.name }}" />
+          <p
+            class="text-center text-lg font-medium absolute bottom-5 left-[50%] transform translate-x-[-50%]"
+          >
+            {{ product.name }}<br /><span class="text-[gray] text-base">{{
+              product.price | currency
+            }}</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
-  
-  
+</div>
+<div *ngIf="!isActive"><app-page-not-found></app-page-not-found></div>

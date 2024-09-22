@@ -21,7 +21,12 @@
         class="product-item border-l border-b border-r border-[black]"
         *ngFor="let item of items"
       >
-        <a [routerLink]="['/product-detail']">
+        <a
+          [routerLink]="[
+            '/product-detail',
+            { id: item._id, category: productCategor[0].name }
+          ]"
+        >
           <img
             src="data:image/*;base64,{{
               arrayBufferToBase64(item.picture.data)
