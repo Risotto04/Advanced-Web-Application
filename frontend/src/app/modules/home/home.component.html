@@ -29,7 +29,7 @@
         <p
           class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] text-3xl font-medium"
         >
-          {{ item.category }}
+          {{ item.name }}
         </p>
         <p
           class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
@@ -56,12 +56,12 @@
       </div>
       <img
         *ngIf="i % 2 == 0"
-        src="data:image/*;base64,{{ item.img }}"
+        src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
         class="w-1/2 aspect-square border-l border-b border-r border-[black]"
       />
       <img
         *ngIf="i % 2 == 1"
-        src="data:image/*;base64,{{ item.img }}"
+        src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
         class="w-1/2 aspect-square border-l border-b border-[black]"
       />
       <div
@@ -71,7 +71,7 @@
         <p
           class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] text-3xl font-medium"
         >
-          {{ item.category }}
+          {{ item.name }}
         </p>
         <p
           class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
