@@ -24,6 +24,7 @@
     "@spartan-ng/ui-forms-brain": "0.0.1-alpha.355",
     "class-variance-authority": "^0.6.0",
     "clsx": "^2.1.1",
+    "ngx-cookie-service": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

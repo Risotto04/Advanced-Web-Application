@@ -12,8 +12,18 @@
 
   <div class="flex">
     <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center">
-      <a routerLink="/register" class="hover:underline cursor-pointer"
+      <a
+        *ngIf="!isauthenticated"
+        routerLink="/"
+        class="hover:underline cursor-pointer"
         >Sign in</a
+      >
+      <a
+        *ngIf="isauthenticated"
+        routerLink="/"
+        (click)="onSignOut()"
+        class="hover:underline cursor-pointer"
+        >Sign out</a
       >
     </div>
     <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center">
@@ -37,31 +47,26 @@
       <h2 class="text-lg font-normal my-4">Shopping Cart</h2>
     </div>
 
-    <div
-    class="overflow-y-auto flex-1 p-5 custom-scrollbar"
-  >
-    <div *ngFor="let item of cartItems" class="flex items-center mb-4">
-      <img
-        [src]="item.img"
-        alt="{{ item.name }}"
-        width="120"
-        class="mr-6 border-[black] border aspect-square"
-      />
-      <div class="flex justify-between items-center w-full">
-        <div>
-          <p class="font-medium">{{ item.name }}</p>
-          <!-- <p>Quantity: {{ item.quantity }}</p> Bind dynamic quantity -->
-          <p class="font-medium">${{ item.price }}</p>
+    <div class="mb-4 overflow-y-auto flex-1 p-5">
+      <div *ngFor="let item of cartItems" class="flex items-center mb-4">
+        <img
+          [src]="item.img"
+          alt="{{ item.name }}"
+          class="w-36 h-36 object-cover mr-4 border-[black] border"
+        />
+        <div class="flex justify-between items-center w-full">
+          <div>
+            <p class="font-medium">{{ item.name }}</p>
+            <p>Quantity (1)</p>
+            <p class="font-medium">${{ item.price }}</p>
+          </div>
+          <button class="text-gray hover:text-red-500 mr-8">
+            Remove
+          </button>
         </div>
-        <button 
-          class="text-gray hover:text-red-500 mr-8" 
-      >
-          Remove
-        </button>
       </div>
     </div>
-  </div>
-
+    
 
     <div
       class="px-3 py-6 text-xl text-gray-500 text-center border-[black] border-y font-normal"
