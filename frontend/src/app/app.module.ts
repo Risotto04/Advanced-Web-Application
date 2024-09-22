@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { FormsModule } from '@angular/forms'; 
-import { ReactiveFormsModule } from '@angular/forms'; 
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CookieService } from 'ngx-cookie-service';
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
 import { UserService } from '@shared/services/user.service';
 import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
+import { JwtInterceptor } from '@shared/interceptors/jwt-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,19 @@ import { ProductDetailComponent } from './modules/product-detail/product-detail.
     NavComponent,
     PageNotFoundComponent,
     ProductDetailComponent,
-
-
-    
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule,HttpClientModule],
-  providers: [UserService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

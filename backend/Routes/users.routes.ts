@@ -4,7 +4,7 @@ import { getUserAddressByUserId, createUserAddress, updateUserAddressByUserId } 
 
 const router = express.Router();
 
-router.get("/signin", signIn);
+router.post("/signin", signIn);
 router.get("/signout", signOut);
 router.post("/register", register);
 router.get("/address/:user_id", getUserAddressByUserId);

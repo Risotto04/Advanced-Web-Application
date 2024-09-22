@@ -3,7 +3,7 @@ import CartItem from '../Models/cart_item'
 import Cart from "../Models/cart";
 import Product from '../Models/product';
 
-export const creatCartItem = async(req:Request, res:Response) => {
+export const createCartItem = async(req:Request, res:Response) => {
     const {cartId, productId, quantity} = req.body;
     try{
 
