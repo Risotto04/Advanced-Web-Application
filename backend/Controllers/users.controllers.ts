@@ -17,7 +17,7 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
 
       res.cookie("Authorization", token, {
         maxAge: 10800000, // 3 hours
-        httpOnly: true,
+        httpOnly: false,
       });
 
       res.status(200).json({ message: "Login successful" });
