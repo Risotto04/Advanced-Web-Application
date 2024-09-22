@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 export const signIn = async (req: Request, res: Response, next: NextFunction) => {
   const JWT_SECRET = process.env.JWT_KEY as string;
   try {
-    const { email, password } = req.query;
+    const { email, password } = req.body;
 
     const existingToken = req.cookies.Authorization;
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '@shared/models/user';
 
 
@@ -15,7 +15,7 @@ export class UserService {
         lastname,
         email,
         password,
-        phone_number: phonenumber 
+        phone_number: phonenumber
       },
       { headers }
     );
@@ -24,10 +24,15 @@ export class UserService {
 
 
   login(email: string, password: string) {
-    return this.http.get(`${this.baseURL}/signin`, {
-      params: { email, password },
-      withCredentials: true
-    });
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      withCredentials: true,
+    };
+    return this.http.post(`${this.baseURL}/signin`, {
+      email,
+      password,
+    },
+      httpOptions);
   }
 
   signout() {
@@ -36,4 +41,6 @@ export class UserService {
 
     });
   }
+
+
 }
