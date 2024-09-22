@@ -2,20 +2,9 @@ import mongoose from 'mongoose';
 import { Request, Response, NextFunction } from "express";
 import Product from '../Models/product';
 
-//might not be useful
-export const getProducts = async(req: Request, res: Response, ) => {
-    try {
-        const productList = await Product.find({});
-        return res.status(200).json({"data":productList});
-    } catch (error) {
-        console.error("Error querying products:", error);
-        return res.status(500).json({"error":error});
-    }
-}
-//can be replaced the 1st one
-export const getProductsByCategory = async(req: Request, res: Response) => {
+export const getProductsByCategoryId = async(req: Request, res: Response) => {
     const category = req.query.category || req.params.category;
-    const filter = category ? { category: category.toString() } : {};
+    const filter = category ? { productCategory_id: category.toString() } : {};
     try {
         const productList = await Product.find(filter);
         res.status(200).json(productList);
@@ -26,9 +15,9 @@ export const getProductsByCategory = async(req: Request, res: Response) => {
 }
 
 export const getProductById = async(req:Request, res:Response) => {
-    const id = req.body;
+    const product_id = req.params.product_id;
     try{
-        const products = await Product.findById(id);
+        const products = await Product.findById(product_id);
 
         return res.status(200).json({data: products});
     }catch(e){
