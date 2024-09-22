@@ -37,7 +37,6 @@ import { ProductDetailComponent } from './modules/product-detail/product-detail.
     FooterComponent,
     NavComponent,
     PageNotFoundComponent,
-
     ProductDetailComponent,
 
 
