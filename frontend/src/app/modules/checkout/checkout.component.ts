@@ -6,6 +6,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
   state: number = 0;
+
+  _data!: {
+    name: string;
+    email: string;
+    phonenumber: string;
+    recipientsname?: string;
+    recipientsphone?: string;
+    date?: Date;
+    time?: Date;
+    street?: string;
+    apartmentnumber?: string;
+    cardnumber?: string;
+    expnumber?: string;
+    cardcode?: string;
+  }
+
+
   datas = [
     {
       img: 'images/test/1.webp',
@@ -38,8 +55,8 @@ export class CheckoutComponent implements OnInit {
       price: 100,
     },
   ];
-  constructor() {}
-  ngOnInit(): void {}
+  constructor() { }
+  ngOnInit(): void { }
   getStateStyle(state: number) {
     if (state == this.state) {
       return 'text-[black]';

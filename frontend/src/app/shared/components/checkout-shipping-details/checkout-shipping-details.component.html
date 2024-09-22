@@ -1,38 +1,23 @@
-<div class="flex flex-col gap-4">
-  <p class="font-medium text-xl">2 Shipping Details</p>
-  <div class="">
-    <input
-      type="text"
-      placeholder="Recipients Name"
-      hlmInput
-      class="w-full mb-3"
-    /><input
-      type="text"
-      placeholder="Recipients Phone number *"
-      hlmInput
-      class="w-full mb-3"
-    />
+<form (ngSubmit)="submit()">
+  <input class="flex flex-col gap-4">
+    <p class="font-medium text-xl">2 Shipping Details</p>
+
+    <input required type="text" placeholder="Recipients Name" hlmInput class="w-full mb-3" [(ngModel)]="recipientsname"
+      name="recipientsname" />
+
+    <input required type="text" placeholder="Recipients Phone number *" hlmInput class="w-full mb-3"
+      [(ngModel)]="recipientsphone" name="recipientsphone" />
+
     <div class="flex gap-3">
-      <input
-        type="date"
-        placeholder="Data of Delivery "
-        hlmInput
-        class="mb-3"
-      /><input type="time" placeholder="Delivery Time" hlmInput class="mb-3" />
+      <input required type="date" placeholder="Date of Delivery" hlmInput class="mb-3" [(ngModel)]="date" name="date" />
+      <input required type="time" placeholder="Delivery Time" hlmInput class="mb-3" [(ngModel)]="time" name="time" />
     </div>
+
     <div class="flex gap-3">
-      <input
-        type="text"
-        placeholder="Street "
-        hlmInput
-        class="mb-3 w-1/2"
-      /><input
-        type="text"
-        placeholder="Apartment Number"
-        hlmInput
-        class="mb-3 w-1/2"
-      />
+      <input required type="text" placeholder="Street" hlmInput class="mb-3 w-1/2" [(ngModel)]="street" name="street" />
+      <input required type="text" placeholder="Apartment Number" hlmInput class="mb-3 w-1/2"
+        [(ngModel)]="apartmentnumber" name="apartmentnumber" />
     </div>
-  </div>
-  <button hlmBtn (click)="onClick()">CONTINUE TO PATMENT</button>
-</div>
+
+    <button type="submit" hlmBtn (click)="onClick()">CONTINUE TO PAYMENT</button>
+</form>
