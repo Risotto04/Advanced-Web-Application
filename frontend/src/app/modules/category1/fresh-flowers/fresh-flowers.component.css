@@ -6,8 +6,7 @@
 .container {
   width: 100%;
   display: flex; /* ทำให้สองส่วนอยู่ในแนวนอน */
-} 
-
+}
 
 /* *******************Hero section on the left************************** */
 .hero-section {
@@ -19,21 +18,19 @@
 }
 
 .hero-image {
-  width: 100%; 
+  width: 100%;
   height: 100vh;
   object-fit: cover; /* ครอบคลุมพื้นที่ภาพ */
 }
 
-
 .hero-text {
-  position: absolute; 
-  top: 10%; 
-  left: 50%; 
+  position: absolute;
+  top: 10%;
+  left: 50%;
   transform: translate(-50%, -50%); /* ย้ายให้ตรงกลาง */
   color: white; /* สีข้อความ */
-  text-align: center; 
+  text-align: center;
   z-index: 1;
-
 }
 
 .hero-text h1 {
@@ -44,14 +41,14 @@
 /* *******************Products section on the right************************** */
 .products-section {
   flex: 1;
-  overflow-y: auto; 
+  overflow-y: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
 }
 
-.product-item { 
+.product-item {
   text-align: center;
-  position: relative; 
+  position: relative;
   overflow: hidden;
 }
 
@@ -61,7 +58,6 @@
   transition: transform 1s ease-in-out;
   object-fit: cover; /* ปรับภาพให้ไม่ผิดสัดส่วน */
   display: block;
-  
 }
 
 .product-item:hover .product-image {
@@ -73,9 +69,9 @@
   position: absolute; /* ใช้เพื่อจัดตำแหน่งให้ข้อความอยู่ในภาพ */
   bottom: 15px; /* ปรับตำแหน่งให้ชิดด้านล่าง */
   left: 50%; /* จัดตำแหน่งให้ตรงกลาง */
-  transform: translateX(-50%); /* ย้ายให้ตรงกลาง */ /* เพิ่มพื้นหลังให้ข้อความ */
-  
-
+  transform: translateX(
+    -50%
+  ); /* ย้ายให้ตรงกลาง */ /* เพิ่มพื้นหลังให้ข้อความ */
 }
 
 .product-details h3 {
@@ -91,24 +87,23 @@
 /* Media query: Adjust layout for smaller screens */
 @media (max-width: 900px) {
   .category-container {
-    flex-direction: column; 
+    flex-direction: column;
   }
 
   .hero-section {
     position: relative;
     width: 100%;
-    height: 300px; 
+    height: 300px;
     overflow: hidden;
   }
 
   .hero-image {
-    height: 300px; 
+    height: 300px;
   }
 
   .products-section {
     width: 100%;
-    grid-template-columns: 1fr 1fr; 
-
+    grid-template-columns: 1fr 1fr;
   }
 
   .hero-text {

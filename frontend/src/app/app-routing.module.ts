@@ -24,12 +24,12 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       {
-        path: 'fresh-flowers',
+        path: 'category',
         component: FreshFlowersComponent,
       },
 
       {
-         path: 'product-detail', // /:id
+        path: 'product-detail', // /:id
         component: ProductDetailComponent,
       },
 

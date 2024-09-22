@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProductCategory } from '../../../../types/productCategory';
+import { IProductCategory } from '../../../../types/productCategory';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,6 @@ export class ProductCategoryService {
   }
 }
 
-export interface ProductCategoryResponse {
-  data: ProductCategory[];
+interface ProductCategoryResponse {
+  data: IProductCategory[];
 }

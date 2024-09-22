@@ -42,26 +42,31 @@ const seedDatabase = async () => {
         name: "Fresh Flowers",
         desc: "Freshly picked flowers",
         picture: loadImageAsBuffer("H_Fresh Flowers.webp"),
+        categoryPicture: loadImageAsBuffer("Fresh Flowers.webp"),
       },
       {
         name: "Dried Flowers",
         desc: "Preserved flowers for lasting beauty",
         picture: loadImageAsBuffer("H_Dried Flowers.webp"),
+        categoryPicture: loadImageAsBuffer("Dried Flowers.webp"),
       },
       {
         name: "Live Plants",
         desc: "Indoor plants to enhance your space",
         picture: loadImageAsBuffer("H_Live Plants.webp"),
+        categoryPicture: loadImageAsBuffer("Live Plants.webp"),
       },
       {
         name: "Aroma Candles",
         desc: "Scented candles for a relaxing ambiance",
         picture: loadImageAsBuffer("H_Aroma Candles.webp"),
+        categoryPicture: loadImageAsBuffer("H_Aroma Candles.webp"),
       },
       {
         name: "Fresheners",
         desc: "Natural fresheners for a pleasant environment",
         picture: loadImageAsBuffer("H_Fresheners.webp"),
+        categoryPicture: loadImageAsBuffer("H_Fresheners.webp"),
       },
     ];
 

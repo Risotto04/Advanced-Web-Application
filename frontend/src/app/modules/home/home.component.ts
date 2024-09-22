@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCategoryService } from '@shared/services/productCategory/product-category.service';
-import { ProductCategory } from '../../../types/productCategory';
+import { IProductCategory } from '../../../types/productCategory';
 import { ArrayBufferToBase64 } from '../../../lib/index';
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { ArrayBufferToBase64 } from '../../../lib/index';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  items!: ProductCategory[];
+  items!: IProductCategory[];
   arrayBufferToBase64 = ArrayBufferToBase64;
   constructor(private httpService: ProductCategoryService) {}
 

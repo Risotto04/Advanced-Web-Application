@@ -19,13 +19,12 @@
       </div>
     </div>
   </div>
-  
+  <!-- <a ></a> -->
   <div class="w-1/2">
     <div *ngFor="let item of items; index as i" class="flex">
       <div
         *ngIf="i % 2 == 0"
         class="w-1/2 p-6 relative border-l border-b border-[black]"
-        routerLink="/fresh-flowers"
       >
         <p
           class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] text-3xl font-medium"
@@ -33,6 +32,7 @@
           {{ item.name }}
         </p>
         <p
+          [routerLink]="['/category', { categoryId: item._id }]"
           class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
         >
           Shop now
@@ -56,11 +56,13 @@
         </p>
       </div>
       <img
+        [routerLink]="['/category', { categoryId: item._id }]"
         *ngIf="i % 2 == 0"
         src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
         class="w-1/2 aspect-square border-l border-b border-r border-[black]"
       />
       <img
+        [routerLink]="['/category', { categoryId: item._id }]"
         *ngIf="i % 2 == 1"
         src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
         class="w-1/2 aspect-square border-l border-b border-[black]"
@@ -68,7 +70,6 @@
       <div
         *ngIf="i % 2 == 1"
         class="w-1/2 p-6 relative border-l border-b border-r border-[black]"
-        routerLink="/fresh-flowers"
       >
         <p
           class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] text-3xl font-medium"
@@ -76,6 +77,7 @@
           {{ item.name }}
         </p>
         <p
+          [routerLink]="['/category', { categoryId: item._id }]"
           class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
         >
           Shop now
@@ -100,7 +102,6 @@
       </div>
     </div>
   </div>
-
 </div>
 <!-- ////2///// -->
 <div class="flex border-[black] border-x border-b">
