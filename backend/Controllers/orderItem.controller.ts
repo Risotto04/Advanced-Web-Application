@@ -3,7 +3,7 @@ import OrderItem from '../Models/order_item'
 import Order from "../Models/order";
 import Product from '../Models/product';
 
-export const creatOrderItem = async(req:Request, res:Response) => {
+export const createOrderItem = async(req:Request, res:Response) => {
     const {orderId, productId, quantity} = req.body;
     try{
 
