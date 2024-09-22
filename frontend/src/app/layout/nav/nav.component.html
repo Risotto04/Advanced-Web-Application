@@ -12,8 +12,18 @@
 
   <div class="flex">
     <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center">
-      <a routerLink="/register" class="hover:underline cursor-pointer"
+      <a
+        *ngIf="!isauthenticated"
+        routerLink="/"
+        class="hover:underline cursor-pointer"
         >Sign in</a
+      >
+      <a
+        *ngIf="isauthenticated"
+        routerLink="/"
+        (click)="onSignOut()"
+        class="hover:underline cursor-pointer"
+        >Sign out</a
       >
     </div>
     <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center">
@@ -27,7 +37,9 @@
   *ngIf="isModalOpen"
   class="modal-overlay fixed inset-0 justify-center items-center"
 >
-  <div class="modal-content w-full h-full bg-white flex flex-col  border-[black] border-l">
+  <div
+    class="modal-content w-full h-full bg-white flex flex-col border-[black] border-l"
+  >
     <button class="close-button absolute top-2 right-2" (click)="closeModal()">
       ✖
     </button>
@@ -48,13 +60,10 @@
             <p>Quantity (1)</p>
             <p class="font-medium">${{ item.price }}</p>
           </div>
-          <button class="text-gray hover:text-red-500 mr-8">
-            Remove
-          </button>
+          <button class="text-gray hover:text-red-500 mr-8">Remove</button>
         </div>
       </div>
     </div>
-    
 
     <div class="mb-4">
       <div
