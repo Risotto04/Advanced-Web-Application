@@ -66,8 +66,15 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 };
 
 export const signOut = async (req: Request, res: Response, next: NextFunction) => {
-  return   res
-  .status(200)  //OK
-  .clearCookie("Authorization")
-  .send("Cookie deleted from user's browser")
-}
+  try {
+    res.cookie("Authorization", "", {
+      maxAge: 0,
+      httpOnly: true,
+      path: "/",
+    });
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    return res.status(500).json({ message: "An error occurred during logout" });
+  }
+};
