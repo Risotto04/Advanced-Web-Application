@@ -10,12 +10,10 @@ import { SubscriptionComponent } from './modules/subscription/subscription.compo
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 import { authGuard } from '@app/guards/auth.guard';
 
+import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
+
 // Import the other components from category1
 import { FreshFlowersComponent } from './modules/category1/fresh-flowers/fresh-flowers.component';
-import { DriedFlowersComponent } from './modules/category1/dried-flowers/dried-flowers.component';
-import { LivePlantsComponent } from './modules/category1/live-plants/live-plants.component';
-import { AromaCandlesComponent } from './modules/category1/aroma-candles/aroma-candles.component';
-import { FreshenersComponent } from './modules/category1/fresheners/fresheners.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -29,22 +27,12 @@ const routes: Routes = [
         path: 'fresh-flowers',
         component: FreshFlowersComponent,
       },
+
       {
-        path: 'dried-flowers',
-        component: DriedFlowersComponent,
+         path: 'product-detail', // /:id
+        component: ProductDetailComponent,
       },
-      {
-        path: 'live-plants',
-        component: LivePlantsComponent,
-      },
-      {
-        path: 'aroma-candles',
-        component: AromaCandlesComponent,
-      },
-      {
-        path: 'fresheners',
-        component: FreshenersComponent,
-      },
+
       {
         path: 'checkout',
         component: CheckoutComponent,

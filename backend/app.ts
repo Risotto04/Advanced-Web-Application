@@ -3,6 +3,14 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import usersRouter from "./Routes/users.routes";
+import categoryRouter from "./Routes/productCategory.router";
+import cartRouter from "./Routes/cart.routes";
+import cartItemRouter from "./Routes/cartItem.routes";
+import orderRouter from "./Routes/order.routes";
+import orderItemRouter from "./Routes/orderItem.routes";
+import paymentRouter from "./Routes/payment.routes";
+import paymentStatusRouter from "./Routes/paymentStatus.routes";
+import productRouter from "./Routes/product.routes";
 import middleware from "./Middleware/middleware";
 
 dotenv.config();
@@ -45,6 +53,14 @@ const startServer = async () => {
   await connectToDatabase();
 
   app.use("/", usersRouter);
+  app.use("/", categoryRouter);
+  app.use("/", cartRouter);
+  app.use("/", cartItemRouter);
+  app.use("/", orderRouter);
+  app.use("/", orderItemRouter);
+  app.use("/", paymentRouter);
+  app.use("/", paymentStatusRouter);
+  app.use("/", productRouter);
 
   app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);

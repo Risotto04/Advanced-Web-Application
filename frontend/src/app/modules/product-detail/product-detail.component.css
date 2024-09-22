@@ -1,0 +1,136 @@
+ /* ***************product**************** */
+.product-detail-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .product-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-info h2 {
+    font-size: 2rem;
+  }
+
+
+  /* ***************quantity**************** */
+
+  
+  .quantity-selector {
+    margin-top: 20px;
+  }
+  
+  .quantity-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .quantity-input {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid black; 
+    width: 30%;
+}
+
+.quantity-input button {
+    border: 1px solid black; 
+    padding: 10px;
+    cursor: pointer; 
+}
+
+.quantity-input input {
+    width: 100%;
+    height: 100%; 
+    border: none; 
+    text-align: center;
+}
+
+
+    /* ***************combo**************** */
+  
+  .combo-section {
+    margin-top: 20px;
+  }
+  .combo-section h4 {
+    font-size: 1.5rem; 
+    margin-bottom: 10px; 
+}
+
+  
+  .combo-items {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .combo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ***************add**************** */
+  
+  .price-options {
+    margin-top: 20px;
+    display: grid;
+    font-size: 1.2rem; /* เพิ่มขนาดตัวอักษร */
+    
+  }
+ 
+
+  
+  .add-to-cart {
+    background-color: black;
+    color: white;
+    padding: 20px 40px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 95%;
+    
+  }
+
+
+  /* ***************recommended**************** */
+  
+  .recommended-section {
+    margin-top: 40px;
+  }
+
+  .recommended-section h3 {
+    text-align: center;
+    font-size: 3rem; 
+    font-weight: bold; 
+    margin-bottom: 100px; 
+}
+
+  
+  .recommended-products {
+    position: relative; 
+    border: 1px solid black; 
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .recommended-product img {
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .recommended-product p {
+    margin-top: 10px; 
+    position: absolute;
+    bottom: 15px;
+    text-align: center;
+    
+  }
+  

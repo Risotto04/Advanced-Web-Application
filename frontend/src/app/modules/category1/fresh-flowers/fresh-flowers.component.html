@@ -12,12 +12,14 @@
   <div class="w-1/2">
     <div class="products-section">
       <div class="product-item border-l border-b border-r border-[black]" *ngFor="let item of items">
+         <a [routerLink]="['/product-detail']"> <!--, item.id -->
         <img [src]="item.img" alt="{{ item.name }}" 
         class="product-image aspect-square "/> 
         <div class="product-details">
           <h3>{{ item.name }}</h3>
           <p>Price {{ item.price | currency }}</p>
         </div>
+      </a>
       </div>
     </div>
   </div>
