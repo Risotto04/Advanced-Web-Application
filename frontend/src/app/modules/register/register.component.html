@@ -1,58 +1,32 @@
 <div class="w-screen h-screen relative">
   <div
-    class="p-6 w-[500px] border-[black] border absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
-  >
+    class="p-6 w-[500px] border-[black] border absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]">
     <h1 class="text-5xl font-semibold">Sign Up</h1>
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <div class="input-group">
         <label for="firstname">First Name</label>
-        <input
-          type="text"
-          id="name"
-          required="Please fill your first name"
-          name="name"
-          placeholder="Enter your first name"
-        />
+        <input [(ngModel)]="firstname" type="text" id="firstname" required="Please fill your first name" name="firstname"
+          placeholder="Enter your first name" />
       </div>
 
       <div class="input-group">
         <label>Last Name</label>
-        <input
-          type="text"
-          required
-          name="lastname"
-          placeholder="Enter your last name"
-        />
+        <input [(ngModel)]="lastname" type="text" required name="lastname" placeholder="Enter your last name" />
       </div>
 
       <div class="input-group">
         <label>Email</label>
-        <input
-          type="email"
-          required
-          name="email"
-          placeholder="Enter your email"
-        />
+        <input [(ngModel)]="email" type="email" required name="email" placeholder="Enter your email" />
       </div>
 
       <div class="input-group">
         <label>Password</label>
-        <input
-          type="password"
-          required
-          name="password"
-          placeholder="Enter your password"
-        />
+        <input  [(ngModel)]="password" type="password" required name="password" placeholder="Enter your password" />
       </div>
 
       <div class="input-group">
         <label>Phone Number</label>
-        <input
-          type="text"
-          required
-          name="phonenumber"
-          placeholder="Enter your phone number"
-        />
+        <input [(ngModel)]="phonenumber" type="text" required name="phonenumber" placeholder="Enter your phone number" />
       </div>
 
       <button type="submit" class="w-full" hlmBtn>Sign Up</button>

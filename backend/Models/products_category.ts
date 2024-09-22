@@ -3,6 +3,7 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface ProductCategory extends Document {
   name: string;
   desc: string;
+  picture: Buffer;
 }
 
 export const ProductCategorySchema: Schema = new Schema({
@@ -13,7 +14,8 @@ export const ProductCategorySchema: Schema = new Schema({
   desc: {
     type: String,
     required: true,
-  }
+  },
+  picture: { type: Buffer, require: true },
 });
 
 export default mongoose.model<ProductCategory>("ProductCategory", ProductCategorySchema);

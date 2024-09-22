@@ -64,3 +64,10 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     });
   }
 };
+
+export const signOut = async (req: Request, res: Response, next: NextFunction) => {
+  return   res
+  .status(200)  //OK
+  .clearCookie("Authorization")
+  .send("Cookie deleted from user's browser")
+}
