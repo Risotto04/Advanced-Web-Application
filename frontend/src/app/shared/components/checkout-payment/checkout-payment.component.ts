@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-checkout-payment',
@@ -7,8 +7,23 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CheckoutPaymentComponent {
   @Output() state = new EventEmitter<number>();
-  constructor() {}
-  onClick() {
-    // this.state.emit(1);
+ 
+  cardnumber?: string;
+  expnumber?: string;
+  cardcode?: string;
+
+  constructor() {
   }
+
+  submit() {
+    console.log('cardnumber:', this.cardnumber);
+    console.log('expnumber:', this.expnumber);
+    console.log('cardcode:', this.cardcode);
+  }
+  onClick() {
+    // this.callbackFunction(1);
+    if ((this.cardnumber && this.expnumber && this.cardcode)) {
+    this.state.emit(3);
+  }
+}
 }

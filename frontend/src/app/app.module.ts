@@ -23,6 +23,7 @@ import { UserService } from '@shared/services/user.service';
 import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
 import { JwtInterceptor } from '@shared/interceptors/jwt-interceptor.interceptor';
+import { CheckoutContatinfoComponent } from '@shared/components/checkout-contatinfo/checkout-contatinfo.component';
 
 @NgModule({
   declarations: [
