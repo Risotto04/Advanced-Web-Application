@@ -27,66 +27,70 @@
   *ngIf="isModalOpen"
   class="modal-overlay fixed inset-0 justify-center items-center"
 >
-  <div class="modal-content w-full h-full bg-white flex flex-col  border-[black] border-l">
-    <button class="close-button absolute top-2 right-2" (click)="closeModal()">
-      ✖
+  <div
+    class="modal-content w-full h-full bg-white flex flex-col border-[black] border-l"
+  >
+    <button class="close-button absolute top-2 right-2"  (click)="closeModal()">
+      X
     </button>
     <div class="px-3 py-2 text-sm text-gray-500 border-[black] border-b">
       <h2 class="text-lg font-normal my-4">Shopping Cart</h2>
     </div>
 
-    <div class="mb-4 overflow-y-auto flex-1 p-5">
-      <div *ngFor="let item of cartItems" class="flex items-center mb-4">
-        <img
-          [src]="item.img"
-          alt="{{ item.name }}"
-          class="w-36 h-36 object-cover mr-4 border-[black] border"
-        />
-        <div class="flex justify-between items-center w-full">
-          <div>
-            <p class="font-medium">{{ item.name }}</p>
-            <p>Quantity (1)</p>
-            <p class="font-medium">${{ item.price }}</p>
-          </div>
-          <button class="text-gray hover:text-red-500 mr-8">
-            Remove
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="mb-4">
-      <div
-        class="px-3 py-6 text-xl text-gray-500 text-center border-[black] border-y font-normal"
-      >
-        <p class="flex justify-between">
-          <span>Subtotal</span>
-          <span>${{ subtotal }}</span>
-        </p>
-      </div>
-      <input
-        id="gift-message"
-        [(ngModel)]="giftMessage"
-        type="text"
-        placeholder="Gift message"
-        class="px-3 py-20 text-sm text-gray-500 w-full"
+    <div
+    class="overflow-y-auto flex-1 p-5 custom-scrollbar"
+  >
+    <div *ngFor="let item of cartItems" class="flex items-center mb-4">
+      <img
+        [src]="item.img"
+        alt="{{ item.name }}"
+        width="120"
+        class="mr-6 border-[black] border aspect-square"
       />
-
-      <div
-        class="px-3 py-6 text-sm text-gray-500 text-center border-[black] border-y"
+      <div class="flex justify-between items-center w-full">
+        <div>
+          <p class="font-medium">{{ item.name }}</p>
+          <!-- <p>Quantity: {{ item.quantity }}</p> Bind dynamic quantity -->
+          <p class="font-medium">${{ item.price }}</p>
+        </div>
+        <button 
+          class="text-gray hover:text-red-500 mr-8" 
       >
-        <p>Shipping & taxes calculated at checkout</p>
-        <p class="text-sm text-gray-600">Free standard shipping within Kyiv</p>
+          Remove
+        </button>
       </div>
-
-      <!-- No margin for the button -->
-      <button
-        (click)="navigateToCheckout()"
-        class="checkout-button w-full bg-blue-500 text-white p-3"
-      >
-        Go to Checkout
-      </button>
     </div>
+  </div>
+
+
+    <div
+      class="px-3 py-6 text-xl text-gray-500 text-center border-[black] border-y font-normal"
+    >
+      <p class="flex justify-between">
+        <span>Subtotal</span>
+        <span>${{ subtotal }}</span>
+      </p>
+    </div>
+    <input
+      id="gift-message"
+      [(ngModel)]="giftMessage"
+      type="text"
+      placeholder="Gift message"
+      class="px-3 py-10 text-sm text-gray-500 w-full"
+    />
+
+    <div
+      class="px-3 py-4 text-sm text-gray-500 text-center border-[black] border-y"
+    >
+      <p>Shipping & taxes calculated at checkout</p>
+      <p class="text-sm text-gray-600">Free standard shipping within Kyiv</p>
+    </div>
+
+    <button
+      (click)="navigateToCheckout()"
+      class="checkout-button w-full bg-blue-500 text-white p-3"
+    >
+      Go to Checkout
+    </button>
   </div>
 </div>
