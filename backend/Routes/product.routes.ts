@@ -1,9 +1,10 @@
 import express, { Request, Response, NextFunction } from "express";
-import { getProducts, getProductsByCategory } from "../Controllers/product.controller";
+import { getProductById, getProductsByCategoryId } from "../Controllers/product.controller";
 
 const router = express.Router();
 
-router.get("/products", getProducts);
-router.get("/products", getProductsByCategory);
+router.get("/products", getProductsByCategoryId);
+router.get("/products/:category", getProductsByCategoryId);
+router.get("/product/:product_id", getProductById); 
 
 export default router;

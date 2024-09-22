@@ -4,19 +4,18 @@ import Cart from "../Models/cart";
 import Product from '../Models/product';
 
 export const createCartItem = async(req:Request, res:Response) => {
-    const {cartId, productId, quantity} = req.body;
+    const {cart_id, product_id, quantity} = req.body;
     try{
 
-        const cart = await Cart.findById(cartId);
-        const product = await Product.findById(productId);
-
+        const cart = await Cart.findById(cart_id);
         if(!cart) res.status(404).json({message: "Cart not found"});
+        const product = await Product.findById(product_id);
         if(!product) res.status(404).json({message: "Product not found"});
 
         const newItem = new CartItem({
             quantity,
-            cart,
-            product
+            cart_id: cart,
+            product_id: product
         })
 
         const savedItem = await newItem.save();
@@ -31,18 +30,18 @@ export const createCartItem = async(req:Request, res:Response) => {
 }
 
 export const getCartItemsByUserId = async(req:Request, res:Response) => {
-    const {userId} = req.body;
+    const {user_id} = req.body;
     
     try{
-        const cart = await Cart.findOne(userId);
+        const cart = await Cart.findOne({user_id: user_id});
         if(!cart) return res.status(404).json({message: "Cart not found"});
 
-        const cartItem = await CartItem.find(cart.id)
+        const cartItem = await CartItem.find({cart_id: cart.id})
         .populate("product_id");
         return res.status(200).json({data1: cart, data2: cartItem});
 
     }catch(e){
         console.log("An error ocured: ", e);
-        return res.status(500).json({message: "An error occured during getting cart item"});
+        return res.status(500).json({ message: "An error occured during getting cart item", error: e});
     }
 }
