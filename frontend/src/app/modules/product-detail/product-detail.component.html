@@ -1,0 +1,59 @@
+
+<div class="product-detail-container">
+    <!-- Product Detail Section -->
+    <div class="product-detail  border-b border-[black] ">
+        <div class="product-image  border-l border-b border-r border-[black] ">
+            <img [src]="Products[0].imageUrl" alt="{{ Products[0].name }}">
+        </div>
+      
+        <div class="product-info">
+            <h2>{{ Products[0].name }} - {{ Products[0].price | currency }}</h2>
+        <p>
+            Duis duis id consectetur id. Incididunt amet sunt deserunt officia. 
+        </p>
+        <div class="quantity-selector  ">
+          <label for="quantity">Quantity</label>
+          <div class="quantity-input ">
+            <button (click)="decreaseQuantity()">-</button>
+            <input type="number" id="quantity" [(ngModel)]="quantity" min="0">
+            <button (click)="increaseQuantity()">+</button>
+          </div>
+        </div>
+  
+        <div class="combo-section">
+            <h4>Excellent Combination with:</h4>
+            <div class="combo-items ">
+              <div class="combo-item aspect-square border-t border-l border-b border-r border-[black] " *ngFor="let combo of combos">
+                <img [src]="combo.imageUrl" alt="{{ combo.name }}">
+                <p>{{ combo.name }}<br>{{ combo.price | currency }}</p>
+              </div>
+            </div>
+          </div>
+  
+        <div class="price-options">
+          <h4>Price options</h4>
+          <label>
+            <input type="radio" name="priceOption" [(ngModel)]="priceOption" value="one-time"> One time purchase. Price $70
+          </label>
+          <label>
+            <input type="radio" name="priceOption" [(ngModel)]="priceOption" value="subscribe"> Subscribe now, and save 25% on this order.
+          </label>
+        </div>
+  
+        <button class="add-to-cart">ADD TO CART</button>
+      </div>
+    </div>
+  
+    <!-- Recommended Section -->
+    <div class="recommended-section">
+      <h3>You may also like...</h3>
+      <div class="recommended-products ">
+        <div class="recommended-product border-t border-r border-[black]" *ngFor="let product of recommendedProducts">
+          <img [src]="product.imageUrl" alt="{{ product.name }}">
+          <p>{{ product.name }}<br>{{ product.price | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

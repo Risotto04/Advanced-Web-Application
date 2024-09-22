@@ -19,11 +19,8 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
-import { DriedFlowersComponent } from './modules/category1/dried-flowers/dried-flowers.component';
-import { LivePlantsComponent } from './modules/category1/live-plants/live-plants.component';
-import { AromaCandlesComponent } from './modules/category1/aroma-candles/aroma-candles.component';
-import { FreshenersComponent } from './modules/category1/fresheners/fresheners.component';
 import { UserService } from '@shared/services/user.service';
+import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
 
 @NgModule({
@@ -40,10 +37,8 @@ import { UserService } from '@shared/services/user.service';
     FooterComponent,
     NavComponent,
     PageNotFoundComponent,
-    DriedFlowersComponent,
-    LivePlantsComponent,
-    AromaCandlesComponent,
-    FreshenersComponent,
+
+    ProductDetailComponent,
 
 
     
