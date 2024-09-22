@@ -1,8 +1,14 @@
 <div class="flex h-full min-h-screen">
   <div class="w-1/2 sticky top-0 h-full p-20 border-b-[1px] border-[black]">
     <div class="gap-8 flex flex-col h-full">
-      <h1 class="text-7xl font-semibold">Kyiv <br />LuxeBouquets</h1>
-      <div>
+      <h1
+        class="text-7xl font-semibold"
+        data-aos="fade-up-right"
+        data-aos-once="true"
+      >
+        Kyiv <br />LuxeBouquets
+      </h1>
+      <div data-aos="fade-up" data-aos-once="true">
         Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread
         Joy with Our Online Flower Delivery Service
       </div>
@@ -12,7 +18,7 @@
         <img src="images/home2.webp" alt="Alt Text!" height="700" width="700" />
       </picture>
       <div class="pl-6 flex items-end h-full">
-        <p>
+        <p data-aos="fade-up" data-aos-once="true">
           Experience the joy of giving with our modern floral studio. Order
           online and send fresh flowers, plants and gifts today.
         </p>
@@ -55,18 +61,27 @@
           </svg>
         </p>
       </div>
-      <img
-        [routerLink]="['/category', { categoryId: item._id }]"
+      <div
+        class="w-1/2 aspect-square border-l border-b border-r border-[black] overflow-hidden"
         *ngIf="i % 2 == 0"
-        src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
-        class="w-1/2 aspect-square border-l border-b border-r border-[black]"
-      />
-      <img
-        [routerLink]="['/category', { categoryId: item._id }]"
+      >
+        <img
+          [routerLink]="['/category', { categoryId: item._id }]"
+          src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
+          class="aspect-square object-cover hover:scale-[1.2] transition duration-1000 ease-in-out"
+        />
+      </div>
+      <!-- -------------- -->
+      <div
+        class="w-1/2 aspect-square border-l border-b border-r border-[black] overflow-hidden"
         *ngIf="i % 2 == 1"
-        src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
-        class="w-1/2 aspect-square border-l border-b border-[black]"
-      />
+      >
+        <img
+          [routerLink]="['/category', { categoryId: item._id }]"
+          src="data:image/*;base64,{{ arrayBufferToBase64(item.picture.data) }}"
+          class="aspect-square object-cover hover:scale-[1.2] transition duration-1000 ease-in-out"
+        />
+      </div>
       <div
         *ngIf="i % 2 == 1"
         class="w-1/2 p-6 relative border-l border-b border-r border-[black]"
@@ -106,14 +121,16 @@
 <!-- ////2///// -->
 <div class="flex border-[black] border-x border-b">
   <div class="w-1/2 sticky top-0 h-fit">
-    <p class="p-20 text-5xl font-semibold">About us</p>
+    <p data-aos="fade-up-right" class="p-20 text-5xl font-semibold">About us</p>
   </div>
   <div class="w-1/2 p-20 border-l border-[black]">
     <div class="flex flex-col gap-6">
-      <p class="font-medium text-base">OUR STORE</p>
+      <p class="font-medium text-base" data-aos="fade-left">OUR STORE</p>
       <div class="flex flex-col gap-4">
-        <p class="text-4xl font-semibold">Kyiv LuxeBouquets</p>
-        <p>
+        <p class="text-4xl font-semibold" data-aos="fade-left">
+          Kyiv LuxeBouquets
+        </p>
+        <p data-aos="fade-left" data-aos-duration="700">
           We are a modern local floral studio, which specializes in the design
           and delivery of unique bouquets. We have the best florists who
           carefully select each look, our studio cooperates directly with farms
@@ -129,6 +146,8 @@
     </div>
     <button
       hlmBtn
+      data-aos="fade-left"
+      data-aos-duration="800"
       class="mt-16 w-52 border-[black] hover:bg-[black] hover:text-[white]"
       variant="outline"
     >
@@ -140,12 +159,20 @@
 
 <div class="flex border-[black] border-x border-b">
   <div class="top-0 sticky w-1/2 h-fit">
-    <p class="p-20 text-5xl font-semibold">Why choose us ?</p>
+    <p
+      data-aos="fade-left"
+      data-aos="fade-up-right"
+      class="p-20 text-5xl font-semibold"
+    >
+      Why choose us ?
+    </p>
   </div>
   <div class="w-1/2 border-l border-[black]">
     <div class="p-20 border-[black] border-b">
-      <p class="text-4xl font-semibold mb-6">Stylish bouquets by florists</p>
-      <p>
+      <p data-aos="fade-left" class="text-4xl font-semibold mb-6">
+        Stylish bouquets by florists
+      </p>
+      <p data-aos="fade-left" data-aos-duration="850">
         At our floral studio, our professional florists craft the most elegant
         and stylish bouquets using only the freshest and highest quality
         materials available. We stay up-to-date with the latest floral design
@@ -155,8 +182,10 @@
       </p>
     </div>
     <div class="p-20 border-[black] border-b">
-      <p class="text-4xl font-semibold mb-6">On-time delivery</p>
-      <p>
+      <p data-aos="fade-left" class="text-4xl font-semibold mb-6">
+        On-time delivery
+      </p>
+      <p data-aos="fade-left" data-aos-duration="850">
         Never miss a moment with our on-time flower delivery service. Our
         couriers will deliver your bouquet personally, without boxes, to ensure
         it arrives in perfect condition. Trust us to deliver your thoughtful
@@ -164,8 +193,10 @@
       </p>
     </div>
     <div class="p-20 border-[black] border-b">
-      <p class="text-4xl font-semibold mb-6">Safe payment</p>
-      <p>
+      <p data-aos="fade-left" class="text-4xl font-semibold mb-6">
+        Safe payment
+      </p>
+      <p data-aos="fade-left" data-aos-duration="850">
         You can feel secure when placing an order with us, as we use
         industry-standard security measures to protect your payment information.
         Your transaction will be safe and hassle-free, so you can shop with
@@ -173,8 +204,10 @@
       </p>
     </div>
     <div class="p-20">
-      <p class="text-4xl font-semibold mb-6">Subscription by your needs</p>
-      <p>
+      <p data-aos="fade-left" class="text-4xl font-semibold mb-6">
+        Subscription by your needs
+      </p>
+      <p data-aos="fade-left" data-aos-duration="850">
         With our subscription service tailored to your specific needs, you can
         enjoy the convenience of having beautiful bouquets delivered straight to
         your door at regular intervals. Our flexible service is perfect for busy
@@ -189,15 +222,20 @@
 <div class="flex h-fit" id="contact">
   <div class="w-1/2 h-full sticky top-0">
     <div class="p-20">
-      <p class="text-5xl font-semibold mb-6">To Contact Us</p>
+      <p class="text-5xl font-semibold mb-6" data-aos="fade-up">
+        To Contact Us
+      </p>
       <div class="flex flex-col gap-4">
-        <p class="font-medium text-lg">We will call you back</p>
-        <div class="flex gap-4">
+        <p class="font-medium text-lg" data-aos="fade-up">
+          We will call you back
+        </p>
+        <div class="flex gap-4" data-aos-once="true" data-aos="fade-up">
           <input
             class="h-14 w-1/2"
             hlmInput
             placeholder="Your Email"
             type="email"
+            data-aos-once="true"
           />
           <button hlmBtn class="h-14 w-1/2">Remind</button>
         </div>
@@ -209,29 +247,29 @@
           <div
             class="w-1/2 border-[black] border-l border-y px-3 py-4 font-medium text-3xl text-center"
           >
-            Phone
+            <P data-aos="fade-up">Phone</P>
           </div>
           <div
             class="w-1/2 border-[black] border-l border-y px-3 py-4 font-medium text-3xl text-center"
           >
-            Address
+            <P data-aos="fade-up"> Address </P>
           </div>
         </div>
         <div class="w-full flex border-b border-[black]">
           <div
             class="w-1/2 p-6 flex flex-col gap-6 border-[black] border-l text-center font-medium"
           >
-            <p>+380980099777</p>
-            <p>+380980099777</p>
+            <p data-aos="fade-up">+380980099777</p>
+            <p data-aos="fade-up">+380980099777</p>
           </div>
           <div
             class="w-1/2 p-6 flex flex-col gap-6 border-[black] border-l text-center font-medium"
           >
-            <div>
+            <div data-aos="fade-up">
               <p>opening hours: 8 to 11 p.m.</p>
               <p>15/4 Khreshchatyk Street, Kyiv</p>
             </div>
-            <div>
+            <div data-aos="fade-up">
               <p>opening hours: 8 to 11 p.m.</p>
               <p>15/4 Khreshchatyk Street, Kyiv</p>
             </div>
@@ -246,7 +284,7 @@
       <div
         class="w-1/2 px-10 py-4 text-center text-3xl font-medium border-[black] border-r"
       >
-        Follow us
+        <p data-aos-once="true">Follow us</p>
       </div>
       <div class="flex w-1/2 px-10 py-4 justify-between items-center gap-8">
         <svg
@@ -304,7 +342,7 @@
 <div
   class="px-3 py-20 text-5xl font-semibold text-center border-[black] border-y"
 >
-  Our Service
+  <p data-aos="fade-up" data-aos-once="true">Our Service</p>
 </div>
 <!-- ////6///// -->
 <div class="flex">
@@ -315,10 +353,10 @@
   />
   <div class="w-1/2 p-20 border-[black] border-x">
     <div class="h-full flex flex-col justify-center items-center gap-6">
-      <div class="flex flex-col text-center gap-4">
+      <div class="flex flex-col text-center gap-4" data-aos-once="true">
         <p>SERVICE</p>
         <p class="font-semibold text-5xl">Flower Subcriptions</p>
-        <p class="font-medium text-lg">
+        <p class="font-medium text-lg" data-aos-once="true">
           Experience the convenience and savings of regular flower deliveries
           with our flexible subscription service - up to 30% more profitable
           than one-time purchases.
