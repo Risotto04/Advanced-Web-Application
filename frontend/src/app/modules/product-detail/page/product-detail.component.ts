@@ -5,6 +5,8 @@ import { IProduct } from '../../../../types/product';
 import { ArrayBufferToBase64 } from '../../../../lib';
 import { PageNotFoundComponent } from '../../page-not-found/page/page-not-found.component';
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Cart } from '@shared/models/cart';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -20,16 +22,20 @@ export class ProductDetailComponent {
   category!: string;
   arrayBufferToBase64 = ArrayBufferToBase64;
   isActive!: boolean;
+  authorized!: any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private httpService: ProductService,
-    private cartItemService: CartItemService
+    private cartItemService: CartItemService,
+    private cookieService: CookieService
   ) {
     this.productId = this.route.snapshot.paramMap.get('id')!;
     this.category = this.route.snapshot.paramMap.get('category')!;
   }
   ngOnInit(): void {
+    this.authorized = this.cookieService.get('Authorization');
+
     this.httpService.getProductsById(this.productId).subscribe(
       (response) => {
         this.products = response.data as IProduct;
@@ -97,6 +103,15 @@ export class ProductDetailComponent {
     }
   }
 
+  addProducttoCart() {
+    if(this.authorized) {
+      this.onCreateCartItem();
+    }
+    else{
+      this.onAddCartItemTemp();
+    }
+  }
+
   onCreateCartItem() {
     this.cartItemService
       .createCartItem(
@@ -112,5 +127,14 @@ export class ProductDetailComponent {
           console.log(error);
         }
       );
+  }
+
+  onAddCartItemTemp() {
+    this.cartItemService.addTempCartItem({
+      product_id: this.products,
+      id: '',
+      quantity: this.quantity,
+      cart_id: new Cart
+    });
   }
 }

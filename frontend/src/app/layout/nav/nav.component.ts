@@ -4,12 +4,8 @@ import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { UserService } from '@shared/services/user.service';
 import { ICartItem } from '../../../types/cartItem';
 import { ArrayBufferToBase64 } from '../../../lib';
+import { CookieService } from 'ngx-cookie-service';
 
-interface CartItem {
-  name: string;
-  price: number;
-  img: string;
-}
 @Component({
   standalone: false,
   selector: 'app-nav',
@@ -19,43 +15,6 @@ interface CartItem {
 export class NavComponent {
   isModalOpen = false;
 
-  cartItems1: CartItem[] = [
-    {
-      name: 'Snowfall',
-      price: 70,
-      img: 'images/Flowers/Fresh Flowers/Snowfall.webp',
-    },
-    {
-      name: 'Dawns Delight',
-      price: 70,
-      img: 'images/Flowers/Fresh Flowers/DawnsDelight.webp',
-    },
-    {
-      name: 'Pink Elegance',
-      price: 70,
-      img: 'images/Flowers/Fresh Flowers/PinkElegance.webp',
-    },
-    {
-      name: 'Rustic Charm',
-      price: 70,
-      img: 'images/Flowers/Fresh Flowers/RusticCharm.webp',
-    },
-    {
-      name: 'Autumn Symphony',
-      price: 70,
-      img: 'images/Flowers/Fresh Flowers/AutumnSymphony.webp',
-    },
-    {
-      name: 'Rosy Delight',
-      price: 70,
-      img: 'images/Flowers/Fresh Flowers/RosyDelight.webp',
-    },
-    {
-      name: 'Serenity',
-      price: 89,
-      img: 'images/Flowers/Fresh Flowers/Serenity.webp',
-    },
-  ];
   subtotal = 0;
   giftMessage = '';
   isauthenticated: boolean;
@@ -64,25 +23,33 @@ export class NavComponent {
   userId = '66efdf8f0201e7a529674650';
 
   cartItems!: ICartItem[];
+  authorized!: any;
 
   constructor(
     private router: Router,
     private user: UserService,
-    private httpService: CartItemService
+    private httpService: CartItemService,
+    private cookieService: CookieService
   ) {
     this.isauthenticated = user.isAuthenticated();
   }
 
   ngOnInit() {
-    this.httpService.getCartItemsByUserId(this.userId).subscribe(
-      (response) => {
-        this.cartItems = response.data;
-        console.log(this.cartItems);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.authorized = this.cookieService.get('Authorization');
+
+    if (this.authorized) {
+      this.httpService.getCartItemsByUserId(this.userId).subscribe(
+        (response) => {
+          this.cartItems = response.data;
+          this.calculateSubtotal();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.cartItems = this.httpService.getCartItemTemp();
+    }
   }
 
   openModal() {
@@ -94,10 +61,10 @@ export class NavComponent {
   }
 
   calculateSubtotal() {
-    this.subtotal = this.cartItems1.reduce(
-      (total, item) => total + item.price,
-      0
-    );
+    this.subtotal = this.cartItems.reduce((total, item) => {
+      const price = (item.product_id?.price ?? 0) * item.quantity;
+      return total + price;
+    }, 0);
   }
 
   navigateToCheckout() {
