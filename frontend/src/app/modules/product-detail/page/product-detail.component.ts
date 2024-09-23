@@ -4,6 +4,7 @@ import { ProductService } from '@shared/services/product/product.service';
 import { IProduct } from '../../../../types/product';
 import { ArrayBufferToBase64 } from '../../../../lib';
 import { PageNotFoundComponent } from '../../page-not-found/page/page-not-found.component';
+import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
