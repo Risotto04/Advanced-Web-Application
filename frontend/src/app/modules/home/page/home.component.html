@@ -30,7 +30,8 @@
     <div *ngFor="let item of items; index as i" class="flex">
       <div
         *ngIf="i % 2 == 0"
-        class="w-1/2 p-6 relative border-l border-b border-[black]"
+        class="w-1/2 p-6 relative border-l border-b border-[black] hover:cursor-pointer"
+        [routerLink]="['/category', { categoryId: item._id }]"
       >
         <p
           class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] text-3xl font-medium"
@@ -38,8 +39,7 @@
           {{ item.name }}
         </p>
         <p
-          [routerLink]="['/category', { categoryId: item._id }]"
-          class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%] hover:cursor-pointer"
+          class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
         >
           Shop now
           <svg
@@ -84,7 +84,8 @@
       </div>
       <div
         *ngIf="i % 2 == 1"
-        class="w-1/2 p-6 relative border-l border-b border-r border-[black]"
+        class="w-1/2 p-6 relative border-l border-b border-r border-[black] hover: cursor-pointer"
+        [routerLink]="['/category', { categoryId: item._id }]"
       >
         <p
           class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] text-3xl font-medium"
@@ -125,7 +126,6 @@
   </div>
   <div class="w-1/2 p-20 border-l border-[black]">
     <div class="flex flex-col gap-6">
-      <p class="font-medium text-base" data-aos="fade-up">OUR STORE</p>
       <p class="font-medium text-base" data-aos="fade-up">OUR STORE</p>
       <div class="flex flex-col gap-4">
         <p class="text-4xl font-semibold" data-aos="fade-up">
