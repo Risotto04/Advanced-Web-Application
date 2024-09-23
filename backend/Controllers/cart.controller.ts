@@ -3,23 +3,19 @@ import Cart from '../Models/cart';
 import User from '../Models/user';
 import { error } from "console";
 import mongoose from "mongoose";
-export const createCart = async(req:Request, res:Response) => {
-    const {user_id, total_price} = req.body;
+export const createCart = async(user_id: string, total_price: number) => {
     try{
         const user = await User.findById(user_id);
-        if(!user)
-            return res.status(404).json({message: "User not found"});
-
         const newCart = new Cart({
             total_price,
             user_id: user
         })
 
         const savedCart = await newCart.save();
-        return res.status(201).json({message: "Cart created successful"});
+        return savedCart;
     }catch(e){
         console.log(e);
-        return res.status(500).json({message: "An error occurred during saving cart", error: e});
+        return e;
     }
 }
 

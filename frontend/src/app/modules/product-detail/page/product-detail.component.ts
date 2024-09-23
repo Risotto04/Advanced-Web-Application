@@ -10,7 +10,9 @@ import { PageNotFoundComponent } from '../../page-not-found/page/page-not-found.
   styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent {
-  quantity = 0;
+  cartId = '66f00957d882b06ff7d95c4d';
+
+  quantity = 1;
   priceOption = 'one-time';
   productId: string;
   products!: IProduct;
@@ -20,7 +22,8 @@ export class ProductDetailComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private httpService: ProductService
+    private httpService: ProductService,
+    private cartItemService: CartItemService
   ) {
     this.productId = this.route.snapshot.paramMap.get('id')!;
     this.category = this.route.snapshot.paramMap.get('category')!;
@@ -91,5 +94,22 @@ export class ProductDetailComponent {
     if (this.quantity > 0) {
       this.quantity--;
     }
+  }
+
+  onCreateCartItem() {
+    this.cartItemService
+      .createCartItem(
+        this.cartId || '',
+        this.productId || '',
+        this.quantity || 0
+      )
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

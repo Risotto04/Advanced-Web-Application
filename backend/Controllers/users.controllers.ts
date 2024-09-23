@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../Models/user";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
+import { createCart } from "./cart.controller";
 
 export const signIn = async (req: Request, res: Response, next: NextFunction) => {
   const JWT_SECRET = process.env.JWT_KEY as string;
@@ -52,10 +53,12 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     });
 
     const savedUser = await newUser.save();
+    const savedCart = await createCart(savedUser._id.toString(), 0);
 
     return res.status(201).json({
-      message: "User created successfully",
-      // userDetails: savedUser,
+      message: "User created successfully, and cart created",
+      userDetails: savedUser,
+      cartDetails: savedCart
     });
   } catch (error) {
     console.error("Error during user registration:", error);
