@@ -1,35 +1,40 @@
-<div class="flex flex-col gap-4">
+<div class="space-y-6">
   <p class="font-medium text-xl">1 Contact information</p>
-  <form (ngSubmit)="submit()">
-    <input
-      required
-      type="text"
-      placeholder="Your Name"
-      hlmInput
-      class="w-full mb-3"
-      [(ngModel)]="name"
-      name="name"
-    />
+  <form [formGroup]="form">
+    <hlm-form-field>
+      <input
+        required
+        type="text"
+        placeholder="Your Name"
+        hlmInput
+        class="w-full"
+        formControlName="name"
+      />
+      <hlm-error>Your name is required</hlm-error>
+    </hlm-form-field>
+    <hlm-form-field>
+      <input
+        required
+        type="email"
+        placeholder="Your Email"
+        hlmInput
+        class="w-full"
+        formControlName="email"
+      />
+      <hlm-error>Your Email is required</hlm-error>
+    </hlm-form-field>
+    <hlm-form-field>
+      <input
+        required
+        type="text"
+        placeholder="Your Phone number *"
+        hlmInput
+        class="w-full"
+        formControlName="phonenumber"
+      />
+      <hlm-error>Your Phone is required</hlm-error>
+    </hlm-form-field>
 
-    <input
-      required
-      type="email"
-      placeholder="Your Email"
-      hlmInput
-      class="w-full mb-3"
-      [(ngModel)]="email"
-      name="email"
-    /><input
-      required
-      type="text"
-      placeholder="Your Phone number *"
-      hlmInput
-      class="w-full mb-3"
-      [(ngModel)]="phonenumber"
-      name="phonenumber"
-    />
-    <button (click)="sendTextToParent()" hlmBtn (click)="onClick()">
-      CONTINUE TO SHIPPING
-    </button>
+    <button hlmBtn type="submit">CONTINUE TO SHIPPING</button>
   </form>
 </div>

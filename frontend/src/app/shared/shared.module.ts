@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HlmButtonDirective } from './components/ui-button-helm/src/lib/hlm-button.directive';
+import { HlmButtonDirective } from './Directive/ui-button-helm/src/lib/hlm-button.directive';
 
-import { HlmErrorDirective } from './components/ui-formfield-helm/src/lib/hlm-error.directive';
-import { HlmFormFieldComponent } from './components/ui-formfield-helm/src/lib/hlm-form-field.component';
-import { HlmHintDirective } from './components/ui-formfield-helm/src/lib/hlm-hint.directive';
-import { HlmInputDirective } from './components/ui-input-helm/src/lib/hlm-input.directive';
-import { HlmInputErrorDirective } from './components/ui-input-helm/src/lib/hlm-input-error.directive';
+import { HlmErrorDirective } from './Directive/ui-formfield-helm/src/lib/hlm-error.directive';
+import { HlmFormFieldComponent } from './Directive/ui-formfield-helm/src/lib/hlm-form-field.component';
+import { HlmHintDirective } from './Directive/ui-formfield-helm/src/lib/hlm-hint.directive';
+import { HlmInputDirective } from './Directive/ui-input-helm/src/lib/hlm-input.directive';
+import { HlmInputErrorDirective } from './Directive/ui-input-helm/src/lib/hlm-input-error.directive';
 import { CheckoutContatinfoComponent } from './components/checkout-contatinfo/checkout-contatinfo.component';
 import { CheckoutShippingDetailsComponent } from './components/checkout-shipping-details/checkout-shipping-details.component';
 import { CheckoutPaymentComponent } from './components/checkout-payment/checkout-payment.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher,
+} from '@spartan-ng/ui-forms-brain';
 
-export * from './components/ui-button-helm/src/lib/hlm-button.directive';
-export * from './components/ui-formfield-helm/src/lib/hlm-form-field.component';
-export * from './components/ui-formfield-helm/src/lib/hlm-error.directive';
-export * from './components/ui-formfield-helm/src/lib/hlm-hint.directive';
-export * from './components/ui-input-helm/src/lib/hlm-input-error.directive';
-export * from './components/ui-input-helm/src/lib/hlm-input.directive';
+export * from './Directive/ui-button-helm/src/lib/hlm-button.directive';
+export * from './Directive/ui-formfield-helm/src/lib/hlm-error.directive';
+export * from './Directive/ui-formfield-helm/src/lib/hlm-hint.directive';
+export * from './Directive/ui-formfield-helm/src/lib/hlm-error.directive';
+export * from './Directive/ui-formfield-helm/src/lib/hlm-hint.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ export * from './components/ui-input-helm/src/lib/hlm-input.directive';
     CheckoutShippingDetailsComponent,
     CheckoutPaymentComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  providers: [
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+  ],
   exports: [
     HlmButtonDirective,
     HlmErrorDirective,
