@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { UserService } from '@shared/services/user.service';
+import { ICartItem } from '../../../types/cartItem';
+import { ArrayBufferToBase64 } from '../../../lib';
 
 interface CartItem {
   name: string;
@@ -15,7 +18,8 @@ interface CartItem {
 })
 export class NavComponent {
   isModalOpen = false;
-  cartItems: CartItem[] = [ {
+
+  cartItems1: CartItem[] = [ {
       name: 'Snowfall',
       price: 70,
       img: 'images/Flowers/Fresh Flowers/Snowfall.webp',
@@ -53,9 +57,26 @@ export class NavComponent {
   subtotal = 0;
   giftMessage = '';
   isauthenticated: boolean;
+  arrayBufferToBase64 = ArrayBufferToBase64;
 
-  constructor(private router: Router, private user: UserService) {
+  userId = '66efdf8f0201e7a529674650';
+
+  cartItems!: ICartItem[];
+
+  constructor(private router: Router, private user: UserService, private httpService: CartItemService) {
     this.isauthenticated = user.isAuthenticated();
+  }
+
+  ngOnInit() {
+    this.httpService.getCartItemsByUserId(this.userId).subscribe(
+      (response) => {
+        this.cartItems = response.data;
+        console.log(this.cartItems);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   openModal() {
@@ -67,7 +88,7 @@ export class NavComponent {
   }
 
   calculateSubtotal() {
-    this.subtotal = this.cartItems.reduce(
+    this.subtotal = this.cartItems1.reduce(
       (total, item) => total + item.price,
       0
     );
@@ -104,3 +125,4 @@ export class NavComponent {
     }
   }
 }
+//src="data:image/*;base64,{{arrayBufferToBase64(item.product_id.picture.data)}}"

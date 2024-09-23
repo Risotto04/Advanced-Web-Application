@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '@shared/services/user.service';
+import { CartService } from '@shared/services/cart/cart.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,9 @@ export class RegisterComponent {
   phonenumber?: string;
   message?: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  total_price = 0;
+
+  constructor(private userService: UserService, private cartService: CartService, private router: Router) { }
   onSubmit() {
 
     this.userService.register(
@@ -29,10 +32,12 @@ export class RegisterComponent {
         data => {
           console.log(data);
           this.message = 'Sign Up successful!';
+
         },
         error => {
           console.log(error.message);
           this.message = 'Invalid';
         });
   }
+
 }

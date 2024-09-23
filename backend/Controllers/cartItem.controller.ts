@@ -25,7 +25,7 @@ export const createCartItem = async(req:Request, res:Response) => {
 
     }catch(e){
         console.log("An error ocured: ", e);
-        res.status(500).json({message: "An error occured during creating cart item"});
+        res.status(500).json({message: "An error occured during creating cart item", error: e});
     }
 }
 
@@ -33,12 +33,14 @@ export const getCartItemsByUserId = async(req:Request, res:Response) => {
     const {user_id} = req.body;
     
     try{
-        const cart = await Cart.findOne({user_id: user_id});
+        const cart = await Cart.findOne({user_id: user_id}, "_id");
         if(!cart) return res.status(404).json({message: "Cart not found"});
 
-        const cartItem = await CartItem.find({cart_id: cart.id})
-        .populate("product_id");
-        return res.status(200).json({data1: cart, data2: cartItem});
+        const cartItems = await CartItem.find({cart_id: cart._id})
+        .populate("product_id").populate("cart_id");
+        if(!cartItems) return res.status(404).json({message: "Cart item not found"});
+
+        return res.status(200).json({data: cartItems});
 
     }catch(e){
         console.log("An error ocured: ", e);
