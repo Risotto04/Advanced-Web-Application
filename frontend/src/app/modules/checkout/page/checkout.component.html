@@ -14,23 +14,39 @@
       </div>
       <div [ngSwitch]="state">
         <div *ngSwitchCase="0">
-          <app-checkout-contatinfo (textChanged)="onTextChanged($event)"
-            (state)="setState($event)"></app-checkout-contatinfo>
+          <app-checkout-contatinfo
+            (textChanged)="onTextChanged($event)"
+            (state)="setState($event)"
+          ></app-checkout-contatinfo>
         </div>
         <div *ngSwitchCase="1">
-          <app-checkout-shipping-details (state)="setState($event)"></app-checkout-shipping-details>
+          <app-checkout-shipping-details
+            (state)="setState($event)"
+          ></app-checkout-shipping-details>
         </div>
         <div *ngSwitchCase="2">
-          <app-checkout-payment (state)="setState($event)"></app-checkout-payment>
+          <app-checkout-payment
+            (state)="setState($event)"
+          ></app-checkout-payment>
         </div>
       </div>
     </div>
   </div>
-  <div class="w-1/2 flex flex-col gap-10 px-20 py-10 bg-extraLight border-[black] border-x">
+  <div
+    class="w-1/2 flex flex-col gap-10 px-20 py-10 bg-extraLight border-[black] border-x"
+  >
     <p class="font-medium">ORDER SUMMARY</p>
     <div>
-      <div *ngFor="let data of datas" class="flex border-[lightGray] border-b pb-8">
-        <img src="{{ data.img }}" alt="{{ data.name }}" width="160" class="mr-6 border-[black] border aspect-square" />
+      <div
+        *ngFor="let data of datas"
+        class="flex border-[lightGray] border-b pb-8"
+      >
+        <img
+          src="{{ data.img }}"
+          alt="{{ data.name }}"
+          width="160"
+          class="mr-6 border-[black] border aspect-square"
+        />
         <div class="flex justify-between w-full self-center text-lg">
           <div>
             <p class="font-medium">{{ data.name }}</p>

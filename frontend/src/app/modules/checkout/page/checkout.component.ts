@@ -8,9 +8,9 @@ export class CheckoutComponent implements OnInit {
   state: number = 0;
 
   receivedData!: {
-    email: string, 
-    name: string,
-    phonenumber: string
+    email: string;
+    name: string;
+    phonenumber: string;
     recipientsname: string;
     recipientsphone: string;
     date: Date;
@@ -20,9 +20,9 @@ export class CheckoutComponent implements OnInit {
     cardnumber: string;
     expnumber: string;
     cardcode: string;
-  }
+  };
 
-  onTextChanged(event: {email: string, name: string, phonenumber: string}) {
+  onTextChanged(event: { email: string; name: string; phonenumber: string }) {
     if (event) {
       // ตรวจสอบว่าข้อมูลที่ได้รับไม่เป็น undefined
       this.receivedData.email = event.email || '';
@@ -30,7 +30,6 @@ export class CheckoutComponent implements OnInit {
       this.receivedData.phonenumber = event.phonenumber || '';
     }
   }
-
 
   datas = [
     {
@@ -64,8 +63,8 @@ export class CheckoutComponent implements OnInit {
       price: 100,
     },
   ];
-  constructor() { }
-  ngOnInit(): void { }
+  constructor() {}
+  ngOnInit(): void {}
   getStateStyle(state: number) {
     if (state == this.state) {
       return 'text-[black]';

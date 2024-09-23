@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCategoryService } from '@shared/services/productCategory/product-category.service';
-import { IProductCategory } from '../../../types/productCategory';
-import { ArrayBufferToBase64 } from '../../../lib/index';
+import { IProductCategory } from '../../../../types/productCategory';
+import { ArrayBufferToBase64 } from '../../../../lib/index';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 @Component({

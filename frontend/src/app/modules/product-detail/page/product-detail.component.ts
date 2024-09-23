@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@shared/services/product/product.service';
-import { IProduct } from '../../../types/product';
-import { ArrayBufferToBase64 } from '../../../lib';
-
+import { IProduct } from '../../../../types/product';
+import { ArrayBufferToBase64 } from '../../../../lib';
+import { PageNotFoundComponent } from '../../page-not-found/page/page-not-found.component';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -16,7 +16,7 @@ export class ProductDetailComponent {
   products!: IProduct;
   category!: string;
   arrayBufferToBase64 = ArrayBufferToBase64;
-  isActive: boolean = false;
+  isActive!: boolean;
   constructor(
     private router: Router,
     private route: ActivatedRoute,

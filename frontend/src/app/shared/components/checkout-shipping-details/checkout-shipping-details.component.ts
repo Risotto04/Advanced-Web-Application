@@ -15,8 +15,7 @@ export class CheckoutShippingDetailsComponent {
   street?: string;
   apartmentnumber?: string;
 
-  constructor() {
-  }
+  constructor() {}
 
   submit() {
     console.log('recipientsname:', this.recipientsname);
@@ -28,8 +27,15 @@ export class CheckoutShippingDetailsComponent {
   }
   onClick() {
     // this.callbackFunction(1);
-    if ((this.recipientsname && this.recipientsphone && this.date && this.time && this.street && this.apartmentnumber)) {
-    this.state.emit(2);
+    if (
+      this.recipientsname &&
+      this.recipientsphone &&
+      this.date &&
+      this.time &&
+      this.street &&
+      this.apartmentnumber
+    ) {
+      this.state.emit(2);
+    }
   }
-}
 }

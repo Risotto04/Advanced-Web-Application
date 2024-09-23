@@ -31,7 +31,7 @@ export * from './components/ui-input-helm/src/lib/hlm-input.directive';
     CheckoutShippingDetailsComponent,
     CheckoutPaymentComponent,
   ],
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   exports: [
     HlmButtonDirective,
     HlmErrorDirective,

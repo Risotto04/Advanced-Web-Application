@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-4">
   <p class="font-medium text-xl">1 Contact information</p>
-  <form  (ngSubmit)="submit()">
+  <form (ngSubmit)="submit()">
     <input
       required
       type="text"
@@ -8,9 +8,9 @@
       hlmInput
       class="w-full mb-3"
       [(ngModel)]="name"
-      name ="name"
+      name="name"
     />
-    
+
     <input
       required
       type="email"
@@ -18,8 +18,7 @@
       hlmInput
       class="w-full mb-3"
       [(ngModel)]="email"
-      name ="email"
-
+      name="email"
     /><input
       required
       type="text"
@@ -27,10 +26,10 @@
       hlmInput
       class="w-full mb-3"
       [(ngModel)]="phonenumber"
-      name ="phonenumber"
-
+      name="phonenumber"
     />
-  <button (click)="sendTextToParent()" hlmBtn (click)="onClick()">CONTINUE TO SHIPPING</button>
+    <button (click)="sendTextToParent()" hlmBtn (click)="onClick()">
+      CONTINUE TO SHIPPING
+    </button>
   </form>
-    
 </div>

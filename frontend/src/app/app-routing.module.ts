@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './modules/login/login.component';
-import { RegisterComponent } from './modules/register/register.component';
+import { LoginComponent } from './modules/login/page/login.component';
+import { RegisterComponent } from './modules/register/page/register.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
-import { HomeComponent } from './modules/home/home.component';
-import { CheckoutComponent } from './modules/checkout/checkout.component';
-import { AboutUsComponent } from './modules/about-us/about-us.component';
-import { SubscriptionComponent } from './modules/subscription/subscription.component';
-import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
+// import { HomeComponent } from './modules/[home]/home.component';
+import { CheckoutComponent } from './modules/checkout/page/checkout.component';
+import { AboutUsComponent } from './modules/about-us/page/about-us.component';
+import { SubscriptionComponent } from './modules/subscription/page/subscription.component';
+import { PageNotFoundComponent } from './modules/page-not-found/page/page-not-found.component';
 import { authGuard } from '@app/guards/auth.guard';
 
-import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
+import { ProductDetailComponent } from './modules/product-detail/page/product-detail.component';
 
 // Import the other components from category1
 import { FreshFlowersComponent } from './modules/category1/fresh-flowers/fresh-flowers.component';
@@ -22,26 +22,62 @@ const routes: Routes = [
     path: '',
     component: ContentLayoutComponent,
     children: [
-      { path: 'home', component: HomeComponent },
       {
-        path: 'category',
-        component: FreshFlowersComponent,
+        path: 'home',
+        loadChildren: () =>
+          import('./modules/home/home.module').then((m) => m.HomeModule),
       },
-
       {
-        path: 'product-detail', // /:id
-        component: ProductDetailComponent,
+        path: 'about-us',
+        loadChildren: () =>
+          import('./modules/about-us/about-us.module').then(
+            (m) => m.AboutUsModule
+          ),
       },
-
       {
         path: 'checkout',
-        component: CheckoutComponent,
-        canActivate: [authGuard],
+        loadChildren: () =>
+          import('./modules/checkout/checkout.module').then(
+            (m) => m.CheckoutModule
+          ),
       },
-      { path: 'about-us', component: AboutUsComponent },
+      {
+        path: 'login',
+        loadChildren: () =>
+          import('./modules/login/login.module').then((m) => m.LoginModule),
+      },
+      {
+        path: 'page-not-found',
+        loadChildren: () =>
+          import('./modules/page-not-found/page-not-found.module').then(
+            (m) => m.PageNotFoundModule
+          ),
+      },
+      {
+        path: 'product-detail',
+        loadChildren: () =>
+          import('./modules/product-detail/product-detail.module').then(
+            (m) => m.ProductDetailModule
+          ),
+      },
+      {
+        path: 'register',
+        loadChildren: () =>
+          import('./modules/register/register.module').then(
+            (m) => m.RegisterModule
+          ),
+      },
+      {
+        path: 'subscription',
+        loadChildren: () =>
+          import('./modules/subscription/subscription.module').then(
+            (m) => m.SubscriptionModule
+          ),
+      },
       { path: 'subscription', component: SubscriptionComponent },
     ],
   },
+
   { path: '**', component: PageNotFoundComponent },
 ];
 
