@@ -53,16 +53,16 @@
     <div class="overflow-y-auto flex-1 p-5 custom-scrollbar">
       <div *ngFor="let item of cartItems" class="flex items-center mb-4">
         <img
-          [src]="item.img"
-          alt="{{ item.name }}"
+          [src]="item.product_id.picture"
+          alt="{{ item.product_id.name }}"
           width="120"
           class="mr-6 border-[black] border aspect-square"
         />
         <div class="flex justify-between items-center w-full">
           <div>
-            <p class="font-medium">{{ item.name }}</p>
-            <p>Quantity (1)</p>
-            <p class="font-medium">${{ item.price }}</p>
+            <p class="font-medium">{{ item.product_id.name }}</p>
+            <p>Quantity ({{item.quantity}})</p>
+            <p class="font-medium">${{ item.product_id.price }}</p>
           </div>
           <button class="text-gray hover:text-red-500 mr-8">Remove</button>
         </div>

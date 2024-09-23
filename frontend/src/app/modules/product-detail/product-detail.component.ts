@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@shared/services/product/product.service';
 import { IProduct } from '../../../types/product';
 import { ArrayBufferToBase64 } from '../../../lib';
+import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,7 +11,9 @@ import { ArrayBufferToBase64 } from '../../../lib';
   styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent {
-  quantity = 0;
+  cartId = '66f00957d882b06ff7d95c4d';
+
+  quantity = 1;
   priceOption = 'one-time';
   productId: string;
   products!: IProduct;
@@ -20,7 +23,8 @@ export class ProductDetailComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private httpService: ProductService
+    private httpService: ProductService,
+    private cartItemService: CartItemService
   ) {
     this.productId = this.route.snapshot.paramMap.get('id')!;
     this.category = this.route.snapshot.paramMap.get('category')!;
@@ -91,5 +95,20 @@ export class ProductDetailComponent {
     if (this.quantity > 0) {
       this.quantity--;
     }
+  }
+
+  onCreateCartItem() {
+    this.cartItemService.createCartItem(
+      this.cartId || '',
+      this.productId || '',
+      this.quantity || 0
+    ).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }

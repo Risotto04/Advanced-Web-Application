@@ -4,6 +4,6 @@ import { createCartItem, getCartItemsByUserId } from "../Controllers/cartItem.co
 const router = express.Router();
 
 router.post("/cartItem", createCartItem);
-router.get("/cartItems", getCartItemsByUserId);
+router.post("/cartItems", getCartItemsByUserId);
 
 export default router;
