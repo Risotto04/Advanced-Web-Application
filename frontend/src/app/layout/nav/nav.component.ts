@@ -19,7 +19,8 @@ interface CartItem {
 export class NavComponent {
   isModalOpen = false;
 
-  cartItems1: CartItem[] = [ {
+  cartItems1: CartItem[] = [
+    {
       name: 'Snowfall',
       price: 70,
       img: 'images/Flowers/Fresh Flowers/Snowfall.webp',
@@ -53,7 +54,8 @@ export class NavComponent {
       name: 'Serenity',
       price: 89,
       img: 'images/Flowers/Fresh Flowers/Serenity.webp',
-    },];
+    },
+  ];
   subtotal = 0;
   giftMessage = '';
   isauthenticated: boolean;
@@ -63,7 +65,11 @@ export class NavComponent {
 
   cartItems!: ICartItem[];
 
-  constructor(private router: Router, private user: UserService, private httpService: CartItemService) {
+  constructor(
+    private router: Router,
+    private user: UserService,
+    private httpService: CartItemService
+  ) {
     this.isauthenticated = user.isAuthenticated();
   }
 
@@ -107,14 +113,14 @@ export class NavComponent {
       }
     });
   }
-  
+
   navigateToSignIn() {
     this.router.navigate(['/']);
   }
 
   onSignOut() {
-    this.router.navigate(['/']);
     this.user.signout().subscribe();
+    this.router.navigate(['/']);
   }
 
   onOverlayClick(event: MouseEvent): void {
@@ -125,4 +131,3 @@ export class NavComponent {
     }
   }
 }
-//src="data:image/*;base64,{{arrayBufferToBase64(item.product_id.picture.data)}}"

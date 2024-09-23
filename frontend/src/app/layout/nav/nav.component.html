@@ -17,10 +17,9 @@
   <div class="flex">
     <div
       class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
-      (click)="isauthenticated ? onSignOut() : navigateToSignIn()"
+      (click)="isauthenticated ? navigateToSignIn() : onSignOut()"
     >
-      <a *ngIf="!isauthenticated">Sign in</a>
-      <a *ngIf="isauthenticated">Sign out</a>
+      <a>{{ isauthenticated ? "Sign in" : "Sign out" }}</a>
     </div>
 
     <div
@@ -61,7 +60,7 @@
         <div class="flex justify-between items-center w-full">
           <div>
             <p class="font-medium">{{ item.product_id.name }}</p>
-            <p>Quantity ({{item.quantity}})</p>
+            <p>Quantity ({{ item.quantity }})</p>
             <p class="font-medium">${{ item.product_id.price }}</p>
           </div>
           <button class="text-gray hover:text-red-500 mr-8">Remove</button>
