@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ICartItem } from '../../../../types/cartItem'
+import { IProduct } from '../../../../types/product';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,18 @@ import { ICartItem } from '../../../../types/cartItem'
 export class CartItemService {
   private baseURL = 'http://localhost:3001';
 
+  cartItemTemp: ICartItem[] = []
+  subtotalTemp = 0;
+
   constructor(private http: HttpClient) {}
+
+  addTempCartItem(item: ICartItem) {
+    this.cartItemTemp.push(item);
+    if(item.product_id.price){
+      this.subtotalTemp += item.product_id.price*item.quantity;
+      console.log(this.subtotalTemp);
+    }
+  }
 
   createCartItem(
     cart_id:string,
@@ -37,7 +49,19 @@ export class CartItemService {
       {headers}
     );
   }
+
+  getCartItemTemp() {
+    console.log("get", this.cartItemTemp);
+    return this.cartItemTemp;
+   }
+
+   getSubtotalTemp() {
+    console.log(this.subtotalTemp);
+    return this.subtotalTemp;
+   }
 }
+
+ 
 interface CartItemResponse {
   data: ICartItem[];
 }
