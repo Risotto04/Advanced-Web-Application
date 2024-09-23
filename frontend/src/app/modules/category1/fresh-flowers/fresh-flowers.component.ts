@@ -21,7 +21,6 @@ export class FreshFlowersComponent implements OnInit {
   ) {
     this.categoryId = this.route.snapshot.paramMap.get('categoryId')!;
     console.log(this.categoryId);
-
   }
   ngOnInit() {
     this.httpService.getProductsByIdCategory(this.categoryId).subscribe(
