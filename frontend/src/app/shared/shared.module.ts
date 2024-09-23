@@ -10,6 +10,7 @@ import { HlmInputErrorDirective } from './components/ui-input-helm/src/lib/hlm-i
 import { CheckoutContatinfoComponent } from './components/checkout-contatinfo/checkout-contatinfo.component';
 import { CheckoutShippingDetailsComponent } from './components/checkout-shipping-details/checkout-shipping-details.component';
 import { CheckoutPaymentComponent } from './components/checkout-payment/checkout-payment.component';
+import { FormsModule } from '@angular/forms';
 
 export * from './components/ui-button-helm/src/lib/hlm-button.directive';
 export * from './components/ui-formfield-helm/src/lib/hlm-form-field.component';
@@ -30,7 +31,7 @@ export * from './components/ui-input-helm/src/lib/hlm-input.directive';
     CheckoutShippingDetailsComponent,
     CheckoutPaymentComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   exports: [
     HlmButtonDirective,
     HlmErrorDirective,

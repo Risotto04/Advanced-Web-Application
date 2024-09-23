@@ -4,6 +4,7 @@ export interface ProductCategory extends Document {
   name: string;
   desc: string;
   picture: Buffer;
+  categoryPicture: Buffer;
 }
 
 export const ProductCategorySchema: Schema = new Schema({
@@ -16,6 +17,7 @@ export const ProductCategorySchema: Schema = new Schema({
     required: true,
   },
   picture: { type: Buffer, require: true },
+  categoryPicture: { type: Buffer, require: true },
 });
 
 export default mongoose.model<ProductCategory>("ProductCategory", ProductCategorySchema);

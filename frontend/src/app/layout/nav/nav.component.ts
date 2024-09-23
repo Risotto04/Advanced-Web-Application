@@ -5,19 +5,17 @@ import { UserService } from '@shared/services/user.service';
 interface CartItem {
   name: string;
   price: number;
-  img: string; // Include the img property in the interface
+  img: string;
 }
-
 @Component({
   standalone: false,
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'], // Corrected this property
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent {
   isModalOpen = false;
-  cartItems: CartItem[] = [
-    {
+  cartItems: CartItem[] = [ {
       name: 'Snowfall',
       price: 70,
       img: 'images/Flowers/Fresh Flowers/Snowfall.webp',
@@ -51,41 +49,20 @@ export class NavComponent {
       name: 'Serenity',
       price: 89,
       img: 'images/Flowers/Fresh Flowers/Serenity.webp',
-    },
-    {
-      name: 'Blue Harmony',
-      price: 55,
-      img: 'images/Flowers/Fresh Flowers/BlueHarmony.webp',
-    },
-    {
-      name: 'Mystical Majesty',
-      price: 80,
-      img: 'images/Flowers/Fresh Flowers/MysticalMajesty.webp',
-    },
-    {
-      name: 'Blazing Blossoms',
-      price: 75,
-      img: 'images/Flowers/Fresh Flowers/BlazingBlossoms.webp',
-    },
-  ];
+    },];
   subtotal = 0;
   giftMessage = '';
   isauthenticated: boolean;
+
   constructor(private router: Router, private user: UserService) {
     this.isauthenticated = user.isAuthenticated();
   }
 
   openModal() {
-    this.calculateSubtotal(); // Calculate subtotal when modal opens
     this.isModalOpen = true;
   }
 
   closeModal() {
-    this.isModalOpen = false;
-  }
-
-  navigateToCheckout() {
-    this.router.navigate(['/checkout']);
     this.isModalOpen = false;
   }
 
@@ -96,6 +73,11 @@ export class NavComponent {
     );
   }
 
+  navigateToCheckout() {
+    this.router.navigate(['/checkout']);
+    this.isModalOpen = false;
+  }
+
   scrollToContact() {
     this.router.navigate(['/home']).then(() => {
       const element = document.getElementById('contact');
@@ -104,7 +86,21 @@ export class NavComponent {
       }
     });
   }
+  
+  navigateToSignIn() {
+    this.router.navigate(['/']);
+  }
+
   onSignOut() {
+    this.router.navigate(['/']);
     this.user.signout().subscribe();
+  }
+
+  onOverlayClick(event: MouseEvent): void {
+    const modal = document.getElementById('modal');
+
+    if (event.target === modal) {
+      this.closeModal();
+    }
   }
 }

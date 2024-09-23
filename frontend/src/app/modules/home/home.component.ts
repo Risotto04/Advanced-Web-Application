@@ -1,16 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductCategoryService } from '@shared/services/productCategory/product-category.service';
+import { IProductCategory } from '../../../types/productCategory';
+import { ArrayBufferToBase64 } from '../../../lib/index';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 @Component({
-  // standalone: true,
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  items = [
-    { img: 'images/test/1.webp', category: 'Fresh Flowers' },
-    { img: 'images/test/2.webp', category: 'Dried Flowers' },
-    { img: 'images/test/3.webp', category: 'Live Plants ' },
-    { img: 'images/test/4.webp', category: 'Aroma Candels' },
-    { img: 'images/test/5.webp', category: 'Fresheners' },
-  ];
+export class HomeComponent implements OnInit {
+  items!: IProductCategory[];
+  arrayBufferToBase64 = ArrayBufferToBase64;
+  constructor(private httpService: ProductCategoryService) {}
+
+  ngOnInit() {
+    AOS.init({
+      mirror: true,
+      once: false,
+      easing: 'ease',
+      duration: 750,
+    });
+    setTimeout(() => {
+      AOS.refreshHard();
+    }, 250);
+    this.httpService.getProductCategory().subscribe(
+      (response) => {
+        this.items = response.data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

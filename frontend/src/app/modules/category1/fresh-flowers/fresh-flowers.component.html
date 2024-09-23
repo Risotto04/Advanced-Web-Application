@@ -1,27 +1,49 @@
-
 <div class="category-container">
   <!-- Hero Section -->
-  <div class="hero-section">
-    <img src="images/Fresh_Flowers2.png" alt="Fresh Flowers" class="hero-image">
-    <div class="hero-text">
-      <h1></h1>
-    </div>
+  <div class="hero-section relative">
+    <img
+      src="data:image/*;base64,{{
+        arrayBufferToBase64(productCategor[0].categoryPicture.data)
+      }}"
+      alt="Fresh Flowers"
+      class="hero-image brightness-[0.6]"
+    />
+    <h1
+      class="w-full text-center text-7xl text-[white] font-semibold absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+    >
+      {{ productCategor[0].name }}
+    </h1>
   </div>
 
+<<<<<<< HEAD
   <!-- Products -->
+=======
+>>>>>>> e6a1188a913c98ce090205b5e5b2f96ba5190dc1
   <div class="w-1/2">
     <div class="products-section">
-      <div class="product-item border-l border-b border-r border-[black]" *ngFor="let item of items">
-         <a [routerLink]="['/product-detail']"> <!--, item.id -->
-        <img [src]="item.img" alt="{{ item.name }}" 
-        class="product-image aspect-square "/> 
-        <div class="product-details">
-          <h3>{{ item.name }}</h3>
-          <p>Price {{ item.price | currency }}</p>
-        </div>
-      </a>
+      <div
+        class="product-item border-l border-b border-r border-[black]"
+        *ngFor="let item of items"
+      >
+        <a
+          [routerLink]="[
+            '/product-detail',
+            { id: item._id, category: productCategor[0].name }
+          ]"
+        >
+          <img
+            src="data:image/*;base64,{{
+              arrayBufferToBase64(item.picture.data)
+            }}"
+            alt="{{ item.name }}"
+            class="product-image aspect-square"
+          />
+          <div class="product-details">
+            <h3>{{ item.name }}</h3>
+            <p>Price {{ item.price | currency }}</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>
-
 </div>
