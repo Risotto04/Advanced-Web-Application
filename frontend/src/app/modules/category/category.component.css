@@ -1,0 +1,112 @@
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container {
+  width: 100%;
+  display: flex; /* ทำให้สองส่วนอยู่ในแนวนอน */
+}
+
+/* *******************Hero section on the left************************** */
+.hero-section {
+  flex: 1; /* ทำให้ hero-section ใช้พื้นที่ครึ่งหนึ่ง */
+  position: sticky; /* ทำให้ภาพอยู่คงที่ */
+  top: 0; /* คงภาพให้อยู่ด้านบนของหน้าจอเมื่อเลื่อน */
+  height: 100vh; /* ให้ความสูงของภาพเท่ากับหน้าจอ */
+  overflow: hidden; /* ป้องกันการเลื่อนส่วนเกิน */
+}
+
+.hero-image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover; /* ครอบคลุมพื้นที่ภาพ */
+}
+
+.hero-text {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* ย้ายให้ตรงกลาง */
+  color: white; /* สีข้อความ */
+  text-align: center;
+  z-index: 1;
+}
+
+.hero-text h1 {
+  font-size: 4rem; /* ปรับขนาดตัวอักษรที่นี่ */
+  margin: 0; /* ไม่ให้มีระยะห่าง */
+}
+
+/* *******************Products section on the right************************** */
+.products-section {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.product-item {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  /* border: 1px solid black; */
+  width: 100%;
+  transition: transform 1s ease-in-out;
+  object-fit: cover; /* ปรับภาพให้ไม่ผิดสัดส่วน */
+  display: block;
+}
+
+.product-item:hover .product-image {
+  transform: scale(1.2); /* ขยายภาพเมื่อเลื่อนเมาส์ไปชี้ */
+}
+
+.product-details {
+  margin-top: 10px; /* เว้นระยะด้านบน */
+  position: absolute; /* ใช้เพื่อจัดตำแหน่งให้ข้อความอยู่ในภาพ */
+  bottom: 15px; /* ปรับตำแหน่งให้ชิดด้านล่าง */
+  left: 50%; /* จัดตำแหน่งให้ตรงกลาง */
+  transform: translateX(
+    -50%
+  ); /* ย้ายให้ตรงกลาง */ /* เพิ่มพื้นหลังให้ข้อความ */
+}
+
+.product-details h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.product-details p {
+  font-size: 1.2rem;
+  color: gray;
+}
+
+/* Media query: Adjust layout for smaller screens */
+@media (max-width: 900px) {
+  .category-container {
+    flex-direction: column;
+  }
+
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    height: 300px;
+  }
+
+  .products-section {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-text {
+    font-size: 3rem; /* Smaller font for mobile view */
+  }
+}

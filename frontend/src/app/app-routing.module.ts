@@ -74,7 +74,14 @@ const routes: Routes = [
             (m) => m.SubscriptionModule
           ),
       },
-      { path: 'subscription', component: SubscriptionComponent },
+      // { path: 'subscription', component: SubscriptionComponent },
+      {
+        path: 'category',
+        loadChildren: () =>
+          import('./modules/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
+      },
     ],
   },
 
