@@ -9,12 +9,12 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class CartService {
+
   private baseURL = 'http://localhost:3001';
+
   constructor(private http: HttpClient, private CookieService: CookieService) {}
-  createCart(
-    total_price: number,
-    user_id: string,
-  ) {
+
+  createCart(total_price: number,user_id: string) {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.post<Cart>(
       `${this.baseURL}/cart`,
