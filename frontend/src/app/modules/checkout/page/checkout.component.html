@@ -44,7 +44,9 @@
         class="flex border-[lightGray] border-b pb-8"
       >
         <img
-          src="{{ data.product.picture }}"
+          src="data:image/*;base64,{{
+            arrayBufferToBase64(data.product.picture!.data)
+          }}"
           alt="{{ data.product.name }}"
           width="160"
           class="mr-6 border-[black] border aspect-square"

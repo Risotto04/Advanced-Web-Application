@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { IProduct } from '../../../../types/product';
-
+import { ArrayBufferToBase64 } from '../../../../lib/arrayBufferToBase64';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
 })
 export class CheckoutComponent implements OnInit {
   state: number = 0;
+  arrayBufferToBase64 = ArrayBufferToBase64;
   receivedData = {
     email: '',
     name: '',
