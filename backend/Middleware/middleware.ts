@@ -23,7 +23,7 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
   try {
     const verified = jwt.verify(token, JWT_KEY) as JwtPayload;
 
-    if (verified && verified.email) {
+    if (verified && verified.id) {
       req.id = verified.id;
       next();
     } else {
