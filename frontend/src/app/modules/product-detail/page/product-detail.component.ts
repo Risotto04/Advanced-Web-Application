@@ -34,8 +34,7 @@ export class ProductDetailComponent {
     this.category = this.route.snapshot.paramMap.get('category')!;
   }
   ngOnInit(): void {
-    this.authorized = this.cookieService.get('Authorization');
-
+    // this.authorized = this.cookieService.get('Authorization');
     this.httpService.getProductsById(this.productId).subscribe(
       (response) => {
         this.products = response.data as IProduct;
@@ -103,38 +102,26 @@ export class ProductDetailComponent {
     }
   }
 
+  // onCreateCartItem() {
+  //   this.cartItemService
+  //     .createCartItem(
+  //       this.cartId || '',
+  //       this.productId || '',
+  //       this.quantity || 0
+  //     )
+  //     .subscribe(
+  //       (data) => {
+  //         console.log(data);
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       }
+  //     );
+  // }
+
   addProducttoCart() {
-    if(this.authorized) {
-      this.onCreateCartItem();
-    }
-    else{
-      this.onAddCartItemTemp();
-    }
-  }
-
-  onCreateCartItem() {
-    this.cartItemService
-      .createCartItem(
-        this.cartId || '',
-        this.productId || '',
-        this.quantity || 0
-      )
-      .subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }
-
-  onAddCartItemTemp() {
-    this.cartItemService.addTempCartItem({
-      product_id: this.products,
-      id: '',
-      quantity: this.quantity,
-      cart_id: new Cart
-    });
+    this.cartItemService.addTempCartItem(
+      this.products, this.quantity
+    );
   }
 }

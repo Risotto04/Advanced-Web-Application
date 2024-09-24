@@ -38,21 +38,21 @@
     <p class="font-medium">ORDER SUMMARY</p>
     <div>
       <div
-        *ngFor="let data of datas"
+        *ngFor="let data of cartItems"
         class="flex border-[lightGray] border-b pb-8"
       >
         <img
-          src="{{ data.img }}"
-          alt="{{ data.name }}"
+          src="{{ data.product.picture }}"
+          alt="{{ data.product.name }}"
           width="160"
           class="mr-6 border-[black] border aspect-square"
         />
         <div class="flex justify-between w-full self-center text-lg">
           <div>
-            <p class="font-medium">{{ data.name }}</p>
-            <p>Quantity ({{ data.Quantity }})</p>
+            <p class="font-medium">{{ data.product.name }}</p>
+            <p>Quantity ({{ data.quantity }})</p>
           </div>
-          <p class="font-medium">${{ data.price * data.Quantity }}</p>
+          <p class="font-medium">(${{data.product.price}} * {{data.quantity}})  ${{ data.product.price * data.quantity }}</p>
         </div>
       </div>
       <div class="flex w-full justify-between font-medium text-lg mt-3">

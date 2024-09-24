@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartItemService } from '@shared/services/cartItem/cart-item.service';
+import { IProduct } from '../../../../types/product';
 
 @Component({
   selector: 'app-checkout',
@@ -21,6 +23,8 @@ export class CheckoutComponent implements OnInit {
     expnumber: string;
     cardcode: string;
   };
+
+  cartItems!: productWithQuantity[];
 
   onTextChanged(event: { email: string; name: string; phonenumber: string }) {
     if (event) {
@@ -63,8 +67,15 @@ export class CheckoutComponent implements OnInit {
       price: 100,
     },
   ];
-  constructor() {}
-  ngOnInit(): void {}
+
+  constructor(private cartItemService: CartItemService) {
+    
+  }
+  ngOnInit(): void {
+
+    console.log("here");
+    this.getCartItem();
+  }
   getStateStyle(state: number) {
     if (state == this.state) {
       return 'text-[black]';
@@ -72,8 +83,8 @@ export class CheckoutComponent implements OnInit {
     return 'text-[gray]';
   }
   getSum() {
-    const sum = this.datas.reduce(
-      (acc, data) => acc + data.price * data.Quantity,
+    const sum = this.cartItems.reduce(
+      (acc, data) => acc + data.product.price * data.quantity,
       0
     );
     return sum;
@@ -81,4 +92,13 @@ export class CheckoutComponent implements OnInit {
   setState($event: any) {
     this.state = $event;
   }
+
+  getCartItem() {
+    this.cartItems = this.cartItemService.getCartItemTemp();
+  }
+}
+
+interface productWithQuantity {
+  product: IProduct,
+  quantity: number
 }

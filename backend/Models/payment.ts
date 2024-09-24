@@ -1,11 +1,18 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { Order } from "./order";
-
+import { PaymentStatus } from "./payment_status";
+import { IUser } from "./user"
+import { Product } from "./product"
 export interface Payment extends Document {
   slip: string;  // Assuming this is a path to the payment slip or a reference ID
-  date: Date;
-  amount: mongoose.Types.Decimal128;
-  order_id: Order["_id"];
+  date: string;
+  time: string;
+  recipient: string;
+  recipient_phone_number: string;
+  user: IUser["_id"];
+  productsAndQuantity: {
+    product: Product["_id"];
+    quantity: number;
+  }[];
 }
 
 export const PaymentSchema: Schema = new Schema({
@@ -14,19 +21,37 @@ export const PaymentSchema: Schema = new Schema({
     required: true,
   },
   date: {
-    type: Date,
-    required: true,
-    default: Date.now,  // Default to current date if not provided
+    type: String,
+    required: true, 
   },
-  amount: {
-    type: mongoose.Types.Decimal128,
+  time: {
+    type: String,
+    required: true, 
+  },
+  recipient: {
+    type: String,
     required: true,
   },
-  order_id: {
+  recipient_phone_number: {
+    type: String,
+    required: true,
+  },
+  user: {
     type: mongoose.Types.ObjectId,
-    ref: 'Order',
+    ref: 'User',
     required: true,
-  }
+  },
+  productsAndQuantity: [{
+    product: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Product',
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    }
+  }]
 });
 
 

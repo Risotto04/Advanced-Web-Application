@@ -5,6 +5,7 @@ import { UserService } from '@shared/services/user.service';
 import { ICartItem } from '../../../types/cartItem';
 import { ArrayBufferToBase64 } from '../../../lib';
 import { CookieService } from 'ngx-cookie-service';
+import { IProduct } from '../../../types/product';
 
 @Component({
   standalone: false,
@@ -22,7 +23,7 @@ export class NavComponent {
 
   userId = '66efdf8f0201e7a529674650';
 
-  cartItems!: ICartItem[];
+  cartItems!: productWithQuantity[];
   authorized!: any;
 
   constructor(
@@ -35,22 +36,8 @@ export class NavComponent {
   }
 
   ngOnInit() {
-    this.authorized = this.cookieService.get('Authorization');
-
-    if (this.authorized) {
-      this.httpService.getCartItemsByUserId(this.userId).subscribe(
-        (response) => {
-          this.cartItems = response.data;
-          this.calculateSubtotal();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } else {
       this.cartItems = this.httpService.getCartItemTemp();
     }
-  }
 
   openModal() {
     this.isModalOpen = true;
@@ -62,7 +49,7 @@ export class NavComponent {
 
   calculateSubtotal() {
     this.subtotal = this.cartItems.reduce((total, item) => {
-      const price = (item.product_id?.price ?? 0) * item.quantity;
+      const price = (item.product?.price ?? 0) * item.quantity;
       return total + price;
     }, 0);
   }
@@ -97,4 +84,9 @@ export class NavComponent {
       this.closeModal();
     }
   }
+}
+
+interface productWithQuantity {
+  product: IProduct,
+  quantity: number
 }
