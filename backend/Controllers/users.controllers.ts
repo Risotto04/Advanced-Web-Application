@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../Models/user";
 import bcrypt from "bcryptjs";
@@ -134,3 +134,13 @@ export const getUserById = async (req: Request, res: Response) => {
       .json({ message: "An error occurred during getting user by id" }); 
   }
 };
+
+export const deleteUser = async(req:Request, res:Response) => {
+  const user_id = req.id;
+  try{
+    const user = await User.findOneAndDelete({_id: user_id});
+    return res.status(200).json({message: "Deleted user", user: user});
+  }catch(e){
+    return res.status(500).json({message: "An error ocured during user deletion", error: e});
+  }
+}
