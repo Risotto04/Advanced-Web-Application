@@ -38,19 +38,26 @@ export class NavComponent {
     this.authorized = this.cookieService.get('Authorization');
 
     if (this.authorized) {
-      this.httpService.getCartItemsByUserId(this.userId).subscribe(
-        (response) => {
-          this.cartItems = response.data;
-          this.calculateSubtotal();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+        // อัปเดตสถานะการล็อกอิน
+        this.isauthenticated = true;
+        
+        // ดึงข้อมูลตะกร้าสินค้า
+        this.httpService.getCartItemsByUserId(this.userId).subscribe(
+            (response) => {
+                this.cartItems = response.data;
+                this.calculateSubtotal();
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     } else {
-      this.cartItems = this.httpService.getCartItemTemp();
+        // ผู้ใช้ไม่ได้ล็อกอิน
+        this.isauthenticated = false;
+        this.cartItems = this.httpService.getCartItemTemp();
     }
-  }
+}
+
 
   openModal() {
     this.isModalOpen = true;
