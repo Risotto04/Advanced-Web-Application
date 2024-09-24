@@ -13,7 +13,6 @@ import { authGuard } from '@app/guards/auth.guard';
 import { ProductDetailComponent } from './modules/product-detail/page/product-detail.component';
 
 // Import the other components from category1
-import { FreshFlowersComponent } from './modules/category1/fresh-flowers/fresh-flowers.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },

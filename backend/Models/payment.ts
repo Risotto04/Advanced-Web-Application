@@ -1,9 +1,8 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { PaymentStatus } from "./payment_status";
-import { IUser } from "./user"
-import { Product } from "./product"
+import { IUser } from "./user";
+import { Product } from "./product";
 export interface Payment extends Document {
-  slip: string;  // Assuming this is a path to the payment slip or a reference ID
+  slip: string; // Assuming this is a path to the payment slip or a reference ID
   date: string;
   time: string;
   recipient: string;
@@ -22,11 +21,11 @@ export const PaymentSchema: Schema = new Schema({
   },
   date: {
     type: String,
-    required: true, 
+    required: true,
   },
   time: {
     type: String,
-    required: true, 
+    required: true,
   },
   recipient: {
     type: String,
@@ -38,21 +37,22 @@ export const PaymentSchema: Schema = new Schema({
   },
   user: {
     type: mongoose.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
-  productsAndQuantity: [{
-    product: {
-      type: mongoose.Types.ObjectId,
-      ref: 'Product',
-      required: true,
+  productsAndQuantity: [
+    {
+      product: {
+        type: mongoose.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
     },
-    quantity: {
-      type: Number,
-      required: true,
-    }
-  }]
+  ],
 });
-
 
 export default mongoose.model<Payment>("Payment", PaymentSchema);

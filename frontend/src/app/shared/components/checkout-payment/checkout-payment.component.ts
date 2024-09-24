@@ -9,6 +9,7 @@ import {
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { PaymentService } from '@shared/services/payment/payment.service';
 import { CheckoutComponent } from '../../../modules/checkout/page/checkout.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-payment',
@@ -31,21 +32,22 @@ export class CheckoutPaymentComponent {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
+
     private cartItemService: CartItemService,
     private paymentService: PaymentService
   ) {
-    if(this.getTotalQuantity() != 0){
+    if (this.getTotalQuantity() != 0) {
       this.http
-      .get<{ data: string }>(
-        `${this.baseURL}/genqr/${this.cartItemService.getSubtotalTemp()}`
-      )
-      .subscribe((data) => {
-        this.qr = btoa(unescape(encodeURIComponent(data.data)));
-      });
+        .get<{ data: string }>(
+          `${this.baseURL}/genqr/${this.cartItemService.getSubtotalTemp()}`
+        )
+        .subscribe((data) => {
+          this.qr = btoa(unescape(encodeURIComponent(data.data)));
+        });
     }
-    
 
-      this.canPlay = this.getTotalQuantity() == 0;
+    this.canPlay = this.getTotalQuantity() == 0;
   }
 
   async onSubmit() {
@@ -113,6 +115,9 @@ export class CheckoutPaymentComponent {
     this.isModalOpen = true;
   }
   closeModal(): void {
+    this.router.navigate(['/home']).then(() => {
+      window.location.reload();
+    });
     this.isModalOpen = false;
   }
   closeModalOnBackdropClick(event: Event): void {

@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import User from "../Models/user";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
-import { createCart } from "./cart.controller";
 
 export const signIn = async (req: Request, res: Response, next: NextFunction) => {
   const JWT_SECRET = process.env.JWT_KEY as string;
@@ -63,12 +62,10 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     });
 
     const savedUser = await newUser.save();
-    const savedCart = await createCart(savedUser._id.toString(), 0);
 
     return res.status(201).json({
       message: "User created successfully, and cart created",
       userDetails: savedUser,
-      cartDetails: savedCart,
     });
   } catch (error) {
     console.error("Error during user registration:", error);
@@ -98,9 +95,17 @@ export const updateUserDetails = async (
   next: NextFunction
 ) => {
   try {
-    const  userId = req.id; 
+    const userId = req.id;
     const { email, firstname, lastname, phone_number } = req.body;
-    const existingUser = await User.findOneAndUpdate({_id: userId}, {email: email, firstname: firstname, lastname: lastname, phone_number: phone_number});
+    const existingUser = await User.findOneAndUpdate(
+      { _id: userId },
+      {
+        email: email,
+        firstname: firstname,
+        lastname: lastname,
+        phone_number: phone_number,
+      }
+    );
     if (!existingUser) {
       return res.status(404).json({
         message: "User not found",
@@ -117,30 +122,32 @@ export const updateUserDetails = async (
 };
 
 export const getUserById = async (req: Request, res: Response) => {
-  const  userId = req.id; 
+  const userId = req.id;
   try {
-    const user = await User.findById(userId); 
+    const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" }); 
+      return res.status(404).json({ message: "User not found" });
     }
 
     return res.status(200).json(user);
   } catch (e) {
-    console.log("An error occurred: ", e); 
+    console.log("An error occurred: ", e);
 
     return res
       .status(500)
-      .json({ message: "An error occurred during getting user by id" }); 
+      .json({ message: "An error occurred during getting user by id" });
   }
 };
 
-export const deleteUser = async(req:Request, res:Response) => {
+export const deleteUser = async (req: Request, res: Response) => {
   const user_id = req.id;
-  try{
-    const user = await User.findOneAndDelete({_id: user_id});
-    return res.status(200).json({message: "Deleted user", user: user});
-  }catch(e){
-    return res.status(500).json({message: "An error ocured during user deletion", error: e});
+  try {
+    const user = await User.findOneAndDelete({ _id: user_id });
+    return res.status(200).json({ message: "Deleted user", user: user });
+  } catch (e) {
+    return res
+      .status(500)
+      .json({ message: "An error ocured during user deletion", error: e });
   }
-}
+};

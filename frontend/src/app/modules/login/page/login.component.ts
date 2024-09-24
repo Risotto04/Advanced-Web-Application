@@ -19,9 +19,9 @@ export class LoginComponent {
         (data) => {
           if (data) {
             this.message = 'Login successful!';
-            alert('Login successful')
             this.router.navigate(['home']);
           } else {
+            alert('Invalid email or password.');
           }
         },
         (error) => {

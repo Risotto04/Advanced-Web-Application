@@ -62,10 +62,13 @@ export class ProductDetailComponent {
       this.quantity--;
     }
   }
-  reloadComponent() {
-    setTimeout(() => {
-      window.location.reload();
-    }, 50);
+  reloadComponent(data: { id: string; category: string }) {
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 50);
+    this.router.navigate(['/home']).then(() => {
+      this.router.navigate(['/product-detail', data]);
+    });
   }
 
   addProducttoCart() {
