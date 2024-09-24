@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-checkout-payment',
@@ -7,23 +8,55 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class CheckoutPaymentComponent {
   @Output() state = new EventEmitter<number>();
- 
-  cardnumber?: string;
-  expnumber?: string;
-  cardcode?: string;
+  @Output() onSendData = new EventEmitter();
+  @Input('data') data: any;
 
-  constructor() {
+  receipt!: File;
+  qr!: string;
+  private baseURL = 'http://localhost:3001';
+
+  constructor(private http: HttpClient) {
+    this.http
+      .get<{ data: string }>(`${this.baseURL}/genqr/100`)
+      .subscribe((data) => {
+        this.qr = btoa(unescape(encodeURIComponent(data.data)));
+      });
   }
 
-  submit() {
-    console.log('cardnumber:', this.cardnumber);
-    console.log('expnumber:', this.expnumber);
-    console.log('cardcode:', this.cardcode);
+  async onSubmit() {
+    console.log(this.data);
+    if (this.receipt) {
+      try {
+        var img = await this.convertBase64(this.receipt);
+        this.onSendData!.emit(img);
+      } catch (e) {}
+    }
   }
-  onClick() {
-    // this.callbackFunction(1);
-    if ((this.cardnumber && this.expnumber && this.cardcode)) {
-    this.state.emit(3);
+
+  onImagePicked(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.receipt = input.files[0];
+    }
   }
-}
+  convertBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+  // data: {
+  //   slip: string;
+  //   recipient: string;
+  //   recipient_phone_number: string;
+  //   product_idsAndQuantity: { product_id: string; quantity: number }[];
+  // };
 }

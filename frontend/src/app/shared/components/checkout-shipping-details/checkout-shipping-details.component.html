@@ -1,68 +1,54 @@
-<form (ngSubmit)="submit()">
-  <input class="flex flex-col gap-4" />
+<div class="space-y-5">
   <p class="font-medium text-xl">2 Shipping Details</p>
+  <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()" class="space-y-2">
+    <hlm-form-field>
+      <input
+        formControlName="recipientsname"
+        type="text"
+        placeholder="Recipients Name"
+        hlmInput
+        class="w-full"
+        name="recipientsname"
+      />
+      <hlm-error>Your recipients name is required</hlm-error>
+    </hlm-form-field>
+    <hlm-form-field>
+      <input
+        type="text"
+        formControlName="recipientsphone"
+        placeholder="Recipients Phone number *"
+        hlmInput
+        class="w-full"
+        name="recipientsphone"
+      />
+      <hlm-error>Your recipients phone number is required</hlm-error>
+    </hlm-form-field>
 
-  <input
-    required
-    type="text"
-    placeholder="Recipients Name"
-    hlmInput
-    class="w-full mb-3"
-    [(ngModel)]="recipientsname"
-    name="recipientsname"
-  />
+    <div class="flex gap-3">
+      <hlm-form-field>
+        <input
+          type="date"
+          formControlName="date"
+          placeholder="Date of Delivery"
+          hlmInput
+          class=""
+          name="date"
+        />
+        <hlm-error>Your date of delivery is required</hlm-error>
+      </hlm-form-field>
+      <hlm-form-field>
+        <input
+          formControlName="time"
+          type="time"
+          placeholder="Delivery Time"
+          hlmInput
+          class=""
+          name="time"
+        />
+        <hlm-error>Your delivery time is required</hlm-error>
+      </hlm-form-field>
+    </div>
 
-  <input
-    required
-    type="text"
-    placeholder="Recipients Phone number *"
-    hlmInput
-    class="w-full mb-3"
-    [(ngModel)]="recipientsphone"
-    name="recipientsphone"
-  />
-
-  <div class="flex gap-3">
-    <input
-      required
-      type="date"
-      placeholder="Date of Delivery"
-      hlmInput
-      class="mb-3"
-      [(ngModel)]="date"
-      name="date"
-    />
-    <input
-      required
-      type="time"
-      placeholder="Delivery Time"
-      hlmInput
-      class="mb-3"
-      [(ngModel)]="time"
-      name="time"
-    />
-  </div>
-
-  <div class="flex gap-3">
-    <input
-      required
-      type="text"
-      placeholder="Street"
-      hlmInput
-      class="mb-3 w-1/2"
-      [(ngModel)]="street"
-      name="street"
-    />
-    <input
-      required
-      type="text"
-      placeholder="Apartment Number"
-      hlmInput
-      class="mb-3 w-1/2"
-      [(ngModel)]="apartmentnumber"
-      name="apartmentnumber"
-    />
-  </div>
-
-  <button type="submit" hlmBtn (click)="onClick()">CONTINUE TO PAYMENT</button>
-</form>
+    <button type="submit" hlmBtn class="w-full">CONTINUE TO PAYMENT</button>
+  </form>
+</div>

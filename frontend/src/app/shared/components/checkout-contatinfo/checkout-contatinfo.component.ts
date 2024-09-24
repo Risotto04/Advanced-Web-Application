@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
   ErrorStateMatcher,
@@ -15,13 +15,8 @@ import {
 })
 export class CheckoutContatinfoComponent {
   @Output() state = new EventEmitter<number>();
-  @Output() textChanged = new EventEmitter<{
-    email: string;
-    name: string;
-    phonenumber: string;
-  }>();
-
-  form = this._formBuilder.group({
+  @Output('onSendData') onSendData = new EventEmitter();
+  contatinfoForm = this._formBuilder.group({
     email: ['', Validators.required],
     phonenumber: ['', Validators.required],
     name: ['', Validators.required],
@@ -29,27 +24,16 @@ export class CheckoutContatinfoComponent {
 
   constructor(private _formBuilder: FormBuilder) {}
 
-  submit() {
-    // console.log('Email:', this.email);
-    // console.log('name:', this.name);
-    // console.log('phone:', this.phonenumber);
-  }
-  onClick() {
-    // this.callbackFunction(1);
-    if (
-      this.form.value.email &&
-      this.form.value.phonenumber &&
-      this.form.value.name
-    ) {
+  onSubmit() {
+    if (this.contatinfoForm.valid) {
+      this.onSendData.emit({
+        contatinfoForm: {
+          email: this.contatinfoForm.value.email,
+          name: this.contatinfoForm.value.name,
+          phonenumber: this.contatinfoForm.value.phonenumber,
+        },
+      });
       this.state.emit(1);
     }
-  }
-
-  sendTextToParent() {
-    this.textChanged!.emit({
-      email: this.form.value.email!,
-      name: this.form.value.name!,
-      phonenumber: this.form.value.phonenumber!,
-    });
   }
 }

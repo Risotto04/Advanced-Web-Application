@@ -52,7 +52,9 @@
     <div class="overflow-y-auto flex-1 p-5 custom-scrollbar">
       <div *ngFor="let item of cartItems" class="flex items-center mb-4">
         <img
-          [src]="item.product_id.picture"
+          src="data:image/*;base64,{{
+            arrayBufferToBase64(item.product_id.picture!.data)
+          }}"
           alt="{{ item.product_id.name }}"
           width="120"
           class="mr-6 border-[black] border aspect-square"
