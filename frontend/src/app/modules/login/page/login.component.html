@@ -1,25 +1,39 @@
-<div class="login-container" classname ="">
-    <div class="login-box">
-        <h1>Greetings!</h1>
-        <h1>Welcome to luxury gift shop.</h1>
-        <form  (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input [(ngModel)]="email" type="email" name="email" required placeholder="Enter your email" />
-            </div>
+<div class="login-container" classname="">
+  <div class="login-box">
+    <h1>Greetings!</h1>
+    <h1>Welcome to luxury gift shop.</h1>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          [(ngModel)]="email"
+          type="email"
+          name="email"
+          required
+          placeholder="Enter your email"
+        />
+      </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input [(ngModel)]="password"  type="password" name="password" required placeholder="Enter your password" />
-            </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          [(ngModel)]="password"
+          type="password"
+          name="password"
+          required
+          placeholder="Enter your password"
+        />
+      </div>
 
-      <button type="submit" class="btn-login">CONTINUE</button>
+      <button type="submit" class="w-full" hlmBtn>CONTINUE</button>
 
-            <div class="signup-link">
-                <span>Don't have an account?</span>
-                <a routerLink="/register">Sign Up</a>
-            </div>
-        </form>
-        <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
-    </div>
+      <div class="signup-link">
+        <span>Don't have an account?</span>
+        <a routerLink="/register" class="text-[black] font-semibold">
+          Sign Up</a
+        >
+      </div>
+    </form>
+    <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
+  </div>
 </div>

@@ -7,7 +7,7 @@
           src="data:image/*;base64,{{
             arrayBufferToBase64(products.picture.data)
           }}"
-          class="aspect-square object-cover"
+          class="aspect-square object-cover min-w-full"
           alt="{{ products.name }}"
         />
       </div>
@@ -98,7 +98,9 @@
             </div>
           </div>
         </div>
-        <button (click)="addProducttoCart()" hlmBtn class="w-full">ADD TO CART</button>
+        <button (click)="addProducttoCart()" hlmBtn class="w-full">
+          ADD TO CART
+        </button>
       </div>
     </div>
 

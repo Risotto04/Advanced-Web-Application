@@ -23,14 +23,12 @@
       "@shared/*": ["./src/app/shared/*"],
       "@env": ["./src/environments/environment"],
       "@spartan-ng/ui-button-helm": [
-        ".\\src/app/shared/components/ui-button-helm/src/index.ts"
+        "./src/app/shared/Directive/ui-button-helm/src/index.ts"
       ],
       "@spartan-ng/ui-formfield-helm": [
-        ".\\src/app/shared/components/ui-formfield-helm/src/index.ts"
+        "./src/app/shared/Directive/ui-formfield-helm/src/index.ts"
       ],
-      "@spartan-ng/ui-input-helm": [
-        ".\\src/app/shared/components/ui-input-helm/src/index.ts"
-      ]
+      "@spartan-ng/ui-input-helm": ["./src/app/shared/Directive/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

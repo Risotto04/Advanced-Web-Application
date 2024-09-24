@@ -15,13 +15,30 @@
   </div>
 
   <div class="flex">
-    <div
-      class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
-      (click)="isauthenticated ? onSignOut() : navigateToSignIn()"
-    >
-      <a *ngIf="!isauthenticated">Sign in</a>
-      <a *ngIf="isauthenticated">Sign out</a>
-    </div>
+    <!-- Conditional Rendering: Sign in or Account Dropdown -->
+    <ng-container *ngIf="isauthenticated; else signInTemplate">
+      <!-- Account Dropdown -->
+      <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer relative group">
+        <span>Account</span> <!-- Change link if needed -->
+        
+        <div
+          class="absolute left-0 hidden group-hover:flex flex-col items-start bg-white border-[black] border p-2 w-44"
+          style="margin-top: 1.9rem;"
+        >
+          <button class="hover:bg-gray-100 w-full text-left px-3 py-2 hover:underline cursor-pointer" (click)="onSignOut()">Sign out</button>
+        </div>
+      </div>
+    </ng-container>
+    
+    <!-- Sign in Button -->
+    <ng-template #signInTemplate>
+      <div
+        class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+        (click)="navigateToSignIn()"
+      >
+        Sign in
+      </div>
+    </ng-template>
 
     <div
       class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
@@ -61,7 +78,7 @@
         <div class="flex justify-between items-center w-full">
           <div>
             <p class="font-medium">{{ item.product_id.name }}</p>
-            <p>Quantity ({{item.quantity}})</p>
+            <p>Quantity ({{ item.quantity }})</p>
             <p class="font-medium">${{ item.product_id.price }}</p>
           </div>
           <button class="text-gray hover:text-red-500 mr-8">Remove</button>

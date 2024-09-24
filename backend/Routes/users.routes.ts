@@ -1,6 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import { signIn, register, signOut } from "../Controllers/users.controllers";
-import { getUserAddressByUserId, createUserAddress, updateUserAddressByUserId } from "../Controllers/useraddress.controller";
+import {
+  getUserAddressByUserId,
+  createUserAddress,
+  updateUserAddressByUserId,
+} from "../Controllers/useraddress.controller";
+import { genPromptPayQr } from "../Controllers/genPromptPayQR.controller";
 
 const router = express.Router();
 
@@ -10,5 +15,5 @@ router.post("/register", register);
 router.get("/address/:user_id", getUserAddressByUserId);
 router.post("/address", createUserAddress);
 router.put("/address/:user_id", updateUserAddressByUserId);
-
+router.get("/genqr/:amount", genPromptPayQr);
 export default router;

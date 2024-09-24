@@ -34,9 +34,8 @@ export class UserService {
 
   signout() {
     this.CookieService.delete('Authorization');
-    return this.http.get(`${this.baseURL}/signout`, {
-      withCredentials: true,
-    });
+    console.log(this.CookieService.get('Authorization'));
+    return this.http.get(`${this.baseURL}/signout`);
   }
 
   login(userDetails: { email: string; password: string }): Observable<boolean> {
@@ -57,7 +56,7 @@ export class UserService {
   }
 
   isAuthenticated(): boolean {
-    if (!this.CookieService.get('Authorization')) {
+    if (this.CookieService.get('Authorization')) {
       return false;
     }
     return true;
