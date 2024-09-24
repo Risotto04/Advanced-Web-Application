@@ -4,12 +4,17 @@ import { ProductCategory } from "./products_category";
 export interface Product extends Document {
   name: string;
   price: number;
+  desc: string;
   picture: Buffer;
   productCategory_id: ProductCategory["_id"];
 }
 
 export const ProductSchema: Schema = new Schema({
   name: {
+    type: String,
+    required: true,
+  },
+  desc: {
     type: String,
     required: true,
   },
