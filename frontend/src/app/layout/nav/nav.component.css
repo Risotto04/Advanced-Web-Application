@@ -96,3 +96,11 @@ html {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #d1d5db; /* gray-300 */
 }
+
+
+.sticky-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white; /* ถ้าจำเป็น */
+}
