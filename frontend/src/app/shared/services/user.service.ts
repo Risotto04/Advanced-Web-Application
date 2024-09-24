@@ -62,12 +62,14 @@ export class UserService {
 
   login(userDetails: { email: string; password: string }): Observable<boolean> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' ,}),
+      withCredentials: true,
     };
     return this.http
       .post<any>(`${this.baseURL}/signin`, userDetails, httpOptions)
       .pipe(
         map((response) => {
+          console.log(response);
           return true;
         }),
         catchError((error) => {
