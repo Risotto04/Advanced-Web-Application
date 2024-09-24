@@ -25,11 +25,12 @@ export class NavComponent {
 
   cartItems!: productWithQuantity[];
   authorized!: any;
+  quantity!: number;
 
   constructor(
     private router: Router,
     private user: UserService,
-    private httpService: CartItemService,
+    private cartItemService: CartItemService,
     private cookieService: CookieService
   ) {
     this.isauthenticated = user.isAuthenticated();
@@ -37,17 +38,22 @@ export class NavComponent {
 
   ngOnInit() {
     this.authorized = this.cookieService.get('Authorization');
-
+    this.cartItems = this.cartItemService.getCartItemTemp();
+    
     if (this.authorized) {
         // อัปเดตสถานะการล็อกอิน
         this.isauthenticated = true;
     } else {
         // ผู้ใช้ไม่ได้ล็อกอิน
         this.isauthenticated = false;
-        this.cartItems = this.httpService.getCartItemTemp();
+        
     }
 }
 
+ ngDoCheck() {
+  this.subtotal = this.cartItemService.getSubtotalTemp();
+  this.quantity = this.cartItemService.getTotalQuantity();
+ }
 
   openModal() {
     this.isModalOpen = true;
@@ -67,13 +73,6 @@ export class NavComponent {
         this.isModalOpen = false; // Close modal after animation
       }, 300); // Match the duration of the CSS transition
     }
-  }
-
-  calculateSubtotal() {
-    this.subtotal = this.cartItems.reduce((total, item) => {
-      const price = (item.product?.price ?? 0) * item.quantity;
-      return total + price;
-    }, 0);
   }
 
   navigateToCheckout() {
@@ -105,6 +104,10 @@ export class NavComponent {
     if (event.target === modal) {
       this.closeModal();
     }
+  }
+
+  onRemoveCartItem(p_id: string) {
+    this.cartItemService.removeCartItem(p_id);
   }
 }
 
