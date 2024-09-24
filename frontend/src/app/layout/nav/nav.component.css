@@ -117,3 +117,9 @@ html {
   z-index: 999;
   background-color: white; /* ถ้าจำเป็น */
 }
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}

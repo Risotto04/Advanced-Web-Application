@@ -2,38 +2,35 @@
   <div class="login-box">
     <h1>Greetings!</h1>
     <h1>Welcome to luxury gift shop.</h1>
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          [(ngModel)]="email"
-          type="email"
-          name="email"
-          required
-          placeholder="Enter your email"
-        />
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      <label for="email">Email</label>
+      <input [(ngModel)]="email" type="email" name="email" required #emailInput="ngModel" placeholder="Enter your email"
+        class="form-control" />
+      <div *ngIf="emailInput.invalid && emailInput.touched" class="error-message">
+        Email is required and must be a valid format.
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input
-          [(ngModel)]="password"
-          type="password"
-          name="password"
-          required
-          placeholder="Enter your password"
-        />
+        <input [(ngModel)]="password" type="password" name="password" required minlength="2" #passwordInput="ngModel"
+          placeholder="Enter your password" class="form-control" />
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
+          <span>
+          Password is required and must be at least 2 characters.
+          </span>
+        </div>
       </div>
 
-      <button type="submit" class="w-full" hlmBtn>CONTINUE</button>
+      <button type="submit" class="w-full" hlmBtn [disabled]="form.invalid">
+        CONTINUE
+      </button>
 
       <div class="signup-link">
         <span>Don't have an account?</span>
-        <a routerLink="/register" class="text-[black] font-semibold">
-          Sign Up</a
-        >
+        <a routerLink="/register" class="text-[black] font-semibold">Sign Up</a>
       </div>
     </form>
+
     <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
   </div>
 </div>

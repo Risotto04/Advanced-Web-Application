@@ -158,12 +158,15 @@ export class NavComponent {
     )
       .subscribe(
         data => {
+          alert('Update Success')
           this.message = 'Updated Success';
         },
         error => {
           if (error.status === 409) {
+            alert('Email already exists')
             this.message = 'Email already exists';
           } else {
+            alert('Error updating')
             this.message = 'Error updating';
           }
           console.log(error.message);
