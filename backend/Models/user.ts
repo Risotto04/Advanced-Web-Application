@@ -6,7 +6,7 @@ export interface IUser extends Document {
   lastname: string;
   email: string;
   password: string;
-  phone_number: number;
+  phone_number: string;
 }
 
 export const userSchema: Schema<IUser> = new mongoose.Schema({
@@ -21,7 +21,7 @@ export const userSchema: Schema<IUser> = new mongoose.Schema({
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
   },
   password: { type: String, required: true },
-  phone_number: { type: Number, required: true },
+  phone_number: { type: String, required: true },
 });
 
 const User = mongoose.model<IUser>("User", userSchema);

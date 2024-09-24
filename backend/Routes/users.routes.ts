@@ -1,19 +1,24 @@
 import express, { Request, Response, NextFunction } from "express";
-import { signIn, register, signOut } from "../Controllers/users.controllers";
+import { signIn, register, signOut, updateUserDetails, getUserById, deleteUser } from "../Controllers/users.controllers";
 import {
   getUserAddressByUserId,
   createUserAddress,
   updateUserAddressByUserId,
 } from "../Controllers/useraddress.controller";
 import { genPromptPayQr } from "../Controllers/genPromptPayQR.controller";
+import authMiddleware from "../Middleware/middleware";
 
 const router = express.Router();
 
-router.post("/signin", signIn);
 router.get("/signout", signOut);
-router.post("/register", register);
 router.get("/address/:user_id", getUserAddressByUserId);
+router.get("/genqr/:amount", genPromptPayQr);
+router.get("/users",authMiddleware, getUserById);
+router.post("/signin", signIn);
+router.post("/register", register);
 router.post("/address", createUserAddress);
 router.put("/address/:user_id", updateUserAddressByUserId);
-router.get("/genqr/:amount", genPromptPayQr);
+router.patch("/users/update",authMiddleware, updateUserDetails);
+
+router.delete("/user", authMiddleware, deleteUser);
 export default router;

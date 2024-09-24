@@ -45,7 +45,7 @@
       >
         <img
           src="data:image/*;base64,{{
-            arrayBufferToBase64(data.product.picture.data)
+            arrayBufferToBase64(data.product.picture!.data)
           }}"
           alt="{{ data.product.name }}"
           width="160"
