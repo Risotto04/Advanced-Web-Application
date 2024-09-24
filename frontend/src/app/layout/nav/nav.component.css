@@ -13,6 +13,14 @@ html {
   justify-content: flex-end; /* Align to the right */
   align-items: center; /* Center vertically */
   z-index: 1000; /* Ensure it sits above other content */
+  opacity: 0; /* Start with opacity 0 */
+  transition: opacity 0.3s ease; /* Smooth transition for overlay */
+  visibility: hidden; /* Hidden by default */
+}
+
+.modal-overlay.show {
+  opacity: 1; /* Full opacity when shown */
+  visibility: visible; /* Make it visible */
 }
 
 .modal-content {
@@ -20,6 +28,12 @@ html {
   max-width: 500px; /* Optional max width */
   background: white;
   position: relative;
+  transform: translateX(100%); /* Start off-screen to the right */
+  transition: transform 0.3s ease; /* Smooth entrance for modal */
+}
+
+.modal-overlay.show .modal-content {
+  transform: translateX(0); /* Move to original position */
 }
 
 .close-button {
@@ -95,4 +109,12 @@ html {
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #d1d5db; /* gray-300 */
+}
+
+
+.sticky-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white; /* ถ้าจำเป็น */
 }

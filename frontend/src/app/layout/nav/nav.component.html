@@ -1,4 +1,4 @@
-<div class="w-full flex justify-between h-20 border border-[black]">
+<div class="sticky-navbar w-full flex justify-between h-20 border border-[black] sticky">
   <div class="flex">
     <div
       class="w-44 py-6 px-8 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
@@ -15,12 +15,31 @@
   </div>
 
   <div class="flex">
-    <div
-      class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
-      (click)="isauthenticated ? navigateToSignIn() : onSignOut()"
-    >
-      <a>{{ isauthenticated ? "Sign in" : "Sign out" }}</a>
-    </div>
+    <!-- Conditional Rendering: Sign in or Account Dropdown -->
+    <ng-container *ngIf="isauthenticated; else signInTemplate">
+      <!-- Account Dropdown -->
+      <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer relative group">
+        <span>Account</span> <!-- Change link if needed -->
+        
+        <div
+          class="absolute left-1/2 transform -translate-x-1/2 hidden group-hover:flex flex-col items-start bg-white border-[black] border p-2 w-[177px]"
+          style="margin-top: 1.9rem;"
+        >
+          <button class="w-full text-left px-3 py-2 hover:underline cursor-pointer" (click)="onSignOut()">Sign out</button>
+        </div>
+      </div>
+    </ng-container>
+    
+    
+    <!-- Sign in Button -->
+    <ng-template #signInTemplate>
+      <div
+        class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+        (click)="navigateToSignIn()"
+      >
+        Sign in
+      </div>
+    </ng-template>
 
     <div
       class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
@@ -35,7 +54,7 @@
 <div
   id="modal"
   *ngIf="isModalOpen"
-  class="modal-overlay fixed inset-0 justify-center items-center"
+  class="modal-overlay"
   (click)="onOverlayClick($event)"
 >
   <div

@@ -38,27 +38,47 @@ export class NavComponent {
     this.authorized = this.cookieService.get('Authorization');
 
     if (this.authorized) {
-      this.httpService.getCartItemsByUserId(this.userId).subscribe(
-        (response) => {
-          this.cartItems = response.data;
-          this.calculateSubtotal();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+        // อัปเดตสถานะการล็อกอิน
+        this.isauthenticated = true;
+        
+        // ดึงข้อมูลตะกร้าสินค้า
+        this.httpService.getCartItemsByUserId(this.userId).subscribe(
+            (response) => {
+                this.cartItems = response.data;
+                this.calculateSubtotal();
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     } else {
-      this.cartItems = this.httpService.getCartItemTemp();
+        // ผู้ใช้ไม่ได้ล็อกอิน
+        this.isauthenticated = false;
+        this.cartItems = this.httpService.getCartItemTemp();
     }
-  }
+}
 
-  openModal() {
-    this.isModalOpen = true;
-  }
 
-  closeModal() {
-    this.isModalOpen = false;
+openModal() {
+  this.isModalOpen = true;
+  setTimeout(() => {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    if (modalOverlay) {
+      modalOverlay.classList.add('show'); // Add show class for animation
+    }
+  }, 10); // Delay to ensure the modal is in the DOM before adding the class
+}
+
+closeModal() {
+  const modalOverlay = document.querySelector('.modal-overlay');
+  if (modalOverlay) {
+    modalOverlay.classList.remove('show'); // Remove show class for animation
+    setTimeout(() => {
+      this.isModalOpen = false; // Close modal after animation
+    }, 300); // Match the duration of the CSS transition
   }
+}
+
 
   calculateSubtotal() {
     this.subtotal = this.cartItems.reduce((total, item) => {
