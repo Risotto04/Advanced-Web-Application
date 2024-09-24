@@ -1,26 +1,23 @@
 <div class="sticky-navbar w-full flex justify-between h-20 border border-[black] sticky">
-  <div class="flex">
+  <div class="flex w-[25%]">
     <div
-      class="w-44 py-6 px-8 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
+      class="flex-1 py-6 px-4 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
       routerLink="/home"
     >
       Shop
     </div>
     <div
-      class="w-44 py-6 px-8 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
+      class="flex-1 py-6 px-4 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
       (click)="scrollToContact()"
     >
       Contact
     </div>
   </div>
 
-  <div class="flex">
-    <!-- Conditional Rendering: Sign in or Account Dropdown -->
+  <div class="flex w-[25%]">
     <ng-container *ngIf="isauthenticated; else signInTemplate">
-      <!-- Account Dropdown -->
-      <div class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer relative group">
-        <span>Account</span> <!-- Change link if needed -->
-        
+      <div class="flex-1 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer relative group">
+        <span>Account</span>
         <div
           class="absolute left-1/2 transform -translate-x-1/2 hidden group-hover:flex flex-col items-start bg-white border-[black] border p-2 w-[177px]"
           style="margin-top: 1.9rem;"
@@ -30,11 +27,9 @@
       </div>
     </ng-container>
     
-    
-    <!-- Sign in Button -->
     <ng-template #signInTemplate>
       <div
-        class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+        class="flex-1 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
         (click)="navigateToSignIn()"
       >
         Sign in
@@ -42,7 +37,7 @@
     </ng-template>
 
     <div
-      class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+      class="flex-1 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
       (click)="openModal()"
     >
       Cart

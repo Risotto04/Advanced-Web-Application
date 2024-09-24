@@ -1,0 +1,4 @@
+.hover-effect:hover svg {
+    transform: translateX(8px); /* ปรับระยะได้ตามต้องการ */
+  }
+  

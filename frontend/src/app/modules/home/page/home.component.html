@@ -6,7 +6,7 @@
         data-aos="fade-up-right"
         data-aos-once="true"
       >
-        Kyiv <br />LuxeBouquets
+      La Fleur  <br /> Élite
       </h1>
       <div data-aos="fade-up" data-aos-once="true">
         Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread
@@ -38,12 +38,10 @@
         >
           {{ item.name }}
         </p>
-        <p
-          class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
-        >
-          Shop now
+        <div class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%] cursor-pointer group">
+          <span class="mr-2">Shop now</span>
           <svg
-            class="w-[36px] h-[36px] text-gray-800"
+            class="w-[36px] h-[36px] text-gray-800 transition-transform duration-300"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -59,7 +57,9 @@
               d="m9 5 7 7-7 7"
             />
           </svg>
-        </p>
+        </div>
+        
+
       </div>
       <div
         class="w-1/2 aspect-square border-l border-b border-r border-[black] overflow-hidden"
