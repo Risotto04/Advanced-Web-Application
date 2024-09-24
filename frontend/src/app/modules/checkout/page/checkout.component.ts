@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { IProduct } from '../../../../types/product';
+import { ArrayBufferToBase64 } from '../../../../lib/arrayBufferToBase64';
 
 @Component({
   selector: 'app-checkout',
@@ -8,6 +9,8 @@ import { IProduct } from '../../../../types/product';
 })
 export class CheckoutComponent implements OnInit {
   state: number = 0;
+  isModalOpen: boolean = false;
+  arrayBufferToBase64 = ArrayBufferToBase64;
   receivedData = {
     email: '',
     name: '',
@@ -18,7 +21,6 @@ export class CheckoutComponent implements OnInit {
     time: '',
   };
 
-
   cartItems!: productWithQuantity[];
 
   onTextChanged(event: { email: string; name: string; phonenumber: string }) {
@@ -27,7 +29,8 @@ export class CheckoutComponent implements OnInit {
       this.receivedData.email = event.email || '';
       this.receivedData.name = event.name || '';
       this.receivedData.phonenumber = event.phonenumber || '';
-  }}
+    }
+  }
 
   test = 10;
   onReceivedData(even: any) {
@@ -44,46 +47,9 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  datas = [
-    {
-      img: 'images/test/1.webp',
-      name: 'Snowfall',
-      Quantity: 1,
-      price: 100,
-    },
-    {
-      img: 'images/test/1.webp',
-      name: 'Snowfall',
-      Quantity: 10,
-      price: 100,
-    },
-    {
-      img: 'images/test/1.webp',
-      name: 'Snowfall',
-      Quantity: 1,
-      price: 100,
-    },
-    {
-      img: 'images/test/1.webp',
-      name: 'Snowfall',
-      Quantity: 1,
-      price: 100,
-    },
-    {
-      img: 'images/test/1.webp',
-      name: 'Snowfall',
-      Quantity: 1,
-      price: 100,
-    },
-  ];
-
-
-  constructor(private cartItemService: CartItemService) {
-    
-  }
+  constructor(private cartItemService: CartItemService) {}
   ngOnInit(): void {
-
-    console.log("here");
+    console.log('here');
     this.getCartItem();
   }
   getStateStyle(state: number) {
@@ -106,11 +72,9 @@ export class CheckoutComponent implements OnInit {
   getCartItem() {
     this.cartItems = this.cartItemService.getCartItemTemp();
   }
-
 }
 
-
 interface productWithQuantity {
-  product: IProduct,
-  quantity: number
+  product: IProduct;
+  quantity: number;
 }

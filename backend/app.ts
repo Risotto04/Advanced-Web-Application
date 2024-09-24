@@ -11,8 +11,7 @@ import orderItemRouter from "./Routes/orderItem.routes";
 import paymentRouter from "./Routes/payment.routes";
 import paymentStatusRouter from "./Routes/paymentStatus.routes";
 import productRouter from "./Routes/product.routes";
-import middleware from "./Middleware/middleware";
-
+const bodyParser = require("body-parser");
 dotenv.config();
 
 const { PORT, MONGO_URL } = process.env;
@@ -30,13 +29,14 @@ const MONGO_CONFIG = {
 
 const app = express();
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, PATCH, DELETE, OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Option, Authorization')
-  res.setHeader('Access-Control-Allow-Credentials', 'true'); 
-  return next()
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Option, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  return next();
 });
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
+app.use(express.urlencoded({ limit: "5mb", extended: true }));
 app.use(cookieParser());
 
 const connectToDatabase = async () => {

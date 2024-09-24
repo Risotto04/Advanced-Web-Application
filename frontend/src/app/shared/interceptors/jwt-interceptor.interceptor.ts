@@ -16,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.cookieService.get('Authorization');
-    if (!token) {
+    if (token) {
       const authReq = req.clone({
         withCredentials: true,
       });

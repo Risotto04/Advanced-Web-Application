@@ -9,16 +9,15 @@ import { IPayment } from '../../../../types/payment';
 export class PaymentService {
   private baseURL = 'http://localhost:3001';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   createPayment(
-    slip:string,
+    slip: string,
     date: number,
-    time:string,
+    time: string,
     recipient: string,
     recipient_phone_number: string,
-    user_id: string,
-    product_ids: string[],
+    product_ids: string[]
   ) {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.post<IPayment>(
@@ -29,8 +28,7 @@ export class PaymentService {
         time,
         recipient,
         recipient_phone_number,
-        user_id,
-        product_ids
+        product_ids,
       },
       { headers }
     );

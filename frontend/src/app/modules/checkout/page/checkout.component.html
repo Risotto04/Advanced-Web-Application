@@ -1,6 +1,6 @@
 <div class="flex w-full">
   <div class="w-1/2 px-20 py-10">
-    <div class="sticky top-10">
+    <div class="">
       <div class="flex gap-3 font-medium text-sm mb-4">
         <div>
           <p [ngClass]="getStateStyle(0)">INFOMATION ></p>
@@ -44,7 +44,9 @@
         class="flex border-[lightGray] border-b pb-8"
       >
         <img
-          src="{{ data.product.picture }}"
+          src="data:image/*;base64,{{
+            arrayBufferToBase64(data.product.picture.data)
+          }}"
           alt="{{ data.product.name }}"
           width="160"
           class="mr-6 border-[black] border aspect-square"
@@ -54,7 +56,11 @@
             <p class="font-medium">{{ data.product.name }}</p>
             <p>Quantity ({{ data.quantity }})</p>
           </div>
-          <p class="font-medium">(${{data.product.price}} * {{data.quantity}})  ${{ data.product.price * data.quantity }}</p>
+          <p class="font-medium">
+            (${{ data.product.price }} * {{ data.quantity }}) ${{
+              data.product.price * data.quantity
+            }}
+          </p>
         </div>
       </div>
       <div class="flex w-full justify-between font-medium text-lg mt-3">

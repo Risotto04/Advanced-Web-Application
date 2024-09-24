@@ -1,7 +1,7 @@
 import generatePayload from "promptpay-qr";
 import qrcode from "qrcode";
 
-const mobileNumber = "0812345678";
+const mobileNumber = "0902412209";
 
 export async function genPromptPayQR(amount: number): Promise<string> {
   try {

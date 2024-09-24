@@ -9,8 +9,7 @@ import { IProduct } from '../../../../types/product';
 export class CartItemService {
   private baseURL = 'http://localhost:3001';
 
-  
-  cartItem: productWithQuantity[] = []
+  cartItem: productWithQuantity[] = [];
   subtotal = 0;
   quantity = 0;
 
@@ -19,23 +18,23 @@ export class CartItemService {
   addTempCartItem(item: IProduct, quantity: number) {
     this.cartItem.push({
       product: item,
-      quantity: quantity
+      quantity: quantity,
     });
     console.log(this.cartItem);
-    if(item.price){
-      this.subtotal += item.price*quantity;
+    if (item.price) {
+      this.subtotal += item.price * quantity;
       console.log(this.subtotal);
     }
     this.quantity += quantity;
   }
 
-  removeCartItem(p_id:string) {
-    const index = this.cartItem.findIndex(item => item.product._id == p_id);
+  removeCartItem(p_id: string) {
+    const index = this.cartItem.findIndex((item) => item.product._id == p_id);
 
-    if(index > -1){
+    if (index > -1) {
       const removeItem = this.cartItem[index];
 
-      if(removeItem.product.price){
+      if (removeItem.product.price) {
         this.subtotal -= removeItem.product.price * removeItem.quantity;
       }
 
@@ -66,28 +65,26 @@ export class CartItemService {
   //   );
   // }
 
-//   getCartItemsByUserId(id: string): Observable<CartItemResponse> {
-//     const headers = { 'Content-Type': 'application/json' };
-//     return this.http.post<CartItemResponse>(`${this.baseURL}/cartItems`,
-//       {
-//         user_id: id
-//       },
-//       {headers}
-//     );
-//   }
+  //   getCartItemsByUserId(id: string): Observable<CartItemResponse> {
+  //     const headers = { 'Content-Type': 'application/json' };
+  //     return this.http.post<CartItemResponse>(`${this.baseURL}/cartItems`,
+  //       {
+  //         user_id: id
+  //       },
+  //       {headers}
+  //     );
+  //   }
 
   getCartItemTemp() {
-    console.log("get", this.cartItem);
     return this.cartItem;
-   }
+  }
 
-   getSubtotalTemp() {
-    console.log(this.subtotal);
+  getSubtotalTemp() {
     return this.subtotal;
-   }
+  }
 }
 
 interface productWithQuantity {
-  product: IProduct,
-  quantity: number
+  product: IProduct;
+  quantity: number;
 }

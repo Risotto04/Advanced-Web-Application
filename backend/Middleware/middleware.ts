@@ -12,7 +12,6 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
   }
 
   const token = req.cookies?.Authorization;
-
   if (!token) {
     return res.status(401).json({
       status: 401,
