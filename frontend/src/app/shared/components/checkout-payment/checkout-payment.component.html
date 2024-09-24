@@ -1,38 +1,59 @@
-<form (ngSubmit)="submit()">
-  <div class="flex flex-col gap-4">
-    <p class="font-medium text-xl">3 Payment</p>
-    <div class="">
-      <p class="mb-3 font-medium">Pay by card. Your payment is secure.</p>
-      <input
-        required
-        type="text"
-        placeholder="Card Number"
-        hlmInput
-        class="w-full mb-3"
-        [(ngModel)]="cardnumber"
-        name="cardnumber"
+<div class="space-y-5">
+  <p class="font-medium text-xl">3 Payment</p>
+  <div>
+    <div class="flex justify-center">
+      <img
+        src="{{ 'data:image/svg+xml;base64,' + qr }}"
+        alt="qr"
+        class="w-1/2"
       />
-      <div class="w-full flex gap-3">
-        <input
-          required
-          type="text"
-          placeholder="MM / YY"
-          hlmInput
-          class="w-1/2 mb-3"
-          [(ngModel)]="expnumber"
-          name="expnumber"
-        />
-        <input
-          required
-          type="text"
-          placeholder="CVV Code"
-          hlmInput
-          class="w-1/2 mb-3"
-          [(ngModel)]="cardcode"
-          name="cardcode"
-        />
-      </div>
     </div>
-    <button type="submit" hlmBtn (click)="onClick()">MAKE A PURCHASE</button>
+    <form class="space-y-3" (submit)="onSubmit()">
+      <div class="flex items-center justify-center w-full">
+        <label
+          for="dropzone-file"
+          class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg
+              class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              fill="none"
+              viewBox="0 0 20 16"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+              <span class="font-semibold">Click to upload</span> or drag and
+              drop
+            </p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              SVG, PNG, JPG or GIF
+            </p>
+          </div>
+          <input
+            id="dropzone-file"
+            type="file"
+            class="hidden"
+            accept="image/*"
+            #filePicker
+            (change)="onImagePicked($event)"
+          />
+        </label>
+      </div>
+      <p>{{ receipt.name }}</p>
+      <button
+        type="submit"
+        class="w-full h-10 py-2 px-4 bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background"
+      >
+        MAKE A PURCHASE
+      </button>
+    </form>
   </div>
-</form>
+</div>

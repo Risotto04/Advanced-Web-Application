@@ -1,32 +1,34 @@
 <div class="flex w-full">
   <div class="w-1/2 px-20 py-10">
     <div class="sticky top-10">
-      <div class="flex gap-3 font-medium mb-10">
-        <div (click)="state = 0" class="hover: cursor-pointer">
+      <div class="flex gap-3 font-medium text-sm mb-4">
+        <div>
           <p [ngClass]="getStateStyle(0)">INFOMATION ></p>
         </div>
-        <div (click)="state = 1" class="hover: cursor-pointer">
+        <div>
           <p [ngClass]="getStateStyle(1)">SHIPPING ></p>
         </div>
-        <div (click)="state = 2" class="hover: cursor-pointer">
+        <div>
           <p [ngClass]="getStateStyle(2)">PAYMENT ></p>
         </div>
       </div>
       <div [ngSwitch]="state">
         <div *ngSwitchCase="0">
           <app-checkout-contatinfo
-            (textChanged)="onTextChanged($event)"
+            (onSendData)="onReceivedData($event)"
             (state)="setState($event)"
           ></app-checkout-contatinfo>
         </div>
         <div *ngSwitchCase="1">
           <app-checkout-shipping-details
+            (onSendData)="onReceivedData($event)"
             (state)="setState($event)"
           ></app-checkout-shipping-details>
         </div>
         <div *ngSwitchCase="2">
           <app-checkout-payment
-            (state)="setState($event)"
+            [data]="receivedData"
+            (onSendData)="onReceivedData($event)"
           ></app-checkout-payment>
         </div>
       </div>
