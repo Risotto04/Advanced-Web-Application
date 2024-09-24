@@ -64,3 +64,8 @@ input:focus {
 .signup-link a:hover {
   text-decoration: underline;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.7rem; /* ปรับขนาดฟอนต์ตามที่ต้องการ */
+}
