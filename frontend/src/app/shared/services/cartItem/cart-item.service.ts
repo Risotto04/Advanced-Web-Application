@@ -10,21 +10,43 @@ export class CartItemService {
   private baseURL = 'http://localhost:3001';
 
   
-  cartItemTemp: productWithQuantity[] = []
-  subtotalTemp = 0;
+  cartItem: productWithQuantity[] = []
+  subtotal = 0;
+  quantity = 0;
 
   constructor(private http: HttpClient) {}
 
   addTempCartItem(item: IProduct, quantity: number) {
-    this.cartItemTemp.push({
+    this.cartItem.push({
       product: item,
       quantity: quantity
     });
-    console.log(this.cartItemTemp);
+    console.log(this.cartItem);
     if(item.price){
-      this.subtotalTemp += item.price*quantity;
-      console.log(this.subtotalTemp);
+      this.subtotal += item.price*quantity;
+      console.log(this.subtotal);
     }
+    this.quantity += quantity;
+  }
+
+  removeCartItem(p_id:string) {
+    const index = this.cartItem.findIndex(item => item.product._id == p_id);
+
+    if(index > -1){
+      const removeItem = this.cartItem[index];
+
+      if(removeItem.product.price){
+        this.subtotal -= removeItem.product.price * removeItem.quantity;
+      }
+
+      this.quantity -= removeItem.quantity;
+
+      this.cartItem.splice(index, 1);
+    }
+  }
+
+  getTotalQuantity() {
+    return this.quantity;
   }
 
   // createCartItem(
@@ -55,13 +77,13 @@ export class CartItemService {
 //   }
 
   getCartItemTemp() {
-    console.log("get", this.cartItemTemp);
-    return this.cartItemTemp;
+    console.log("get", this.cartItem);
+    return this.cartItem;
    }
 
    getSubtotalTemp() {
-    console.log(this.subtotalTemp);
-    return this.subtotalTemp;
+    console.log(this.subtotal);
+    return this.subtotal;
    }
 }
 

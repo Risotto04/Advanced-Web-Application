@@ -37,10 +37,13 @@
     </ng-template>
 
     <div
-      class="flex-1 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+      class="flex items-center space-x-2 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
       (click)="openModal()"
     >
-      Cart
+      <h1>Cart</h1>
+      <div class="h-9 w-10 pt-1 bg-black rounded-full text-white"
+      *ngIf="quantity > 0"
+      >{{quantity > 99 ? "99+": quantity}}</div>
     </div>
   </div>
 </div>
@@ -79,7 +82,7 @@
             <p>Quantity ({{ item.quantity }})</p>
             <p class="font-medium">${{ item.product.price }}</p>
           </div>
-          <button class="text-gray hover:text-red-500 mr-8">Remove</button>
+          <button (click)="onRemoveCartItem(item.product._id)" class="text-gray hover:text-red-500 mr-8">Remove</button>
         </div>
       </div>
     </div>
@@ -89,7 +92,7 @@
     >
       <p class="flex justify-between">
         <span>Subtotal</span>
-        <span>${{ subtotal }}</span>
+        <span>${{ subtotal.toFixed(2) }}</span>
       </p>
     </div>
     <input
