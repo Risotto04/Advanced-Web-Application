@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Payment } from '../../../../types/payment';
+import { IPayment } from '../../../../types/payment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +9,34 @@ import { Payment } from '../../../../types/payment';
 export class PaymentService {
   private baseURL = 'http://localhost:3001';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getPaymentByOrderId(): Observable<PaymentResponse> {
-    return this.http.get<PaymentResponse>(`${this.baseURL}/payment`);
+  createPayment(
+    slip:string,
+    date: number,
+    time:string,
+    recipient: string,
+    recipient_phone_number: string,
+    user_id: string,
+    product_ids: string[],
+  ) {
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.post<IPayment>(
+      `${this.baseURL}/payment`,
+      {
+        slip,
+        date,
+        time,
+        recipient,
+        recipient_phone_number,
+        user_id,
+        product_ids
+      },
+      { headers }
+    );
   }
 }
 
 export interface PaymentResponse {
-  data: Payment[];
+  data: IPayment[];
 }

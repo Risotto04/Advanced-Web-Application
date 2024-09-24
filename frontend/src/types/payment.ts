@@ -1,6 +1,9 @@
-export interface Payment {
+export interface IPayment {
     id: string;
     slip: string;
     amount: number;
-    order_id: number;
+    recipient: string;
+    recipient_phone_number: string;
+    user_id: string;
+    product_ids: string[];
 }

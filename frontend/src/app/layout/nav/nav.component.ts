@@ -5,6 +5,7 @@ import { UserService } from '@shared/services/user.service';
 import { ICartItem } from '../../../types/cartItem';
 import { ArrayBufferToBase64 } from '../../../lib/arrayBufferToBase64';
 import { CookieService } from 'ngx-cookie-service';
+import { IProduct } from '../../../types/product';
 
 @Component({
   standalone: false,
@@ -22,7 +23,7 @@ export class NavComponent {
 
   userId = '66efdf8f0201e7a529674650';
 
-  cartItems!: ICartItem[];
+  cartItems!: productWithQuantity[];
   authorized!: any;
 
   constructor(
@@ -35,28 +36,9 @@ export class NavComponent {
   }
 
   ngOnInit() {
-    this.authorized = this.cookieService.get('Authorization');
 
-    if (this.authorized) {
-        // อัปเดตสถานะการล็อกอิน
-        this.isauthenticated = true;
-        
-        // ดึงข้อมูลตะกร้าสินค้า
-        this.httpService.getCartItemsByUserId(this.userId).subscribe(
-            (response) => {
-                this.cartItems = response.data;
-                this.calculateSubtotal();
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
-    } else {
-        // ผู้ใช้ไม่ได้ล็อกอิน
-        this.isauthenticated = false;
-        this.cartItems = this.httpService.getCartItemTemp();
+      this.cartItems = this.httpService.getCartItemTemp();
     }
-}
 
 
 openModal() {
@@ -82,7 +64,7 @@ closeModal() {
 
   calculateSubtotal() {
     this.subtotal = this.cartItems.reduce((total, item) => {
-      const price = (item.product_id?.price ?? 0) * item.quantity;
+      const price = (item.product?.price ?? 0) * item.quantity;
       return total + price;
     }, 0);
   }
@@ -117,4 +99,9 @@ closeModal() {
       this.closeModal();
     }
   }
+}
+
+interface productWithQuantity {
+  product: IProduct,
+  quantity: number
 }
