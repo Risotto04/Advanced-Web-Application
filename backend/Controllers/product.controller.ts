@@ -29,3 +29,36 @@ export const getProductById = async (req: Request, res: Response) => {
       .json({ message: "An error ocured during getting product by id" });
   }
 };
+
+export const getRandomProducts = async (req: Request, res: Response) => {
+  try {
+    const products = await Product.aggregate([
+      {
+        $lookup: {
+          from: "productcategories", // ชื่อ collection หมวดหมู่สินค้า
+          localField: "productCategory_id", // field ที่อ้างถึงใน Product
+          foreignField: "_id", // field ที่อ้างถึงใน ProductCategory
+          as: "category_info", // field ที่จะเพิ่มในผลลัพธ์
+        },
+      },
+      { $unwind: "$category_info" }, // แตกข้อมูล array เป็น object เดียว (inner join)
+      {
+        $project: {
+          name: 1, // เอาชื่อของสินค้า
+          price: 1, // เอาราคาของสินค้า
+          desc: 1, // เอาคำอธิบายของสินค้า
+          picture: 1,
+          "category_info.name": 1,
+        },
+      },
+      { $sample: { size: 15 } },
+    ]);
+
+    return res.status(200).json({ data: products });
+  } catch (e) {
+    console.log("An error occurred: ", e);
+    return res
+      .status(500)
+      .json({ message: "An error occurred during getting products with category name" });
+  }
+};

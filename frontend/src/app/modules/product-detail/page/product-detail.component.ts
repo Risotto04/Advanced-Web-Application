@@ -23,18 +23,17 @@ export class ProductDetailComponent {
   arrayBufferToBase64 = ArrayBufferToBase64;
   isActive!: boolean;
   authorized!: any;
+  productsRamdom!: IProductRamdom[];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private httpService: ProductService,
-    private cartItemService: CartItemService,
-    private cookieService: CookieService
+    private cartItemService: CartItemService
   ) {
     this.productId = this.route.snapshot.paramMap.get('id')!;
     this.category = this.route.snapshot.paramMap.get('category')!;
   }
   ngOnInit(): void {
-    // this.authorized = this.cookieService.get('Authorization');
     this.httpService.getProductsById(this.productId).subscribe(
       (response) => {
         this.products = response.data as IProduct;
@@ -44,53 +43,16 @@ export class ProductDetailComponent {
         console.log(error);
       }
     );
+    this.httpService.getProductsRandom().subscribe(
+      (response) => {
+        this.productsRamdom = response.data as IProductRamdom[];
+        console.log(this.productsRamdom);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
-
-  combos = [
-    {
-      name: 'Pink Elegance',
-      price: 70,
-      imageUrl: 'images/Flowers/Fresh Flowers/PinkElegance.webp',
-    },
-    {
-      name: 'Autumn Symphony',
-      price: 70,
-      imageUrl: 'images/Flowers/Fresh Flowers/AutumnSymphony.webp',
-    },
-    {
-      name: 'Serenity',
-      price: 89,
-      imageUrl: 'images/Flowers/Fresh Flowers/Serenity.webp',
-    },
-    {
-      name: 'Mystical Majesty',
-      price: 80,
-      imageUrl: 'images/Flowers/Fresh Flowers/MysticalMajesty.webp',
-    },
-  ];
-
-  recommendedProducts = [
-    {
-      name: 'Pink Elegance',
-      price: 70,
-      imageUrl: 'images/Flowers/Fresh Flowers/PinkElegance.webp',
-    },
-    {
-      name: 'Autumn Symphony',
-      price: 70,
-      imageUrl: 'images/Flowers/Fresh Flowers/AutumnSymphony.webp',
-    },
-    {
-      name: 'Serenity',
-      price: 89,
-      imageUrl: 'images/Flowers/Fresh Flowers/Serenity.webp',
-    },
-    {
-      name: 'Mystical Majesty',
-      price: 80,
-      imageUrl: 'images/Flowers/Fresh Flowers/MysticalMajesty.webp',
-    },
-  ];
 
   increaseQuantity() {
     this.quantity++;
@@ -101,28 +63,16 @@ export class ProductDetailComponent {
       this.quantity--;
     }
   }
-
-
-  // onCreateCartItem() {
-  //   this.cartItemService
-  //     .createCartItem(
-  //       this.cartId || '',
-  //       this.productId || '',
-  //       this.quantity || 0
-  //     )
-  //     .subscribe(
-  //       (data) => {
-  //         console.log(data);
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       }
-  //     );
-  // }
+  reloadComponent() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 50);
+  }
 
   addProducttoCart() {
-    this.cartItemService.addTempCartItem(
-      this.products, this.quantity
-    );
+    this.cartItemService.addTempCartItem(this.products, this.quantity);
   }
+}
+interface IProductRamdom extends IProduct {
+  category_info: { name: string };
 }
