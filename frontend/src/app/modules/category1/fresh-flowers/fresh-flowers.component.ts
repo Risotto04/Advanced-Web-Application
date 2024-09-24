@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@shared/services/product/product.service';
 import { IProduct } from '../../../../types/product';
-import { ArrayBufferToBase64 } from '../../../../lib';
+import { ArrayBufferToBase64 } from '../../../../lib/arrayBufferToBase64';
 import { IProductCategory } from '../../../../types/productCategory';
 @Component({
   selector: 'app-fresh-flowers',

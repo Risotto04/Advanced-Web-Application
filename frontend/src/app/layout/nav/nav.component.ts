@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { UserService } from '@shared/services/user.service';
 import { ICartItem } from '../../../types/cartItem';
-import { ArrayBufferToBase64 } from '../../../lib';
+import { ArrayBufferToBase64 } from '../../../lib/arrayBufferToBase64';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -59,13 +59,26 @@ export class NavComponent {
 }
 
 
-  openModal() {
-    this.isModalOpen = true;
-  }
+openModal() {
+  this.isModalOpen = true;
+  setTimeout(() => {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    if (modalOverlay) {
+      modalOverlay.classList.add('show'); // Add show class for animation
+    }
+  }, 10); // Delay to ensure the modal is in the DOM before adding the class
+}
 
-  closeModal() {
-    this.isModalOpen = false;
+closeModal() {
+  const modalOverlay = document.querySelector('.modal-overlay');
+  if (modalOverlay) {
+    modalOverlay.classList.remove('show'); // Remove show class for animation
+    setTimeout(() => {
+      this.isModalOpen = false; // Close modal after animation
+    }, 300); // Match the duration of the CSS transition
   }
+}
+
 
   calculateSubtotal() {
     this.subtotal = this.cartItems.reduce((total, item) => {

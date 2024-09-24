@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../../types/product';
-import { ArrayBufferToBase64 } from '../../../lib';
+import { ArrayBufferToBase64 } from '../../../lib/arrayBufferToBase64';
 import { IProductCategory } from '../../../types/productCategory';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@shared/services/product/product.service';

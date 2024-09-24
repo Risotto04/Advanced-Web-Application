@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@shared/services/product/product.service';
 import { IProduct } from '../../../../types/product';
-import { ArrayBufferToBase64 } from '../../../../lib';
+import { ArrayBufferToBase64 } from '../../../../lib/arrayBufferToBase64';
 import { PageNotFoundComponent } from '../../page-not-found/page/page-not-found.component';
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -104,10 +104,9 @@ export class ProductDetailComponent {
   }
 
   addProducttoCart() {
-    if(this.authorized) {
+    if (this.authorized) {
       this.onCreateCartItem();
-    }
-    else{
+    } else {
       this.onAddCartItemTemp();
     }
   }
@@ -134,7 +133,7 @@ export class ProductDetailComponent {
       product_id: this.products,
       id: '',
       quantity: this.quantity,
-      cart_id: new Cart
+      cart_id: new Cart(),
     });
   }
 }

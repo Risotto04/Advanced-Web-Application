@@ -1,5 +1,6 @@
 import { Time } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout-shipping-details',
@@ -7,34 +8,27 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CheckoutShippingDetailsComponent {
   @Output() state = new EventEmitter<number>();
+  @Output('onSendData') onSendData = new EventEmitter();
 
-  recipientsname?: string;
-  recipientsphone?: string;
-  date?: Date;
-  time?: Date;
-  street?: string;
-  apartmentnumber?: string;
+  shippingForm = this._formBuilder.group({
+    recipientsname: ['', Validators.required],
+    recipientsphone: ['', Validators.required],
+    date: ['', Validators.required],
+    time: ['', Validators.required],
+  });
 
-  constructor() {}
+  constructor(private _formBuilder: FormBuilder) {}
 
-  submit() {
-    console.log('recipientsname:', this.recipientsname);
-    console.log('recipientsphone:', this.recipientsphone);
-    console.log('date:', this.date);
-    console.log('time:', this.time);
-    console.log('street:', this.street);
-    console.log('apartmentnumber:', this.apartmentnumber);
-  }
-  onClick() {
-    // this.callbackFunction(1);
-    if (
-      this.recipientsname &&
-      this.recipientsphone &&
-      this.date &&
-      this.time &&
-      this.street &&
-      this.apartmentnumber
-    ) {
+  onSubmit() {
+    if (this.shippingForm.valid) {
+      this.onSendData.emit({
+        shippingForm: {
+          recipientsname: this.shippingForm.value.recipientsname,
+          recipientsphone: this.shippingForm.value.recipientsphone,
+          date: this.shippingForm.value.date,
+          time: this.shippingForm.value.time,
+        },
+      });
       this.state.emit(2);
     }
   }
