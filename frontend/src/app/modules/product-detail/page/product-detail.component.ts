@@ -6,7 +6,6 @@ import { ArrayBufferToBase64 } from '../../../../lib/arrayBufferToBase64';
 import { PageNotFoundComponent } from '../../page-not-found/page/page-not-found.component';
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Cart } from '@shared/models/cart';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItemService } from '@shared/services/cartItem/cart-item.service';
 import { UserService } from '@shared/services/user.service';
-import { ICartItem } from '../../../types/cartItem';
 import { ArrayBufferToBase64 } from '../../../lib/arrayBufferToBase64';
 import { CookieService } from 'ngx-cookie-service';
 import { IProduct } from '../../../types/product';

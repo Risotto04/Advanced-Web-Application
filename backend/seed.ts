@@ -2,10 +2,7 @@ import mongoose from "mongoose";
 import { IUser, userSchema } from "./Models/user";
 import { Product, ProductSchema } from "./Models/product";
 import { ProductCategory, ProductCategorySchema } from "./Models/products_category";
-import { Cart, CartSchema } from "./Models/cart";
-import { Order, OrderSchema } from "./Models/order";
 import { Payment, PaymentSchema } from "./Models/payment";
-import { UserAddress, UserAddressSchema } from "./Models/user_address";
 import path from "path";
 import fs from "fs";
 
