@@ -27,6 +27,7 @@ export class CheckoutComponent implements OnInit {
       this.receivedData.email = event.email || '';
       this.receivedData.name = event.name || '';
       this.receivedData.phonenumber = event.phonenumber || '';
+  }}
 
   test = 10;
   onReceivedData(even: any) {
@@ -43,24 +44,6 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  constructor() {}
-  ngOnInit(): void {}
-  getStateStyle(state: number) {
-    if (state == this.state) {
-      return 'text-[black]';
-    }
-    return 'text-[gray]';
-  }
-  getSum() {
-    const sum = this.datas.reduce(
-      (acc, data) => acc + data.price * data.Quantity,
-      0
-    );
-    return sum;
-  }
-  setState($event: any) {
-    this.state = $event;
-  }
   datas = [
     {
       img: 'images/test/1.webp',
@@ -125,6 +108,7 @@ export class CheckoutComponent implements OnInit {
   }
 
 }
+
 
 interface productWithQuantity {
   product: IProduct,
