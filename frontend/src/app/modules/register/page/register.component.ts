@@ -31,11 +31,13 @@ export class RegisterComponent {
       .subscribe(
         data => {
           console.log(data);
+          alert('Sign Up successful!')
           this.message = 'Sign Up successful!';
 
         },
         error => {
           console.log(error.message);
+          alert('Sign Up failed, Please change email')
           this.message = 'Invalid';
         });
   }

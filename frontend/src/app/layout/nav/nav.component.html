@@ -94,7 +94,6 @@
     </button>
   </div>
 </div>
-
 <div id="modalupdate" *ngIf="isModalOpenAccount" class="modal-overlay fixed inset-0 justify-center items-center"
   (click)="onOverlayClickupdate($event)">
   <div class="modal-content w-full h-full bg-white flex flex-col border border-gray-300 shadow-lg"
@@ -109,35 +108,42 @@
     <div class="flex flex-col p-5 space-y-4 flex-grow">
       <div class="flex flex-col">
         <label for="firstname" class="mb-1 text-sm text-gray-600">First Name</label>
-        <input id="firstname" [(ngModel)]="firstname" type="text" placeholder="First Name"
-          class="px-3 py-2 border border-gray-300" required />
+        <input id="firstname" [(ngModel)]="firstname" name="firstname" type="text" placeholder="First Name"
+          class="px-3 py-2 border border-gray-300" required #firstnameInput="ngModel" />
+        <div *ngIf="firstnameInput.invalid && firstnameInput.touched" class="error-message">
+          First Name is required.
+        </div>
       </div>
-
       <div class="flex flex-col">
         <label for="lastname" class="mb-1 text-sm text-gray-600">Last Name</label>
-        <input id="lastname" [(ngModel)]="lastname" type="text" placeholder="Last Name"
-          class="px-3 py-2 border border-gray-300" required />
+        <input id="lastname" [(ngModel)]="lastname" name="lastname" type="text" placeholder="Last Name"
+          class="px-3 py-2 border border-gray-300" required #lastnameInput="ngModel" />
+        <div *ngIf="lastnameInput.invalid && lastnameInput.touched" class="error-message">
+          Last Name is required.
+        </div>
       </div>
-
       <div class="flex flex-col">
         <label for="email" class="mb-1 text-sm text-gray-600">Email</label>
-        <input id="email" [(ngModel)]="email" type="email" placeholder="Email" class="px-3 py-2 border border-gray-300"
-          required />
+        <input id="email" [(ngModel)]="email" name="email" type="email" placeholder="Email" class="px-3 py-2 border border-gray-300"
+          required #emailInput="ngModel" email />
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="error-message">
+          A valid Email is required.
+        </div>
       </div>
-
       <div class="flex flex-col">
         <label for="phonenumber" class="mb-1 text-sm text-gray-600">Phone Number</label>
-        <input id="phonenumber" [(ngModel)]="phonenumber" type="tel" placeholder="Phone Number"
-          class="px-3 py-2 border border-gray-300" required />
+        <input id="phonenumber" [(ngModel)]="phonenumber" name="phonenumber" type="tel" placeholder="Phone Number"
+          class="px-3 py-2 border border-gray-300" required #phoneInput="ngModel" />
+        <div *ngIf="phoneInput.invalid && phoneInput.touched" class="error-message">
+          Phone Number is required.
+        </div>
       </div>
     </div>
-
-    <div class=" px-5 py-4 space-y-1 border-t border-gray-300 text-center">
-      
+    <div class="px-5 py-4 space-y-1 border-t border-gray-300 text-center">
       <button (click)="submitForm()" class="bg-black text-white px-4 py-2 w-full">
         Update Your Information
       </button>
-      <button class=" bg-red-600 text-white px-4 py-2 w-full" (click)="openModalConfirm()">
+      <button class="bg-red-600 text-white px-4 py-2 w-full" (click)="openModalConfirm()">
         Delete Account
       </button>
     </div>
