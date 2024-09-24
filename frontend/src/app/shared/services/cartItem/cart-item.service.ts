@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ICartItem } from '../../../../types/cartItem'
 import { IProduct } from '../../../../types/product';
 
 @Injectable({
@@ -10,45 +9,50 @@ import { IProduct } from '../../../../types/product';
 export class CartItemService {
   private baseURL = 'http://localhost:3001';
 
-  cartItemTemp: ICartItem[] = []
+  
+  cartItemTemp: productWithQuantity[] = []
   subtotalTemp = 0;
 
   constructor(private http: HttpClient) {}
 
-  addTempCartItem(item: ICartItem) {
-    this.cartItemTemp.push(item);
-    if(item.product_id.price){
-      this.subtotalTemp += item.product_id.price*item.quantity;
+  addTempCartItem(item: IProduct, quantity: number) {
+    this.cartItemTemp.push({
+      product: item,
+      quantity: quantity
+    });
+    console.log(this.cartItemTemp);
+    if(item.price){
+      this.subtotalTemp += item.price*quantity;
       console.log(this.subtotalTemp);
     }
   }
 
-  createCartItem(
-    cart_id:string,
-    product_id:string,
-    quantity:number
-  ) {
-    const headers = { 'Content-Type': 'application/json' };
-    return this.http.post<ICartItem>(
-      `${this.baseURL}/cartItem`,
-      {
-        cart_id,
-        product_id,
-        quantity
-      },
-      { headers }
-    );
-  }
+  // createCartItem(
+  //   cart_id:string,
+  //   product_id:string,
+  //   quantity:number
+  // ) {
+  //   const headers = { 'Content-Type': 'application/json' };
+  //   return this.http.post<ICartItem>(
+  //     `${this.baseURL}/cartItem`,
+  //     {
+  //       cart_id,
+  //       product_id,
+  //       quantity
+  //     },
+  //     { headers }
+  //   );
+  // }
 
-  getCartItemsByUserId(id: string): Observable<CartItemResponse> {
-    const headers = { 'Content-Type': 'application/json' };
-    return this.http.post<CartItemResponse>(`${this.baseURL}/cartItems`,
-      {
-        user_id: id
-      },
-      {headers}
-    );
-  }
+//   getCartItemsByUserId(id: string): Observable<CartItemResponse> {
+//     const headers = { 'Content-Type': 'application/json' };
+//     return this.http.post<CartItemResponse>(`${this.baseURL}/cartItems`,
+//       {
+//         user_id: id
+//       },
+//       {headers}
+//     );
+//   }
 
   getCartItemTemp() {
     console.log("get", this.cartItemTemp);
@@ -61,7 +65,7 @@ export class CartItemService {
    }
 }
 
- 
-interface CartItemResponse {
-  data: ICartItem[];
+interface productWithQuantity {
+  product: IProduct,
+  quantity: number
 }

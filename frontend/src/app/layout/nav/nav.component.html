@@ -72,17 +72,17 @@
       <div *ngFor="let item of cartItems" class="flex items-center mb-4">
         <img
           src="data:image/*;base64,{{
-            arrayBufferToBase64(item.product_id.picture!.data)
+            arrayBufferToBase64(item.product.picture!.data)
           }}"
-          alt="{{ item.product_id.name }}"
+          alt="{{ item.product.name }}"
           width="120"
           class="mr-6 border-[black] border aspect-square"
         />
         <div class="flex justify-between items-center w-full">
           <div>
-            <p class="font-medium">{{ item.product_id.name }}</p>
+            <p class="font-medium">{{ item.product.name }}</p>
             <p>Quantity ({{ item.quantity }})</p>
-            <p class="font-medium">${{ item.product_id.price }}</p>
+            <p class="font-medium">${{ item.product.price }}</p>
           </div>
           <button class="text-gray hover:text-red-500 mr-8">Remove</button>
         </div>
