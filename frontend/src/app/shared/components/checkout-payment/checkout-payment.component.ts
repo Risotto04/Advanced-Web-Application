@@ -27,19 +27,25 @@ export class CheckoutPaymentComponent {
   qr!: string;
   private baseURL = 'http://localhost:3001';
   isModalOpen: boolean = false;
+  canPlay: boolean = false;
 
   constructor(
     private http: HttpClient,
     private cartItemService: CartItemService,
     private paymentService: PaymentService
   ) {
-    this.http
+    if(this.getTotalQuantity() != 0){
+      this.http
       .get<{ data: string }>(
         `${this.baseURL}/genqr/${this.cartItemService.getSubtotalTemp()}`
       )
       .subscribe((data) => {
         this.qr = btoa(unescape(encodeURIComponent(data.data)));
       });
+    }
+    
+
+      this.canPlay = this.getTotalQuantity() == 0;
   }
 
   async onSubmit() {
@@ -50,7 +56,7 @@ export class CheckoutPaymentComponent {
     }
     const products = this.transformData(this.getCartItem());
     console.log(this.getTotalQuantity());
-    if (this.getTotalQuantity() != 0) {
+    if (!this.canPlay) {
       this.paymentService
         .createPayment(
           img as string,

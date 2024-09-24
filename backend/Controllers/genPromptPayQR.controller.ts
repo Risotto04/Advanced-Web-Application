@@ -7,7 +7,7 @@ export const genPromptPayQr = async (req: Request, res: Response) => {
   try {
     const amountNumber = Number(amount);
 
-    if (!isNaN(amountNumber) && amountNumber > 0) {
+    if (!isNaN(amountNumber)) {
       const qrCode = await genPromptPayQR(amountNumber);
       res.status(200).json({ data: qrCode });
     } else {

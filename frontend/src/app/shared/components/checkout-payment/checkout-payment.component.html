@@ -8,6 +8,9 @@
         class="w-1/2"
       />
     </div>
+    <div *ngIf="canPlay" class="text-red-500">
+      You have no items in your shopping cart
+    </div>
     <form class="space-y-3" (submit)="onSubmit()">
       <div class="flex items-center justify-center w-full">
         <label
