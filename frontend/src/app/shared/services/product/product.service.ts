@@ -18,8 +18,16 @@ export class ProductService {
   getProductsById(id: string): Observable<{ data: IProduct }> {
     return this.http.get<{ data: IProduct }>(`${this.baseURL}/product/${id}`);
   }
+  getProductsRandom(): Observable<{ data: ProductRamdomResponse[] }> {
+    return this.http.get<{ data: ProductRamdomResponse[] }>(
+      `${this.baseURL}/productsr/random`
+    );
+  }
 }
 interface ProductResponse {
   data: IProduct[];
   _data: IProductCategory[];
+}
+interface ProductRamdomResponse extends IProduct {
+  category_info: { name: string };
 }

@@ -84,21 +84,36 @@
           <div class="combo-section">
             <p class="font-medium text-lg">Excellent Combination with:</p>
             <div class="combo-items justify-center">
-              <div class="combo-item" *ngFor="let combo of combos">
-                <img
-                  [src]="combo.imageUrl"
-                  alt="{{ combo.name }}"
-                  class="aspect-square w-36 border border-[black]"
-                />
-                <p class="text-start">
-                  {{ combo.name }}
-                </p>
-                <p class="text-[gray]">{{ combo.price | currency }}</p>
+              <div
+                class="combo-item"
+                *ngFor="let item of productsRamdom.slice(5, 9)"
+              >
+                <a
+                  [routerLink]="[
+                    '/product-detail',
+                    { id: item._id, category: item.category_info.name }
+                  ]"
+                  (click)="reloadComponent()"
+                >
+                  <img
+                    src="data:image/*;base64,{{ item.picture }}"
+                    alt="{{ item.name }}"
+                    class="aspect-square w-36 border border-[black]"
+                  />
+                  <p class="text-start">
+                    {{ item.name }}
+                  </p>
+                  <p class="text-[gray]">{{ item.price | currency }}</p>
+                </a>
               </div>
             </div>
           </div>
         </div>
-        <button (click)="addProducttoCart()" hlmBtn class="w-full active:scale-95">
+        <button
+          (click)="addProducttoCart()"
+          hlmBtn
+          class="w-full active:scale-95"
+        >
           ADD TO CART
         </button>
       </div>
@@ -109,17 +124,28 @@
       <h3>You may also like...</h3>
       <div class="recommended-products">
         <div
-          class="recommended-product relative border-t border-r border-[black]"
-          *ngFor="let product of recommendedProducts"
+          class="w-1/4 recommended-product relative border-t border-r border-[black]"
+          *ngFor="let item of productsRamdom.slice(0, 4)"
         >
-          <img [src]="product.imageUrl" alt="{{ product.name }}" />
-          <p
-            class="text-center text-lg font-medium absolute bottom-5 left-[50%] transform translate-x-[-50%]"
+          <a
+            [routerLink]="[
+              '/product-detail',
+              { id: item._id, category: item.category_info.name }
+            ]"
+            (click)="reloadComponent()"
           >
-            {{ product.name }}<br /><span class="text-[gray] text-base">{{
-              product.price | currency
-            }}</span>
-          </p>
+            <img
+              src="data:image/*;base64,{{ item.picture }}"
+              alt="{{ item.name }}"
+            />
+            <p
+              class="text-center text-lg font-medium absolute bottom-5 left-[50%] transform translate-x-[-50%]"
+            >
+              {{ item.name }}<br /><span class="text-[gray] text-base">{{
+                item.price | currency
+              }}</span>
+            </p>
+          </a>
         </div>
       </div>
     </div>
