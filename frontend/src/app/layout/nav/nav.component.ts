@@ -7,6 +7,7 @@ import { ArrayBufferToBase64 } from '../../../lib/arrayBufferToBase64';
 import { CookieService } from 'ngx-cookie-service';
 import { IProduct } from '../../../types/product';
 import { User } from '@shared/models/user';
+import { error } from 'console';
 
 @Component({
   standalone: false,
@@ -34,6 +35,9 @@ export class NavComponent {
   cartItems!: productWithQuantity[];
   authorized!: any;
   quantity!: number;
+
+  deleteTxt: string ='';
+  isDeleted: boolean = false;
 
   constructor(
     private router: Router,
@@ -182,9 +186,69 @@ export class NavComponent {
     );
   }
 
+  deleteAccount() {
+    this.user.deleteUser().subscribe(
+      (res) => {
+        console.log("Delete successful", res);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  isModalOpenConfirm: boolean = false;
+
+  onOverlayClickConfirm(event: Event) {
+    const modalConfirm = document.getElementById('modalConfirm');
+
+    if (event.target === modalConfirm) {
+      this.closeModal();
+    }
+  }
+
+  onConfirmDelete() {
+    if(this.deleteTxt === "DELETE"){
+      this.user.deleteUser().subscribe(
+        res => {
+          this.cookieService.delete("Authorization");
+          alert("Your account is deleted!");
+          this.isModalOpenConfirm = false; 
+          this.router.navigate(['/']);
+        },
+        e => {
+          alert("Something went wrong!");
+        }
+      )
+    }
+    else {
+      alert("Missed keyword!");
+    }
+
+    // this.isModalOpenConfirm = false;
+  }
+
+  onCancel() {
+    this.isModalOpenConfirm = false; 
+  }
+  openModalConfirm() {
+    this.isModalOpenConfirm = true;
+    setTimeout(() => {
+      const modalOverlay = document.querySelector('.modal-overlay');
+      if (modalOverlay) {
+        modalOverlay.classList.add('show'); // Add show class for animation
+      }
+    }, 10);
+  }
 }
+
 
 interface productWithQuantity {
   product: IProduct;
   quantity: number;
+}
+
+export interface DeletionRes {
+  message: string,
+  user: User
 }

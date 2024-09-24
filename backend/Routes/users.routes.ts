@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-import { signIn, register, signOut, updateUserDetails, getUserById } from "../Controllers/users.controllers";
+import { signIn, register, signOut, updateUserDetails, getUserById, deleteUser } from "../Controllers/users.controllers";
 import {
   getUserAddressByUserId,
   createUserAddress,
@@ -20,4 +20,5 @@ router.post("/address", createUserAddress);
 router.put("/address/:user_id", updateUserAddressByUserId);
 router.patch("/users/update",authMiddleware, updateUserDetails);
 
+router.delete("/user", authMiddleware, deleteUser);
 export default router;

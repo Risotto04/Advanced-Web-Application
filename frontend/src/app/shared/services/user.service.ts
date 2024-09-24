@@ -87,4 +87,8 @@ export class UserService {
   getUser(id: string): Observable<User> {
     return this.http.get<User>(`${this.baseURL}/users`, { withCredentials: true }) ;
   }
+
+  deleteUser() {
+    return this.http.delete(`${this.baseURL}/user`);
+  }
 }
