@@ -36,31 +36,38 @@ export class NavComponent {
   }
 
   ngOnInit() {
+    this.authorized = this.cookieService.get('Authorization');
 
-      this.cartItems = this.httpService.getCartItemTemp();
+    if (this.authorized) {
+        // อัปเดตสถานะการล็อกอิน
+        this.isauthenticated = true;
+    } else {
+        // ผู้ใช้ไม่ได้ล็อกอิน
+        this.isauthenticated = false;
+        this.cartItems = this.httpService.getCartItemTemp();
     }
+}
 
 
-openModal() {
-  this.isModalOpen = true;
-  setTimeout(() => {
+  openModal() {
+    this.isModalOpen = true;
+    setTimeout(() => {
+      const modalOverlay = document.querySelector('.modal-overlay');
+      if (modalOverlay) {
+        modalOverlay.classList.add('show'); // Add show class for animation
+      }
+    }, 10); // Delay to ensure the modal is in the DOM before adding the class
+  }
+
+  closeModal() {
     const modalOverlay = document.querySelector('.modal-overlay');
     if (modalOverlay) {
-      modalOverlay.classList.add('show'); // Add show class for animation
+      modalOverlay.classList.remove('show'); // Remove show class for animation
+      setTimeout(() => {
+        this.isModalOpen = false; // Close modal after animation
+      }, 300); // Match the duration of the CSS transition
     }
-  }, 10); // Delay to ensure the modal is in the DOM before adding the class
-}
-
-closeModal() {
-  const modalOverlay = document.querySelector('.modal-overlay');
-  if (modalOverlay) {
-    modalOverlay.classList.remove('show'); // Remove show class for animation
-    setTimeout(() => {
-      this.isModalOpen = false; // Close modal after animation
-    }, 300); // Match the duration of the CSS transition
   }
-}
-
 
   calculateSubtotal() {
     this.subtotal = this.cartItems.reduce((total, item) => {
@@ -102,6 +109,6 @@ closeModal() {
 }
 
 interface productWithQuantity {
-  product: IProduct,
-  quantity: number
+  product: IProduct;
+  quantity: number;
 }
