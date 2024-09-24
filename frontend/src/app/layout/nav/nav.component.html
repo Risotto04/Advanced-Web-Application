@@ -1,37 +1,34 @@
 <div class="sticky-navbar w-full flex justify-between h-20 border border-[black] sticky">
   <div class="flex w-[25%]">
-    <div
-      class="flex-1 py-6 px-4 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
-      routerLink="/home"
-    >
+    <div class="flex-1 py-6 px-4 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
+      routerLink="/home">
       Shop
     </div>
-    <div
-      class="flex-1 py-6 px-4 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
-      (click)="scrollToContact()"
-    >
+    <div class="flex-1 py-6 px-4 border-r-[black] border-r-[1px] text-center hover:underline cursor-pointer"
+      (click)="scrollToContact()">
       Contact
     </div>
   </div>
 
   <div class="flex w-[25%]">
     <ng-container *ngIf="isauthenticated; else signInTemplate">
-      <div class="flex-1 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer relative group">
-        <span>Account</span>
+      <!-- Account Dropdown -->
+      <div  (click)="openModalAccount()"
+        class="w-44 py-6 px-8 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer relative group">
+        <span>Account</span> <!-- Change link if needed -->
+
         <div
           class="absolute left-1/2 transform -translate-x-1/2 hidden group-hover:flex flex-col items-start bg-white border-[black] border p-2 w-[190px]"
-          style="margin-top: 1.9rem;"
-        >
-          <button class="w-full text-left px-3 py-2 hover:underline cursor-pointer" (click)="onSignOut()">Sign out</button>
+          style="margin-top: 1.9rem;">
+          <button class="w-full text-left px-3 py-2 hover:underline cursor-pointer" (click)="onSignOut()">Sign
+            out</button>
         </div>
       </div>
     </ng-container>
-    
+
     <ng-template #signInTemplate>
-      <div
-        class="flex-1 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
-        (click)="navigateToSignIn()"
-      >
+      <div class="flex-1 py-6 px-4 border-l-[black] border-l-[1px] text-center hover:underline cursor-pointer"
+        (click)="navigateToSignIn()">
         Sign in
       </div>
     </ng-template>
@@ -49,16 +46,9 @@
 </div>
 
 <!-- Modal -->
-<div
-  id="modal"
-  *ngIf="isModalOpen"
-  class="modal-overlay"
-  (click)="onOverlayClick($event)"
->
-  <div
-    class="modal-content w-full h-full bg-white flex flex-col border-[black] border-l"
-    (click)="$event.stopPropagation()"
-  >
+<div id="modal" *ngIf="isModalOpen" class="modal-overlay" (click)="onOverlayClick($event)">
+  <div class="modal-content w-full h-full bg-white flex flex-col border-[black] border-l"
+    (click)="$event.stopPropagation()">
     <button class="close-button absolute top-2 right-2" (click)="closeModal()">
       X
     </button>
@@ -68,14 +58,9 @@
 
     <div class="overflow-y-auto flex-1 p-5 custom-scrollbar">
       <div *ngFor="let item of cartItems" class="flex items-center mb-4">
-        <img
-          src="data:image/*;base64,{{
+        <img src="data:image/*;base64,{{
             arrayBufferToBase64(item.product.picture!.data)
-          }}"
-          alt="{{ item.product.name }}"
-          width="120"
-          class="mr-6 border-[black] border aspect-square"
-        />
+          }}" alt="{{ item.product.name }}" width="120" class="mr-6 border-[black] border aspect-square" />
         <div class="flex justify-between items-center w-full">
           <div>
             <p class="font-medium">{{ item.product.name }}</p>
@@ -87,34 +72,67 @@
       </div>
     </div>
 
-    <div
-      class="px-3 py-6 text-xl text-gray-500 text-center border-[black] border-y font-normal"
-    >
+    <div class="px-3 py-6 text-xl text-gray-500 text-center border-[black] border-y font-normal">
       <p class="flex justify-between">
         <span>Subtotal</span>
         <span>${{ subtotal.toFixed(2) }}</span>
       </p>
     </div>
-    <input
-      id="gift-message"
-      [(ngModel)]="giftMessage"
-      type="text"
-      placeholder="Gift message"
-      class="px-3 py-10 text-sm text-gray-500 w-full"
-    />
+    <input id="gift-message" [(ngModel)]="giftMessage" type="text" placeholder="Gift message"
+      class="px-3 py-10 text-sm text-gray-500 w-full" />
 
-    <div
-      class="px-3 py-4 text-sm text-gray-500 text-center border-[black] border-y"
-    >
+    <div class="px-3 py-4 text-sm text-gray-500 text-center border-[black] border-y">
       <p>Shipping & taxes calculated at checkout</p>
       <p class="text-sm text-gray-600">Free standard shipping within Kyiv</p>
     </div>
 
-    <button
-      (click)="navigateToCheckout()"
-      class="checkout-button w-full bg-blue-500 text-white p-3"
-    >
+    <button (click)="navigateToCheckout()" class="checkout-button w-full bg-blue-500 text-white p-3">
       Go to Checkout
     </button>
+  </div>
+</div>
+
+<div id="modalupdate" *ngIf="isModalOpenAccount" class="modal-overlay fixed inset-0 justify-center items-center"
+  (click)="onOverlayClickupdate($event)">
+  <div class="modal-content w-full h-full bg-white flex flex-col border border-gray-300 shadow-lg"
+    (click)="$event.stopPropagation()">
+    <button class="close-button absolute top-2 right-2" (click)="closeModalAccount()">
+      X
+    </button>
+    <div class="px-5 py-4 text-sm text-gray-500 border-b border-gray-300">
+      <h2 class="text-lg font-medium">Your Information</h2>
+    </div>
+
+    <div class="flex flex-col p-5 space-y-4 flex-grow">
+      <div class="flex flex-col">
+        <label for="firstname" class="mb-1 text-sm text-gray-600">First Name</label>
+        <input id="firstname" [(ngModel)]="firstname" type="text" placeholder="First Name"
+          class="px-3 py-2 border border-gray-300" required />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="lastname" class="mb-1 text-sm text-gray-600">Last Name</label>
+        <input id="lastname" [(ngModel)]="lastname" type="text" placeholder="Last Name"
+          class="px-3 py-2 border border-gray-300" required />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="email" class="mb-1 text-sm text-gray-600">Email</label>
+        <input id="email" [(ngModel)]="email" type="email" placeholder="Email" class="px-3 py-2 border border-gray-300"
+          required />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="phonenumber" class="mb-1 text-sm text-gray-600">Phone Number</label>
+        <input id="phonenumber" [(ngModel)]="phonenumber" type="tel" placeholder="Phone Number"
+          class="px-3 py-2 border border-gray-300" required />
+      </div>
+    </div>
+
+    <div class="px-5 py-4 border-t border-gray-300 text-center">
+      <button (click)="submitForm()" class="bg-black text-white px-4 py-2 w-full">
+        Update Your Information
+      </button>
+    </div>
   </div>
 </div>

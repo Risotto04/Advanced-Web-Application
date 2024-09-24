@@ -91,3 +91,46 @@ export const signOut = async (req: Request, res: Response, next: NextFunction) =
     return res.status(500).json({ message: "An error occurred during logout" });
   }
 };
+
+export const updateUserDetails = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const  userId = req.id; 
+    const { email, firstname, lastname, phone_number } = req.body;
+    const existingUser = await User.findOneAndUpdate({_id: userId}, {email: email, firstname: firstname, lastname: lastname, phone_number: phone_number});
+    if (!existingUser) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "User updated successfully",
+    });
+  } catch (error) {
+    console.error("Error during user update:", error);
+    return res.status(500).json({ message: "User Update error" });
+  }
+};
+
+export const getUserById = async (req: Request, res: Response) => {
+  const  userId = req.id; 
+  try {
+    const user = await User.findById(userId); 
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" }); 
+    }
+
+    return res.status(200).json(user);
+  } catch (e) {
+    console.log("An error occurred: ", e); 
+
+    return res
+      .status(500)
+      .json({ message: "An error occurred during getting user by id" }); 
+  }
+};

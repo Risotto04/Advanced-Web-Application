@@ -6,6 +6,7 @@ import { ICartItem } from '../../../types/cartItem';
 import { ArrayBufferToBase64 } from '../../../lib/arrayBufferToBase64';
 import { CookieService } from 'ngx-cookie-service';
 import { IProduct } from '../../../types/product';
+import { User } from '@shared/models/user';
 
 @Component({
   standalone: false,
@@ -15,6 +16,13 @@ import { IProduct } from '../../../types/product';
 })
 export class NavComponent {
   isModalOpen = false;
+  isModalOpenAccount = false;
+
+  firstname: string = '';
+  lastname: string = '';
+  email: string = '';
+  phonenumber: string = '';
+  message: string = '';
 
   subtotal = 0;
   giftMessage = '';
@@ -39,21 +47,33 @@ export class NavComponent {
   ngOnInit() {
     this.authorized = this.cookieService.get('Authorization');
     this.cartItems = this.cartItemService.getCartItemTemp();
-    
-    if (this.authorized) {
-        // อัปเดตสถานะการล็อกอิน
-        this.isauthenticated = true;
-    } else {
-        // ผู้ใช้ไม่ได้ล็อกอิน
-        this.isauthenticated = false;
-        
-    }
-}
 
- ngDoCheck() {
-  this.subtotal = this.cartItemService.getSubtotalTemp();
-  this.quantity = this.cartItemService.getTotalQuantity();
- }
+    if (this.authorized) {
+      // อัปเดตสถานะการล็อกอิน
+      this.isauthenticated = true;
+      this.loadUserData(); // เรียกโหลดข้อมูลของผู้ใช้
+
+    } else {
+      // ผู้ใช้ไม่ได้ล็อกอิน
+      this.isauthenticated = false;
+
+    }
+  }
+  openModalAccount() {
+    this.loadUserData();
+    this.isModalOpenAccount = true;
+    setTimeout(() => {
+      const modalOverlay = document.querySelector('.modal-overlay');
+      if (modalOverlay) {
+        modalOverlay.classList.add('show'); // Add show class for animation
+      }
+    }, 10);
+  }
+
+  ngDoCheck() {
+    this.subtotal = this.cartItemService.getSubtotalTemp();
+    this.quantity = this.cartItemService.getTotalQuantity();
+  }
 
   openModal() {
     this.isModalOpen = true;
@@ -66,6 +86,15 @@ export class NavComponent {
   }
 
   closeModal() {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    if (modalOverlay) {
+      modalOverlay.classList.remove('show'); // Remove show class for animation
+      setTimeout(() => {
+        this.isModalOpen = false; // Close modal after animation
+      }, 300); // Match the duration of the CSS transition
+    }
+  }
+  closeModalAccount() {
     const modalOverlay = document.querySelector('.modal-overlay');
     if (modalOverlay) {
       modalOverlay.classList.remove('show'); // Remove show class for animation
@@ -109,6 +138,50 @@ export class NavComponent {
   onRemoveCartItem(p_id: string) {
     this.cartItemService.removeCartItem(p_id);
   }
+  onOverlayClickupdate(event: MouseEvent): void {
+    const modalupdate = document.getElementById('modalupdate');
+    if (event.target === modalupdate) {
+      this.closeModalAccount();  // ปิด modal update
+    }
+  }
+
+  submitForm() {
+    this.user.updateUserDetails(
+      this.firstname || '',
+      this.lastname || '',
+      this.email || '',
+      this.phonenumber || ''
+    )
+      .subscribe(
+        data => {
+          this.message = 'Updated Success';
+        },
+        error => {
+          if (error.status === 409) {
+            this.message = 'Email already exists';
+          } else {
+            this.message = 'Error updating';
+          }
+          console.log(error.message);
+        });
+  }
+
+
+  loadUserData() {
+    const userId = this.userId; 
+    this.user.getUser(userId).subscribe(
+      (userData: User) => {
+        this.firstname = userData.firstname ?? '';  
+        this.lastname = userData.lastname ?? '';
+        this.email = userData.email ?? '';
+        this.phonenumber = userData.phone_number ?? '';
+      },
+      error => {
+        console.log('Error loading user data:', error);
+      }
+    );
+  }
+
 }
 
 interface productWithQuantity {

@@ -32,6 +32,28 @@ export class UserService {
     );
   }
 
+  updateUserDetails(
+    firstname: string,
+    lastname: string,
+    email: string,
+    phonenumber: string
+  ) {
+    const token = this.CookieService.get('Authorization');
+    console.log(token);
+    console.log(firstname, lastname, email, phonenumber);
+    const headers = { 'Content-Type': 'application/json' , 'Authorization': `Bearer ${token}`};
+    return this.http.patch<User>(
+      `${this.baseURL}/users/update`, 
+      {
+        firstname,
+        lastname,
+        email,
+        phone_number: phonenumber, 
+      },
+      { headers, withCredentials: true }
+    );
+  }
+
   signout() {
     this.CookieService.delete('Authorization');
     console.log(this.CookieService.get('Authorization'));
@@ -60,5 +82,9 @@ export class UserService {
       return false;
     }
     return true;
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(`${this.baseURL}/users`, { withCredentials: true }) ;
   }
 }
