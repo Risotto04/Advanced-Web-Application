@@ -22,13 +22,14 @@
         <span>Account</span> <!-- Change link if needed -->
         
         <div
-          class="absolute left-0 hidden group-hover:flex flex-col items-start bg-white border-[black] border p-2 w-44"
+          class="absolute left-1/2 transform -translate-x-1/2 hidden group-hover:flex flex-col items-start bg-white border-[black] border p-2 w-[177px]"
           style="margin-top: 1.9rem;"
         >
-          <button class="hover:bg-gray-100 w-full text-left px-3 py-2 hover:underline cursor-pointer" (click)="onSignOut()">Sign out</button>
+          <button class="w-full text-left px-3 py-2 hover:underline cursor-pointer" (click)="onSignOut()">Sign out</button>
         </div>
       </div>
     </ng-container>
+    
     
     <!-- Sign in Button -->
     <ng-template #signInTemplate>
@@ -53,7 +54,7 @@
 <div
   id="modal"
   *ngIf="isModalOpen"
-  class="modal-overlay fixed inset-0 justify-center items-center"
+  class="modal-overlay"
   (click)="onOverlayClick($event)"
 >
   <div
