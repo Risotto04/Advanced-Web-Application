@@ -17,8 +17,11 @@ export class LoginComponent {
       .login({ email: this.email, password: this.password })
       .subscribe(
         (data) => {
-          this.message = 'Login successful!';
-          this.router.navigate(['home']);
+          if (data) {
+            this.message = 'Login successful!';
+            this.router.navigate(['home']);
+          } else {
+          }
         },
         (error) => {
           this.message = 'Invalid email or password.';

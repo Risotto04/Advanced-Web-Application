@@ -13,7 +13,17 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
     const existingToken = req.cookies.Authorization;
 
     if (!existingToken) {
-      const payload = { email, password };
+      const user = await User.findOne({ email: email });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ message: "Invalid password" });
+      }
+
+      const payload = { email: user.email, id: user._id };
       const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "3h" });
 
       res.cookie("Authorization", token, {
@@ -21,12 +31,12 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
         httpOnly: false,
       });
 
-      res.status(200).json({ message: "Login successful" });
+      return res.status(200).json({ message: "Login successful" });
     } else {
       return res.status(200).json({ message: "You are already logged in" });
     }
   } catch (error) {
-    return res.status(500).json({ message: "An error occurred during sign-in" });
+    return res.status(500).json({ message: "An error occurred during sign-in", error });
   }
 };
 
@@ -58,7 +68,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     return res.status(201).json({
       message: "User created successfully, and cart created",
       userDetails: savedUser,
-      cartDetails: savedCart
+      cartDetails: savedCart,
     });
   } catch (error) {
     console.error("Error during user registration:", error);
