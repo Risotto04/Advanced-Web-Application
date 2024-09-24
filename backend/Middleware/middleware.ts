@@ -24,7 +24,7 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
     const verified = jwt.verify(token, JWT_KEY) as JwtPayload;
 
     if (verified && verified.email) {
-      req.email = verified.email;
+      req.id = verified.id;
       next();
     } else {
       return res.status(400).json({

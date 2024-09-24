@@ -23,7 +23,7 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
         return res.status(401).json({ message: "Invalid password" });
       }
 
-      const payload = { email: user.email, id: user._id };
+      const payload = { id: user._id };
       const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "3h" });
 
       res.cookie("Authorization", token, {
