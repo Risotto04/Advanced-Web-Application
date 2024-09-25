@@ -1,19 +1,21 @@
-<div class="flex h-full min-h-screen">
-  <div class="w-1/2 sticky top-14 h-full p-20 border-b-[1px] border-[black]">
+<div class="md:flex h-full min-h-screen">
+  <div
+    class="md:w-1/2 md:sticky top-14 h-full xl:p-20 lg:p-10 p-5 border-b-[1px] border-[black]"
+  >
     <div class="gap-8 flex flex-col h-full">
       <h1
-        class="text-7xl font-semibold"
+        class="xl:text-7xl lg:text-6xl text-6xl font-semibold"
         data-aos="fade-up-right"
         data-aos-once="true"
       >
-      La Fleur  <br /> Élite
+        La Fleur Élite
       </h1>
       <div data-aos="fade-up" data-aos-once="true">
         Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread
         Joy with Our Online Flower Delivery Service
       </div>
     </div>
-    <div class="gap-8 flex border-t-[black] border-t-2 pt-6 h-full">
+    <div class="gap-8 flex border-t-[black] md:border-t-2 pt-6 h-full">
       <picture class="pr-6 border-r-[1px] border-[black] h-full">
         <img src="images/home2.webp" alt="Alt Text!" height="700" width="700" />
       </picture>
@@ -26,7 +28,7 @@
     </div>
   </div>
   <!-- <a ></a> -->
-  <div class="w-1/2">
+  <div class="md:w-1/2">
     <div *ngFor="let item of items; index as i" class="flex">
       <div
         *ngIf="i % 2 == 0"
@@ -38,28 +40,6 @@
         >
           {{ item.name }}
         </p>
-        <div class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%] cursor-pointer group">
-          <span class="mr-2">Shop now</span>
-          <svg
-            class="w-[36px] h-[36px] text-gray-800 transition-transform duration-300"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
-              d="m9 5 7 7-7 7"
-            />
-          </svg>
-        </div>
-        
-
       </div>
       <div
         class="w-1/2 aspect-square border-l border-b border-r border-[black] overflow-hidden"
@@ -92,46 +72,21 @@
         >
           {{ item.name }}
         </p>
-        <p
-          [routerLink]="['/category', { categoryId: item._id }]"
-          class="absolute flex items-center bottom-2 left-[50%] transform translate-x-[-50%] translate-y-[-50%] hover:cursor-pointer"
-        >
-          Shop now
-          <svg
-            class="w-[36px] h-[36px] text-gray-800"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
-              d="m9 5 7 7-7 7"
-            />
-          </svg>
-        </p>
       </div>
     </div>
   </div>
 </div>
 <!-- ////2///// -->
-<div class="flex border-[black] border-x border-b">
-  <div class="w-1/2 sticky top-14 h-fit">
+<div class="md:flex border-[black] border-x border-b">
+  <div class="md:w-1/2 ms:sticky top-14 h-fit">
     <p data-aos="fade-up-right" class="p-20 text-5xl font-semibold">About us</p>
   </div>
-  <div class="w-1/2 p-20 border-l border-[black]">
+  <div class="md:w-1/2 sm:border-t p-20 border-l border-[black]">
     <div class="flex flex-col gap-6">
       <p class="font-medium text-base" data-aos="fade-up">OUR STORE</p>
       <div class="flex flex-col gap-4">
         <p class="text-4xl font-semibold" data-aos="fade-up"></p>
-        <p class="text-4xl font-semibold" data-aos="fade-up">
-          La Fleur Élite
-        </p>
+        <p class="text-4xl font-semibold" data-aos="fade-up">La Fleur Élite</p>
         <p data-aos="fade-up" data-aos-duration="700"></p>
         <p data-aos="fade-up" data-aos-duration="700">
           We are a modern local floral studio, which specializes in the design
@@ -162,8 +117,8 @@
 </div>
 <!-- ////3///// -->
 
-<div class="flex border-[black] border-x border-b">
-  <div class="top-14 sticky w-1/2 h-fit">
+<div class="md:flex border-[black] border-x border-b">
+  <div class="top-14 md:sticky md:w-1/2 h-fit sm:border-b">
     <p
       data-aos="fade-up"
       data-aos="fade-up"
@@ -173,7 +128,7 @@
       Why choose us ?
     </p>
   </div>
-  <div class="w-1/2 border-l border-[black]">
+  <div class="md:w-1/2 border-l border-[black]">
     <div class="p-20 border-[black] border-b">
       <p data-aos="fade-up" class="text-4xl font-semibold mb-6"></p>
       <p data-aos="fade-up" class="text-4xl font-semibold mb-6">
@@ -229,8 +184,8 @@
   </div>
 </div>
 <!-- ////4///// -->
-<div class="flex h-fit" id="contact">
-  <div class="w-1/2 h-full sticky top-14">
+<div class="md:flex h-fit" id="contact">
+  <div class="md:w-1/2 h-full md:sticky top-14">
     <div class="p-20">
       <p class="text-5xl font-semibold mb-6" data-aos="fade-up">
         To Contact Us
@@ -288,7 +243,7 @@
       </div>
     </div>
   </div>
-  <div class="border-[black] border-x w-1/2">
+  <div class="border-[black] border-x md:w-1/2">
     <img src="images/Kyiv.webp" alt="Kyiv" class="w-full aspect-square" />
     <div class="flex w-full">
       <div
