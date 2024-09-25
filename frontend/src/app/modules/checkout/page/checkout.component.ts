@@ -48,7 +48,6 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private cartItemService: CartItemService) {}
   ngOnInit(): void {
-    console.log('here');
     this.getCartItem();
   }
   getStateStyle(state: number) {

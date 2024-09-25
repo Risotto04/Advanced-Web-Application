@@ -57,7 +57,6 @@ export class CheckoutPaymentComponent {
       } catch (e) {}
     }
     const products = this.transformData(this.getCartItem());
-    console.log(this.getTotalQuantity());
     if (!this.canPlay) {
       this.paymentService
         .createPayment(

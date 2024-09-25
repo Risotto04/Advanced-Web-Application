@@ -39,16 +39,17 @@ export class UserService {
     phonenumber: string
   ) {
     const token = this.CookieService.get('Authorization');
-    console.log(token);
-    console.log(firstname, lastname, email, phonenumber);
-    const headers = { 'Content-Type': 'application/json' , 'Authorization': `Bearer ${token}`};
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
     return this.http.patch<User>(
-      `${this.baseURL}/users/update`, 
+      `${this.baseURL}/users/update`,
       {
         firstname,
         lastname,
         email,
-        phone_number: phonenumber, 
+        phone_number: phonenumber,
       },
       { headers, withCredentials: true }
     );
@@ -56,13 +57,12 @@ export class UserService {
 
   signout() {
     this.CookieService.delete('Authorization');
-    console.log(this.CookieService.get('Authorization'));
     return this.http.get(`${this.baseURL}/signout`);
   }
 
   login(userDetails: { email: string; password: string }): Observable<boolean> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' ,}),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       withCredentials: true,
     };
     return this.http
@@ -87,7 +87,9 @@ export class UserService {
   }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(`${this.baseURL}/users`, { withCredentials: true }) ;
+    return this.http.get<User>(`${this.baseURL}/users`, {
+      withCredentials: true,
+    });
   }
 
   deleteUser() {

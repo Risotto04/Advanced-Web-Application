@@ -20,10 +20,8 @@ export class CartItemService {
       product: item,
       quantity: quantity,
     });
-    console.log(this.cartItem);
     if (item.price) {
       this.subtotal += item.price * quantity;
-      console.log(this.subtotal);
     }
     this.quantity += quantity;
   }

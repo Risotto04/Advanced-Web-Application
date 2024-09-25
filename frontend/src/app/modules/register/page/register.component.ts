@@ -29,7 +29,6 @@ export class RegisterComponent {
       )
       .subscribe(
         (data) => {
-          console.log(data);
           alert('Sign Up successful!');
           this.message = 'Sign Up successful!';
         },

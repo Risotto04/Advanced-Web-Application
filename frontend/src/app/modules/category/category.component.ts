@@ -21,7 +21,6 @@ export class CategoryComponent implements OnInit {
     private httpService: ProductService
   ) {
     this.categoryId = this.route.snapshot.paramMap.get('categoryId')!;
-    console.log(this.categoryId);
   }
   ngOnInit() {
     this.httpService.getProductsByIdCategory(this.categoryId).subscribe(
